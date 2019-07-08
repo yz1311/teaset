@@ -122,6 +122,26 @@ declare module 'teaset' {
     static info: (text: string, options?, position?) => number;
     static stop: (text: string, options?, position?) => number;
   }
+
+  export interface AlertButton {
+    text?: string;
+    onPress?: () => void;
+    style?: "default" | "cancel" | "destructive";
+  }
+
+  interface AlertOptions {
+    /** @platform android/ios */
+    cancelable?: boolean;
+    /** @platform android/ios */
+    onDismiss?: () => void;
+  }
+
+  export interface AlertStatic {
+    alert: (title: string, message?: string, buttons?: AlertButton[], options?: AlertOptions) => void;
+  }
+
+  export const Alert: AlertStatic;
+  export type Alert = AlertStatic;
   
   type BadgeTypes = 'capsule' | 'square' | 'dot';
 
@@ -178,18 +198,40 @@ declare module 'teaset' {
   
   interface ICheckboxProps extends TouchableOpacityProps {
     checked: boolean,
-    defaultChecked: boolean,
-    size: 'lg' | 'md' | 'sm',
-    title: Element | string | number,
-    titleStyle: TextStyle,
-    checkedIcon: Element | {uri: string} | number,
-    checkedIconStyle: ImageStyle,
-    uncheckedIcon: Element | {uri: string} | number,
-    uncheckedIconStyle: ImageStyle,
-    onChange: any,
+    defaultChecked?: boolean,
+    size?: 'lg' | 'md' | 'sm',
+    title?: Element | string | number,
+    titleStyle?: TextStyle,
+    checkedIcon?: Element | {uri: string} | number,
+    checkedIconStyle?: ImageStyle,
+    uncheckedIcon?: Element | {uri: string} | number,
+    uncheckedIconStyle?: ImageStyle,
+    onChange?: any,
   }
   
   export class Checkbox extends Component<ICheckboxProps,any>{}
+
+  interface IDrawerProps extends IOverlayViewProps{
+    
+  }
+
+  export class Drawer extends Overlay{
+    static DrawerView: typeof OverlayPullView;
+    static open: (view, side: string, rootTransform: string, options: any) => {key: number,close: (animated: boolean)=>void};
+  }
+
+  interface IInputProps extends TextInputProps{
+    size?: 'lg' | 'md' | 'sm',
+    disabled?: boolean
+  }
+
+  export class Input extends Component<IInputProps>{}
+
+  export interface IKeyboardSpaceProps {
+    topInsets: number
+  }
+
+  export class KeyboardSpace extends Component<IKeyboardSpaceProps> {}
   
   type LabelTypes = 'default'  | 'title' | 'detail' | 'danger';
   
@@ -203,14 +245,6 @@ declare module 'teaset' {
   }
   
   export class Label extends Component<ILabelProps,any>{}
-
-  interface ISwipeTouchableOpacityProps extends TouchableOpacityProps{
-    swipeable?: boolean,
-    swipeWidth?: number,
-    onSwipeStsChange?: any,
-  }
-
-  export class SwipeTouchableOpacity extends Component<ISwipeTouchableOpacityProps,any>{}
 
   interface IListRowProps extends ISwipeTouchableOpacityProps{
     title: Element | string | number,
@@ -228,13 +262,28 @@ declare module 'teaset' {
 
   export class ListRow extends Component<IListRowProps,any>{}
 
-  interface IInputProps extends TextInputProps{
-    size?: 'lg' | 'md' | 'sm',
-    disabled?: boolean
+  interface IMenuViewProps extends IOverlayPopoverViewProps {
+    items: Array<{
+      title: Element | string | number,
+      icon: Element | {uri: string} | string | number | 'none' | 'empty',
+      onPress: ()=>void
+    }>
+    shadow: boolean,
   }
 
-  export class Input extends Component<IInputProps>{}
+  export class MenuView extends Component<IMenuViewProps,any>{}
 
+  interface IMenuItemProps {
+    title: Element | string | number,
+    icon: Element | {uri: string} | string | number | 'none' | 'empty',
+  }
+
+  export class MenuItem extends Component<IMenuItemProps>{}
+
+  export class Menu extends Overlay {
+    static MenuView: typeof MenuView;
+    static show: (fromBounds, items: Array<any>, options: any) => typeof MenuView;
+  }
 
   interface  ISearchInputProps extends IInputProps{
     style?: ViewStyle,
@@ -246,4 +295,13 @@ declare module 'teaset' {
   export class SearchInput extends Component<ISearchInputProps>{
 
   }
+
+  interface ISwipeTouchableOpacityProps extends TouchableOpacityProps{
+    swipeable?: boolean,
+    swipeWidth?: number,
+    onSwipeStsChange?: any,
+  }
+
+  export class SwipeTouchableOpacity extends Component<ISwipeTouchableOpacityProps,any>{}
+
 }

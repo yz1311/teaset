@@ -12,6 +12,7 @@ import Stepper from './components/Stepper/Stepper';
 import SearchInput from './components/SearchInput/SearchInput';
 import Badge from './components/Badge/Badge';
 import Popover from './components/Popover/Popover';
+import Alert from './components/Alert/Alert';
 
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import ListRow from './components/ListRow/ListRow';
@@ -53,6 +54,7 @@ var Teaset = {
   SearchInput,
   Badge,
   Popover,
+  Alert,
 
   NavigationBar,
   ListRow,
