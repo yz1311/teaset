@@ -9,7 +9,7 @@ declare module 'teaset' {
   TouchableOpacityProps,
   ViewStyle
 } from 'react-native';
-  import { Component } from 'react';
+  import { Component, RefForwardingComponent } from 'react';
   import { number } from 'prop-types';
 
   interface BaseOverlay extends ViewStyle{
@@ -214,7 +214,7 @@ declare module 'teaset' {
   
   export class Checkbox extends Component<ICheckboxProps,any>{}
 
-  interface IDrawerProps extends IOverlayViewProps{
+  export interface IDrawerProps extends IOverlayViewProps{
     
   }
 
@@ -265,7 +265,7 @@ declare module 'teaset' {
 
   export class ListRow extends Component<IListRowProps,any>{}
 
-  interface IMenuViewProps extends IOverlayPopoverViewProps {
+  export interface IMenuViewProps extends IOverlayPopoverViewProps {
     items: Array<{
       title: Element | string | number,
       icon: Element | {uri: string} | string | number | 'none' | 'empty',
@@ -276,7 +276,7 @@ declare module 'teaset' {
 
   export class MenuView extends Component<IMenuViewProps,any>{}
 
-  interface IMenuItemProps {
+  export interface IMenuItemProps {
     title: Element | string | number,
     icon: Element | {uri: string} | string | number | 'none' | 'empty',
   }
@@ -288,7 +288,7 @@ declare module 'teaset' {
     static show: (fromBounds, items: Array<any>, options: any) => typeof MenuView;
   }
 
-  interface IModalIndicatorViewProps extends IOverlayViewProps{
+  export interface IModalIndicatorViewProps extends IOverlayViewProps{
     text?: Element | string | number,
     position?: 'top' | 'bottom' | 'center',
     size?: 'small' | 'large' | number,
@@ -416,7 +416,7 @@ declare module 'teaset' {
     static Item: typeof SegmentedItem;
   }
 
-  interface ISegmentedSheetProps extends ViewStyle{
+  export interface ISegmentedSheetProps extends ViewStyle{
     title: Element | string | Number,
     titleStyle?: TextStyle,
     activeTitleStyle?: TextStyle,
@@ -541,7 +541,7 @@ declare module 'teaset' {
 
   export class TransformView extends Component<ITransformViewProps> {}
 
-  interface IWheelItemProps extends ViewStyle {
+  export interface IWheelItemProps extends ViewStyle {
     index: number,
     itemHeight: number
     wheelHeight: number,
