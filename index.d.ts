@@ -288,9 +288,19 @@ declare module 'teaset' {
     static show: (fromBounds, items: Array<any>, options: any) => typeof MenuView;
   }
 
-  export class ModalIndicatorView extends OverlayView {}
+  interface IModalIndicatorViewProps extends IOverlayViewProps{
+    text?: Element | string | number,
+    position?: 'top' | 'bottom' | 'center',
+    size?: 'small' | 'large' | number,
+    color?: string,
+  }
+
+  export class ModalIndicatorView extends Component<IModalIndicatorViewProps> {
+
+  }
 
   export class ModalIndicator extends BaseOverlay {
+    static IndicatorView: typeof ModalIndicatorView;
     static show: (text: string) => typeof ModalIndicatorView;
   }
 
