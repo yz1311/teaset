@@ -993,13 +993,13 @@ declare module 'teaset' {
     violet: ThemeConfigPartial,
   };
   export class Theme {
-    set: (theme:ThemeConfigPartial) => void;
-    isPad: boolean;
-    isIPhoneX: boolean;
-    fitIPhoneX: boolean;
-    isLandscape: () => boolean;
-    statusBarHeight: () => number;
-    screenInset: () => {
+    static set: (theme:ThemeConfigPartial) => void;
+    static isPad: boolean;
+    static isIPhoneX: boolean;
+    static fitIPhoneX: boolean;
+    static isLandscape: () => boolean;
+    static statusBarHeight: () => number;
+    static screenInset: () => {
       top: number,
       left: number,
       right: number,
