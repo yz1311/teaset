@@ -7,8 +7,9 @@ declare module 'teaset' {
   SwipeableListViewProps, TextInputProps,
   TextStyle,
   TouchableOpacityProps,
-  ViewStyle
-} from 'react-native';
+  ViewStyle,
+  ImageProps, View
+} from "react-native";
   import { Component, RefForwardingComponent } from 'react';
 
   interface BaseOverlay extends ViewStyle{
@@ -84,11 +85,11 @@ declare module 'teaset' {
   }
 
   // export const Overlay: Overlay;
-  
+
   type ActionPopoverProps  = BaseOverlay & {
     show: (fromBounds, items:Array<any>, options?: any) => number;
   };
-  
+
   export const ActionPopover: ActionPopoverProps;
 
   type ActionSheetProps  = BaseOverlay & {
@@ -144,7 +145,7 @@ declare module 'teaset' {
 
   export const Alert: AlertStatic;
   export type Alert = AlertStatic;
-  
+
   type BadgeTypes = 'capsule' | 'square' | 'dot';
 
   interface IBadgeProps extends ViewStyle{
@@ -179,7 +180,7 @@ declare module 'teaset' {
   }
 
   export class Button extends Component<IButtonProps,any>{}
-  
+
   interface ICarouselProps extends ScrollViewProps {
     //是否开启轮播
     carousel: boolean,
@@ -195,9 +196,9 @@ declare module 'teaset' {
     //(index, total) 页面改变时调用
     onChange: (index: number,total: number) => any,
   }
-  
+
   export class Carousel extends Component<ICarouselProps,any>{}
-  
+
   interface ICheckboxProps extends TouchableOpacityProps {
     checked: boolean,
     defaultChecked?: boolean,
@@ -210,11 +211,11 @@ declare module 'teaset' {
     uncheckedIconStyle?: ImageStyle,
     onChange?: any,
   }
-  
+
   export class Checkbox extends Component<ICheckboxProps,any>{}
 
   export interface IDrawerProps extends IOverlayViewProps{
-    
+
   }
 
   export class Drawer extends Overlay{
@@ -234,9 +235,9 @@ declare module 'teaset' {
   }
 
   export class KeyboardSpace extends Component<IKeyboardSpaceProps> {}
-  
+
   type LabelTypes = 'default'  | 'title' | 'detail' | 'danger';
-  
+
   type LabelSizes = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 
   interface ILabelProps extends TextStyle{
@@ -245,7 +246,7 @@ declare module 'teaset' {
     size?: LabelSizes,
     text: string | number
   }
-  
+
   export class Label extends Component<ILabelProps,any>{}
 
   interface IListRowProps extends ISwipeTouchableOpacityProps{
@@ -301,6 +302,74 @@ declare module 'teaset' {
   export class ModalIndicator extends BaseOverlay {
     static IndicatorView: typeof ModalIndicatorView;
     static show: (text: string) => typeof ModalIndicatorView;
+  }
+
+  export interface INavigationTitleProps extends TextStyle{
+    text: string | number
+  }
+
+  export class NavigationTitle extends Component<INavigationTitleProps>{
+    static contextTypes: {
+      tintColor: string
+    };
+  }
+
+  export interface INavigationButtonProps extends TouchableOpacityProps{
+
+  }
+
+  export class NavigationButton extends Component<INavigationButtonProps>{
+
+  }
+
+  export interface INavigationBackButtonProps extends INavigationButtonProps{
+    title: string | Element,
+    icon: any,
+  }
+
+  export class NavigationBackButton extends Component<INavigationBackButtonProps>{
+
+  }
+
+  export interface INavigationIconButtonProps extends INavigationButtonProps{
+    icon: any,
+  }
+
+  export class NavigationIconButton extends Component<INavigationIconButtonProps>{
+
+  }
+
+  export interface INavigationLinkButtonProps extends INavigationButtonProps{
+    title: string | Element,
+  }
+
+  export class NavigationLinkButton extends Component<INavigationLinkButtonProps>{
+
+  }
+
+  export interface INavigationBarProps extends Partial<ViewStyle> {
+    style?: ViewStyle,
+    type?: 'auto' | 'ios' | 'android',
+    title: string | Element,
+    titleStyle?: TextStyle,
+    leftView?: Element,
+    rightView?: Element,
+    tintColor?: string, //bar tint color, default tint color leftView and rightView, set to null for no tint color
+    background?: Element,
+    hidden?: boolean, //bar hidden
+    animated?: boolean, //hide or show bar with animation
+    statusBarStyle?: 'default' | 'light-content' | 'dark-content', //status bar style (iOS only)
+    statusBarColor?: string, //status bar color, default: style.backgroundColor
+    statusBarHidden?: boolean, //status bar hidden
+    statusBarInsets?: boolean, //auto add space for iOS status bar
+  }
+
+  export class NavigationBar extends Component<INavigationBarProps> {
+    Title: typeof NavigationTitle;
+    Button: typeof NavigationButton;
+    LinkButton: typeof NavigationLinkButton;
+    IconButton: typeof NavigationIconButton;
+    BackButton: typeof NavigationBackButton;
   }
 
   interface INavigationPageProps extends IBasePageProps{
@@ -568,8 +637,8 @@ declare module 'teaset' {
   }
 
   export class SwipeTouchableOpacity extends Component<ISwipeTouchableOpacityProps,any>{}
-  
-  
+
+  //#region theme
   export interface ThemeConfig {
     //General
     screenColor: string,
@@ -984,7 +1053,7 @@ declare module 'teaset' {
     //NavigationPage
     backButtonTitle: string,
   }
-  
+
   export type ThemeConfigPartial = Partial<ThemeConfig>;
 
   export type Themes = {
@@ -1006,4 +1075,5 @@ declare module 'teaset' {
       bottom: number
     };
   }
+  //#endregion
 }
