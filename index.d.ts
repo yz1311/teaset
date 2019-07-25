@@ -7,10 +7,10 @@ declare module 'teaset' {
   SwipeableListViewProps, TextInputProps,
   TextStyle,
   TouchableOpacityProps,
-  ViewStyle
-} from 'react-native';
+  ViewStyle,
+  ImageProps, View
+} from "react-native";
   import { Component, RefForwardingComponent } from 'react';
-  import { number } from 'prop-types';
 
   interface BaseOverlay extends ViewStyle{
     show?: (overlayView: Element) => number;
@@ -85,11 +85,11 @@ declare module 'teaset' {
   }
 
   // export const Overlay: Overlay;
-  
+
   type ActionPopoverProps  = BaseOverlay & {
     show: (fromBounds, items:Array<any>, options?: any) => number;
   };
-  
+
   export const ActionPopover: ActionPopoverProps;
 
   type ActionSheetProps  = BaseOverlay & {
@@ -145,7 +145,7 @@ declare module 'teaset' {
 
   export const Alert: AlertStatic;
   export type Alert = AlertStatic;
-  
+
   type BadgeTypes = 'capsule' | 'square' | 'dot';
 
   interface IBadgeProps extends ViewStyle{
@@ -180,7 +180,7 @@ declare module 'teaset' {
   }
 
   export class Button extends Component<IButtonProps,any>{}
-  
+
   interface ICarouselProps extends ScrollViewProps {
     //是否开启轮播
     carousel: boolean,
@@ -196,9 +196,9 @@ declare module 'teaset' {
     //(index, total) 页面改变时调用
     onChange: (index: number,total: number) => any,
   }
-  
+
   export class Carousel extends Component<ICarouselProps,any>{}
-  
+
   interface ICheckboxProps extends TouchableOpacityProps {
     checked: boolean,
     defaultChecked?: boolean,
@@ -211,11 +211,11 @@ declare module 'teaset' {
     uncheckedIconStyle?: ImageStyle,
     onChange?: any,
   }
-  
+
   export class Checkbox extends Component<ICheckboxProps,any>{}
 
   export interface IDrawerProps extends IOverlayViewProps{
-    
+
   }
 
   export class Drawer extends Overlay{
@@ -235,9 +235,9 @@ declare module 'teaset' {
   }
 
   export class KeyboardSpace extends Component<IKeyboardSpaceProps> {}
-  
+
   type LabelTypes = 'default'  | 'title' | 'detail' | 'danger';
-  
+
   type LabelSizes = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 
   interface ILabelProps extends TextStyle{
@@ -246,7 +246,7 @@ declare module 'teaset' {
     size?: LabelSizes,
     text: string | number
   }
-  
+
   export class Label extends Component<ILabelProps,any>{}
 
   interface IListRowProps extends ISwipeTouchableOpacityProps{
@@ -302,6 +302,74 @@ declare module 'teaset' {
   export class ModalIndicator extends BaseOverlay {
     static IndicatorView: typeof ModalIndicatorView;
     static show: (text: string) => typeof ModalIndicatorView;
+  }
+
+  export interface INavigationTitleProps extends TextStyle{
+    text: string | number
+  }
+
+  export class NavigationTitle extends Component<INavigationTitleProps>{
+    static contextTypes: {
+      tintColor: string
+    };
+  }
+
+  export interface INavigationButtonProps extends TouchableOpacityProps{
+
+  }
+
+  export class NavigationButton extends Component<INavigationButtonProps>{
+
+  }
+
+  export interface INavigationBackButtonProps extends INavigationButtonProps{
+    title: string | Element,
+    icon: any,
+  }
+
+  export class NavigationBackButton extends Component<INavigationBackButtonProps>{
+
+  }
+
+  export interface INavigationIconButtonProps extends INavigationButtonProps{
+    icon: any,
+  }
+
+  export class NavigationIconButton extends Component<INavigationIconButtonProps>{
+
+  }
+
+  export interface INavigationLinkButtonProps extends INavigationButtonProps{
+    title: string | Element,
+  }
+
+  export class NavigationLinkButton extends Component<INavigationLinkButtonProps>{
+
+  }
+
+  export interface INavigationBarProps extends Partial<ViewStyle> {
+    style?: ViewStyle,
+    type?: 'auto' | 'ios' | 'android',
+    title: string | Element,
+    titleStyle?: TextStyle,
+    leftView?: Element,
+    rightView?: Element,
+    tintColor?: string, //bar tint color, default tint color leftView and rightView, set to null for no tint color
+    background?: Element,
+    hidden?: boolean, //bar hidden
+    animated?: boolean, //hide or show bar with animation
+    statusBarStyle?: 'default' | 'light-content' | 'dark-content', //status bar style (iOS only)
+    statusBarColor?: string, //status bar color, default: style.backgroundColor
+    statusBarHidden?: boolean, //status bar hidden
+    statusBarInsets?: boolean, //auto add space for iOS status bar
+  }
+
+  export class NavigationBar extends Component<INavigationBarProps> {
+    Title: typeof NavigationTitle;
+    Button: typeof NavigationButton;
+    LinkButton: typeof NavigationLinkButton;
+    IconButton: typeof NavigationIconButton;
+    BackButton: typeof NavigationBackButton;
   }
 
   interface INavigationPageProps extends IBasePageProps{
@@ -570,4 +638,442 @@ declare module 'teaset' {
 
   export class SwipeTouchableOpacity extends Component<ISwipeTouchableOpacityProps,any>{}
 
+  //#region theme
+  export interface ThemeConfig {
+    //General
+    screenColor: string,
+    primaryColor: string,
+    secondaryColor: string,
+    defaultColor: string,
+    defaultTextColor: string,
+    pageColor: string,
+    pixelSize: number,
+
+    //Label - color
+    labelTextColor: string,
+    labelTextTitleColor: string,
+    labelTextDetailColor: string,
+    labelTextDangerColor: string,
+    //Label - font size
+    labelFontSizeXL: number,
+    labelFontSizeLG: number,
+    labelFontSizeMD: number,
+    labelFontSizeSM: number,
+    labelFontSizeXS: number,
+    labelTitleScale: number, //29, 22, 15, 11, 9
+    labelDetailScale: number, //23, 18, 13, 9, 7
+    labelDangerScale: number,
+
+    //Button - background color
+    btnColor: string,
+    btnPrimaryColor: string,
+    btnSecondaryColor: string,
+    btnDangerColor: string,
+    btnLinkColor: string,
+    //Button - title color
+    btnTitleColor: string,
+    btnPrimaryTitleColor: string,
+    btnSecondaryTitleColor: string,
+    btnDangerTitleColor: string,
+    btnLinkTitleColor: string,
+    //Button - border color
+    btnBorderColor: string,
+    btnPrimaryBorderColor: string,
+    btnSecondaryBorderColor: string,
+    btnDangerBorderColor: string,
+    btnLinkBorderColor: string,
+    //Button - border width
+    btnBorderWidth: number,
+    //Button - border radius
+    btnBorderRadiusXL: number,
+    btnBorderRadiusLG: number,
+    btnBorderRadiusMD: number,
+    btnBorderRadiusSM: number,
+    btnBorderRadiusXS: number,
+    //Button - font size
+    btnFontSizeXL: number,
+    btnFontSizeLG: number,
+    btnFontSizeMD: number,
+    btnFontSizeSM: number,
+    btnFontSizeXS: number,
+    //Button - padding vertical
+    btnPaddingVerticalXL: number,
+    btnPaddingVerticalLG: number,
+    btnPaddingVerticalMD: number,
+    btnPaddingVerticalSM: number,
+    btnPaddingVerticalXS: number,
+    //Button - padding horizontal
+    btnPaddingHorizontalXL: number,
+    btnPaddingHorizontalLG: number,
+    btnPaddingHorizontalMD: number,
+    btnPaddingHorizontalSM: number,
+    btnPaddingHorizontalXS: number,
+    //Button - disabled opacity
+    btnDisabledOpacity: number,
+
+    //Checkbox
+    cbTitleColor: string,
+    cbFontSizeLG: number,
+    cbFontSizeMD: number,
+    cbFontSizeSM: number,
+    cbTitlePaddingLeftLG: number,
+    cbTitlePaddingLeftMD: number,
+    cbTitlePaddingLeftSM: number,
+    cbCheckedTintColor: string,
+    cbUncheckedTintColor: string,
+    cbIconSizeLG: number,
+    cbIconSizeMD: number,
+    cbIconSizeSM: number,
+    cbDisabledOpacity: number,
+
+    //Input
+    inputColor: string,
+    inputTextColor: string,
+    inputPlaceholderTextColor: string,
+    inputBorderColor: string,
+    inputBorderWidth: number,
+    //Input - border radius
+    inputBorderRadiusLG: number,
+    inputBorderRadiusMD: number,
+    inputBorderRadiusSM: number,
+    //Input - font size
+    inputFontSizeLG: number,
+    inputFontSizeMD: number,
+    inputFontSizeSM: number,
+    //Input - padding vertical
+    inputPaddingVerticalLG: number,
+    inputPaddingVerticalMD: number,
+    inputPaddingVerticalSM: number,
+    //Input - padding horizontal
+    inputPaddingHorizontalLG: number,
+    inputPaddingHorizontalMD: number,
+    inputPaddingHorizontalSM: number,
+    //Input - height
+    inputHeightLG: number,
+    inputHeightMD: number,
+    inputHeightSM: number,
+    //Input - disabled opacity
+    inputDisabledOpacity: number,
+
+    //Select
+    selectColor: string,
+    selectTextColor: string,
+    selectPlaceholderTextColor: string,
+    selectBorderColor: string,
+    selectBorderWidth: number,
+    //Select - border radius
+    selectBorderRadiusLG: number,
+    selectBorderRadiusMD: number,
+    selectBorderRadiusSM: number,
+    //Select - font size
+    selectFontSizeLG: number,
+    selectFontSizeMD: number,
+    selectFontSizeSM: number,
+    //Select - padding vertical
+    selectPaddingTopLG: number,
+    selectPaddingTopMD: number,
+    selectPaddingTopSM: number,
+    selectPaddingBottomLG: number,
+    selectPaddingBottomMD: number,
+    selectPaddingBottomSM: number,
+    //Select - padding horizontal
+    selectPaddingLeftLG: number,
+    selectPaddingLeftMD: number,
+    selectPaddingLeftSM: number,
+    selectPaddingRightLG: number, //include icon size
+    selectPaddingRightMD: number, //include icon size
+    selectPaddingRightSM: number, //include icon size
+    //Select - height
+    selectHeightLG: number,
+    selectHeightMD: number,
+    selectHeightSM: number,
+    //Select - icon
+    selectIconSizeLG: number,
+    selectIconSizeMD: number,
+    selectIconSizeSM: number,
+    selectIconTintColor: string,
+    //Select - disabled opacity
+    selectDisabledOpacity: number,
+
+    //Stepper
+    stepperColor: string,
+    stepperBorderColor: string,
+    stepperBorderWidth: number,
+    stepperBorderRadius: number,
+    stepperTextColor: string,
+    stepperFontSize: number,
+    stepperBtnTextColor: string,
+    stepperBtnFontSize: number,
+    stepperValueMinWidth: number,
+    stepperValuePaddingHorizontal: number,
+    stepperButtonWidth: number,
+    stepperButtonHeight: number,
+    stepperDisabledOpacity: number,
+
+    //SearchInput
+    siColor: string,
+    siTextColor: string,
+    siPlaceholderTextColor: string,
+    siBorderColor: string,
+    siBorderWidth: number,
+    siBorderRadius: number,
+    siFontSize: number,
+    siPaddingVertical: number,
+    siPaddingHorizontal: number,
+    siHeight: number,
+    siIconSize: number,
+    siDisabledOpacity: number,
+
+    //Badge
+    badgeSize: number,
+    badgeDotSize: number,
+    badgePadding: number,
+    badgeColor: string,
+    badgeBorderColor: string,
+    badgeBorderWidth: number,
+    badgeTextColor: string,
+    badgeFontSize: number,
+
+    //Popover
+    popoverColor: string,
+    popoverBorderColor: string,
+    popoverBorderRadius: number,
+    popoverBorderWidth: number,
+    popoverPaddingCorner: number,
+
+    //NavigationBar
+    navType: 'ios' | 'auto' | 'android', //'auto', 'ios', 'android'
+    navStatusBarStyle: 'default' | 'light-content', //'default', 'light-content'
+    navBarContentHeight: number,
+    navColor: string,
+    navTintColor: string,
+    navTitleColor: string,
+    navTitleFontSize: number,
+    navButtonFontSize: number,
+    navSeparatorColor: string,
+    navSeparatorLineWidth: number,
+
+    //SegmentedBar
+    sbColor: string,
+    sbHeight: number,
+    sbBtnPaddingTop: number,
+    sbBtnPaddingBottom: number,
+    sbBtnPaddingLeft: number,
+    sbBtnPaddingRight: number,
+    sbBtnTitleColor: string,
+    sbBtnTextFontSize: number,
+    sbBtnActiveTitleColor: string,
+    sbBtnActiveTextFontSize: number,
+    sbIndicatorLineColor: string,
+    sbIndicatorLineWidth: number,
+    sbIndicatorPositionPadding: number,
+
+    //SegmentedView
+
+    //TabView
+    tvBarColor: string,
+    tvBarHeight: number,
+    tvBarPaddingTop: number,
+    tvBarPaddingBottom: number,
+    tvBarSeparatorWidth: number,
+    tvBarSeparatorColor: string,
+    tvBarBtnWidth: number,
+    tvBarBtnIconSize: number,
+    tvBarBtnIconTintColor: string,
+    tvBarBtnIconActiveTintColor: string,
+    tvBarBtnTitleColor: string,
+    tvBarBtnTextFontSize: number,
+    tvBarBtnActiveTitleColor: string,
+    tvBarBtnActiveTextFontSize: number,
+
+    //ListRow
+    rowColor: string,
+    rowMinHeight: number,
+    rowPaddingLeft: number,
+    rowPaddingRight: number,
+    rowPaddingTop: number,
+    rowPaddingBottom: number,
+    rowIconWidth: number,
+    rowIconHeight: number,
+    rowIconPaddingRight: number,
+    rowAccessoryWidth: number,
+    rowAccessoryHeight: number,
+    rowAccessoryPaddingLeft: number,
+    rowAccessoryCheckColor: string,
+    rowAccessoryIndicatorColor: string,
+    rowSeparatorColor: string,
+    rowSeparatorLineWidth: number,
+    rowPaddingTitleDetail: number,
+    rowDetailLineHeight: number,
+    rowActionButtonColor: string,
+    rowActionButtonDangerColor: string,
+    rowActionButtonTitleColor: string,
+    rowActionButtonDangerTitleColor: string,
+    rowActionButtonTitleFontSize: number,
+    rowActionButtonPaddingHorizontal: number,
+
+    //Carousel
+    carouselDotSize: number,
+    carouselDotUseSize: number,
+    carouselDotColor: string,
+    carouselActiveDotColor: string,
+
+    //Wheel
+    wheelColor: string,
+    wheelFontSize: number,
+    wheelTextColor: string,
+    wheelHoleHeight: number,
+    wheelHoleLineWidth: number,
+    wheelHoleLineColor: string,
+    wheelMaskColor: string,
+    wheelMaskOpacity: number,
+
+    //Overlay
+    overlayOpacity: number,
+    overlayRootScale: number,
+
+    //Toast
+    toastColor: string,
+    toastPaddingLeft: number,
+    toastPaddingRight: number,
+    toastPaddingTop: number,
+    toastPaddingBottom: number,
+    toastBorderRadius: number,
+    toastIconTintColor: string,
+    toastIconWidth: number,
+    toastIconHeight: number,
+    toastIconPaddingTop: number,
+    toastIconPaddingBottom: number,
+    toastTextColor: string,
+    toastFontSize: number,
+    toastScreenPaddingLeft: number,
+    toastScreenPaddingRight: number,
+    toastScreenPaddingTop: number,
+    toastScreenPaddingBottom: number,
+
+    //ActionSheet
+    asItemDisabledOpacity: number,
+    asItemMinHeight: number,
+    asItemPaddingLeft: number,
+    asItemPaddingRight: number,
+    asItemPaddingTop: number,
+    asItemPaddingBottom: number,
+    asItemColor: string,
+    asItemSeparatorColor: string,
+    asItemSeparatorLineWidth: number,
+    asItemTitleColor: string,
+    asItemTitleAlign: string,
+    asItemFontSize: number,
+    asCancelItemColor: string,
+    asCancelItemSeparatorColor: string,
+    asCancelItemSeparatorLineWidth: number,
+    asCancelItemTitleColor: string,
+    asCancelItemTitleAlign: string,
+    asCancelItemFontSize: number,
+
+    //ActionPopover
+    apColor: string,
+    apPaddingVertical: number,
+    apPaddingHorizontal: number,
+    apBorderRadius: number,
+    apDirectionInsets: number,
+    apItemTitleColor: string,
+    apItemFontSize: number,
+    apItemPaddingVertical: number,
+    apItemPaddingHorizontal: number,
+    apSeparatorColor: string,
+    apSeparatorWidth: number,
+
+    //PullPicker
+    pupColor: string,
+    pupMaxHeight: number,
+    pupHeaderColor: string,
+    pupHeaderPaddingLeft: number,
+    pupHeaderPaddingRight: number,
+    pupHeaderPaddingTop: number,
+    pupHeaderPaddingBottom: number,
+    pupHeaderTitleColor: string,
+    pupHeaderFontSize: number,
+    pupHeaderFontWeight: number,
+    pupHeaderSeparatorColor: string,
+    pupHeaderSeparatorHeight: number,
+    pupItemColor: string,
+    pupSeparatorColor: string,
+
+    //PopoverPicker
+    poppColor: string,
+    poppShadowColor: string,
+    poppMinWidth: number,
+    poppMaxWidth: number,
+    poppMinHeight: number,
+    poppMaxHeight: number,
+    poppDirectionInsets: number,
+    poppItemColor: string,
+    poppItemPaddingLeft: number,
+    poppItemPaddingRight: number,
+    poppItemPaddingTop: number,
+    poppItemPaddingBottom: number,
+    poppItemTitleColor: string,
+    poppItemFontSize: number,
+    poppItemSeparatorWidth: number,
+    poppItemSeparatorColor: string,
+    poppAccessoryWidth: number,
+    poppAccessoryHeight: number,
+    poppAccessoryPaddingLeft: number,
+    poppAccessoryCheckColor: string,
+
+    //Menu
+    menuColor: string,
+    menuShadowColor: string,
+    menuDirectionInsets: number,
+    menuItemColor: string,
+    menuItemPaddingLeft: number,
+    menuItemPaddingRight: number,
+    menuItemPaddingTop: number,
+    menuItemPaddingBottom: number,
+    menuItemTitleColor: string,
+    menuItemFontSize: number,
+    menuItemSeparatorWidth: number,
+    menuItemSeparatorColor: string,
+    menuItemIconWidth: number,
+    menuItemIconHeight: number,
+    menuItemIconColor: string,
+    menuItemIconPaddingRight: number,
+
+    //ModalIndicator
+    miIndicatorColor: string,
+    miTextColor: string,
+    miFontSize: number,
+    miTextPaddingTop: number,
+    miScreenPaddingLeft: number,
+    miScreenPaddingRight: number,
+    miScreenPaddingTop: number,
+    miScreenPaddingBottom: number,
+
+    //NavigationPage
+    backButtonTitle: string,
+  }
+
+  export type ThemeConfigPartial = Partial<ThemeConfig>;
+
+  export type Themes = {
+    default: ThemeConfigPartial,
+    black: ThemeConfigPartial,
+    violet: ThemeConfigPartial,
+  };
+  export class Theme {
+    static set: (theme:ThemeConfigPartial) => void;
+    static isPad: boolean;
+    static isIPhoneX: boolean;
+    static fitIPhoneX: boolean;
+    static isLandscape: () => boolean;
+    static statusBarHeight: () => number;
+    static screenInset: () => {
+      top: number,
+      left: number,
+      right: number,
+      bottom: number
+    };
+  }
+  //#endregion
 }
