@@ -48,10 +48,10 @@ export default class Alert {
         }}
         style={{alignItems: 'center', justifyContent: 'center'}}
       >
-        <View style={{backgroundColor: '#fff', minWidth: realWidth*0.7, paddingTop: 20, minHeight: 135, borderRadius: 10, justifyContent: 'center', alignItems: 'center'}}>
-          <Label type='title' style={{fontSize: 18*Theme.labelTitleScale,fontWeight:'500',marginHorizontal:15}} text={title} />
-          <Label type='title' style={{marginTop: 6,marginHorizontal:15}} size='md' text={message} />
-          <View style={{flex:1}}/>
+        <View style={{backgroundColor: '#fff', minWidth: realWidth*0.7, paddingTop: 20, borderRadius: 10, alignItems: 'center'}}>
+          {title?
+          <Label type='title' style={{fontSize: 17*Theme.labelTitleScale,fontWeight:'500',marginHorizontal:15}} text={title} />:null}
+          <Label type='title' style={{marginTop: 6,marginHorizontal:15,marginBottom:20}} size='md' text={message} />
           <View style={{flexDirection:'row',borderTopColor: '#eeeef0',borderTopWidth: SEPARATOR_LENGTH}}>
             {buttonViews}
           </View>
@@ -86,7 +86,7 @@ const Button:FC<any> = ({hideAlert, text, onPress, style})=>{
       }}
       style={{flex:1,justifyContent:'center',alignItems:'center',height:45}}
     >
-      <Text style={{color: textColor,fontSize: 18*Theme.labelTitleScale}}>{text}</Text>
+      <Text style={{color: textColor,fontSize: 16*Theme.labelTitleScale}}>{text}</Text>
     </TouchableOpacity>
   );
 }
