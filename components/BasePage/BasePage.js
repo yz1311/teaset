@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import ReactNative, {Platform, View, ViewPropTypes} from 'react-native';
 
 import Theme from 'teaset/themes/Theme';
-import TeaNavigator from '../TeaNavigator/TeaNavigator';
 import KeyboardSpace from '../KeyboardSpace/KeyboardSpace';
 
 export default class BasePage extends Component {
@@ -21,7 +20,7 @@ export default class BasePage extends Component {
 
   static defaultProps = {
     ...View.defaultProps,
-    scene: TeaNavigator.SceneConfigs.Replace,
+    scene: '',
     autoKeyboardInsets: Platform.OS === 'ios',
     keyboardTopInsets: 0,
   };

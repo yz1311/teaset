@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import {Platform, View, Dimensions} from 'react-native';
 
 import Theme from 'teaset/themes/Theme';
-import TeaNavigator from '../TeaNavigator/TeaNavigator';
 import BasePage from '../BasePage/BasePage';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import KeyboardSpace from '../KeyboardSpace/KeyboardSpace';
@@ -16,6 +15,7 @@ export default class NavigationPage extends BasePage {
 
   static propTypes = {
     ...BasePage.propTypes,
+    scene: PropTypes.object, //转场效果
     title: PropTypes.string,
     showBackButton: PropTypes.bool,
     navigationBarInsets: PropTypes.bool,
@@ -23,7 +23,7 @@ export default class NavigationPage extends BasePage {
 
   static defaultProps = {
     ...BasePage.defaultProps,
-    scene: TeaNavigator.SceneConfigs.PushFromRight,
+    scene: '',
     title: null,
     showBackButton: false,
     navigationBarInsets: true,
