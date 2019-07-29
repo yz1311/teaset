@@ -263,7 +263,9 @@ declare module 'teaset' {
     swipeActions?: Array<Element>,
   }
 
-  export class ListRow extends Component<IListRowProps,any>{}
+  export class ListRow extends Component<IListRowProps,any>{
+    static defaultProps: Partial<IListRowProps>;
+  }
 
   export interface IMenuViewProps extends IOverlayPopoverViewProps {
     items: Array<{
