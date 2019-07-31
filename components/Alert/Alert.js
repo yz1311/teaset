@@ -14,7 +14,7 @@ Alert.alert = (title, message, buttons, options) => {
     let index = 0;
     for (const button of buttons) {
         index++;
-        buttonViews.push(<Button hideAlert={() => {
+        buttonViews.push(<Button key={index} hideAlert={() => {
             Alert.hide();
         }} text={button.text} style={button.style} onPress={button.onPress}/>);
         //分隔符

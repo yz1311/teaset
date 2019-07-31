@@ -23,6 +23,7 @@ export default class Alert {
       index++;
       buttonViews.push(
         <Button
+          key={index}
           hideAlert ={()=>{
             Alert.hide();
           }}
