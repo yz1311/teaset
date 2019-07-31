@@ -202,6 +202,7 @@ export default class ListRow extends Component {
     let contentStyle = {
       flex: 1,
       overflow: 'hidden',
+      alignSelf:'stretch',
       flexDirection: titlePlace === 'top' ? 'column' : 'row',
       alignItems: titlePlace === 'top' ? 'stretch' : 'center',
       justifyContent: 'space-between',
