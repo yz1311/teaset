@@ -1,5 +1,5 @@
 {
-  "name": "teaset",
+  "name": "@yz1311/teaset",
   "version": "0.6.4",
   "description": "A UI library for react native.",
   "main": "index.js",
@@ -10,6 +10,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rilyu/teaset.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "teaset",
@@ -22,9 +25,9 @@
   "author": "rilyu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rilyu/teaset/issues"
+    "url": "https://github.com/yz1311/teaset/issues"
   },
-  "homepage": "https://github.com/rilyu/teaset#readme",
+  "homepage": "https://github.com/yz1311/teaset#readme",
   "dependencies": {
     "prop-types": "^15.5.10"
   },
