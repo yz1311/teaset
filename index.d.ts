@@ -1,5 +1,5 @@
 
-declare module 'teaset' {
+declare module '@yz1311/teaset' {
   import {
   ImageStyle,
   ScrollViewProps,
