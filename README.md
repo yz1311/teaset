@@ -1,5 +1,7 @@
 # Teaset
 [🇨🇳中文完整文档版](./docs/cn/README.md)
+[![npm version](http://img.shields.io/npm/v/@yz1311/teaset.svg?style=flat-square)](https://npmjs.org/package/@yz1311/teaset "View this project on npm")
+[![npm version](http://img.shields.io/npm/dm/@yz1311/teaset.svg?style=flat-square)](https://npmjs.org/package/@yz1311/teaset "View this project on npm")
 
 A UI library for react native, provides 20+ pure JS(ES6) components, focusing on content display and action control.
 
