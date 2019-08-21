@@ -1,4 +1,5 @@
 
+
 declare module '@yz1311/teaset' {
   import {
   ImageStyle,
@@ -180,6 +181,37 @@ declare module '@yz1311/teaset' {
   }
 
   export class Button extends Component<IButtonProps,any>{}
+
+  interface IDashLineProps extends ViewStyle {
+    style?: ViewStyle,
+    dashGap?: number,
+    dashLength?: number,
+    dashThickness?: number,
+    dashColor?: string,
+    dashStyle?: ViewStyle,
+  }
+
+  export class DashLine extends Component<IDashLineProps,any>{}
+
+  interface IDatePickerViewProps extends ViewStyle {
+    labelUnit?: {
+      year?: string,
+      month?: string,
+      date?: string,
+    },
+    date?: Date,
+    maxDate?: Date,
+    minDate?: Date,
+    mode?: 'date' | 'time' | 'datetime',
+    onDateChange?: Function,
+    style?: ViewStyle | Array<ViewStyle>,
+    pickerStyle?: ViewStyle | Array<ViewStyle>,
+    textColor?: string,
+    textSize?: number,
+    itemSpace?: number,
+  }
+
+  export class DatePickerView extends Component<IDatePickerViewProps,any>{}
 
   interface ICarouselProps extends ScrollViewProps {
     //是否开启轮播
@@ -1078,4 +1110,8 @@ declare module '@yz1311/teaset' {
     };
   }
   //#endregion
+
+  export const CodePushHandler:any;
+
+  export const BackHandler:any;
 }

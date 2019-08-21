@@ -20,6 +20,14 @@ Teaset 组件采用 React Native 原生组件同样的风格来编写, 可以与
 npm install --save teaset
 ```
 
+如果需要使用DatePickerView相关组件
+```
+npm install --save @yz1311/react-native-wheel-picker
+react-native link @yz1311/react-native-wheel-picker
+```
+
+如果需要使用热更新code-push相关组件,具体安装[查看](https://github.com/microsoft/react-native-code-push/tree/master/docs)
+
 ## Hello world
 从 teaset 包中 import 组件即可使用
 ```

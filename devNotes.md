@@ -1,0 +1,1 @@
+react-native-code-push不能依赖在项目中，引入这样，初始化的key在该项目中引用不到,必须移除依赖

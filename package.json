@@ -1,6 +1,6 @@
 {
   "name": "@yz1311/teaset",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "description": "A UI library for react native.",
   "main": "index.js",
   "scripts": {
@@ -32,8 +32,6 @@
     "prop-types": "^15.5.10"
   },
   "devDependencies": {
-    "@types/react": "^16.8.23",
-    "@types/react-native": "^0.60.0",
     "typescript": "^3.5.2"
   }
 }
