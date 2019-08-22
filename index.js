@@ -44,9 +44,12 @@ import NavigationPage from './components/NavigationPage/NavigationPage';
 import KeyboardSpace from './components/KeyboardSpace/KeyboardSpace';
 import CodePushHandler from './components/CodePushView/CodePushHandler';
 import BackHandler from './utils/BackHandler';
+import NavigationHelper1 from './navigation/NavigationHelper';
+
 
 var Teaset = {
   Theme,
+  NavigationHelper: NavigationHelper1,
 
   Label,
   Button,

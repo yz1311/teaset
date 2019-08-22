@@ -2,15 +2,15 @@
 
 declare module '@yz1311/teaset' {
   import {
-  ImageStyle,
-  ScrollViewProps,
-  StyleProp,
-  SwipeableListViewProps, TextInputProps,
-  TextStyle,
-  TouchableOpacityProps,
-  ViewStyle,
-  ImageProps, View
-} from "react-native";
+    ImageStyle,
+    ScrollViewProps,
+    StyleProp,
+    SwipeableListViewProps, TextInputProps,
+    TextStyle,
+    TouchableOpacityProps,
+    ViewStyle,
+    ImageProps, View
+  } from "react-native";
   import { Component, RefForwardingComponent } from 'react';
 
   interface BaseOverlay extends ViewStyle{
@@ -28,7 +28,7 @@ declare module '@yz1311/teaset' {
   };
 
   interface IOverlayViewProps  {
-    style?: ViewStyle,
+    style?: StyleProp<ViewStyle>,
     modal?: boolean,
     animated?: boolean,
     overlayOpacity?: number,
@@ -43,7 +43,7 @@ declare module '@yz1311/teaset' {
 
   interface IOverlayPopViewProps extends IOverlayViewProps{
     type?: 'zoomOut' | 'zoomIn' | 'custom',
-    containerStyle?: ViewStyle,
+    containerStyle?: StyleProp<ViewStyle>,
     customBounds?: Bounds
   }
 
@@ -62,7 +62,7 @@ declare module '@yz1311/teaset' {
 
   interface IOverlayPullViewProps extends IOverlayViewProps{
     side: 'top' | 'bottom' | 'left' | 'right',
-    containerStyle: ViewStyle,
+    containerStyle: StyleProp<ViewStyle>,
     rootTransform: 'none' | 'translate' | 'scale' | Array<Bounds>
   }
 
@@ -152,7 +152,7 @@ declare module '@yz1311/teaset' {
   interface IBadgeProps extends ViewStyle{
     type: BadgeTypes,
     count: string|number,
-    countStyle: TextStyle,
+    countStyle: StyleProp<TextStyle>,
     maxCount: number
   }
 
@@ -183,12 +183,12 @@ declare module '@yz1311/teaset' {
   export class Button extends Component<IButtonProps,any>{}
 
   interface IDashLineProps extends ViewStyle {
-    style?: ViewStyle,
+    style?: StyleProp<ViewStyle>,
     dashGap?: number,
     dashLength?: number,
     dashThickness?: number,
     dashColor?: string,
-    dashStyle?: ViewStyle,
+    dashStyle?: StyleProp<ViewStyle>,
   }
 
   export class DashLine extends Component<IDashLineProps,any>{}
@@ -204,8 +204,8 @@ declare module '@yz1311/teaset' {
     minDate?: Date,
     mode?: 'date' | 'time' | 'datetime',
     onDateChange?: Function,
-    style?: ViewStyle | Array<ViewStyle>,
-    pickerStyle?: ViewStyle | Array<ViewStyle>,
+    style?: StyleProp<ViewStyle>,
+    pickerStyle?: StyleProp<ViewStyle>,
     textColor?: string,
     textSize?: number,
     itemSpace?: number,
@@ -236,11 +236,11 @@ declare module '@yz1311/teaset' {
     defaultChecked?: boolean,
     size?: 'lg' | 'md' | 'sm',
     title?: Element | string | number,
-    titleStyle?: TextStyle,
+    titleStyle?: StyleProp<TextStyle>,
     checkedIcon?: Element | {uri: string} | number,
-    checkedIconStyle?: ImageStyle,
+    checkedIconStyle?: StyleProp<ImageStyle>,
     uncheckedIcon?: Element | {uri: string} | number,
-    uncheckedIconStyle?: ImageStyle,
+    uncheckedIconStyle?: StyleProp<ImageStyle>,
     onChange?: any,
   }
 
@@ -273,7 +273,7 @@ declare module '@yz1311/teaset' {
   type LabelSizes = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 
   interface ILabelProps extends TextStyle{
-    style?: TextStyle,
+    style?: StyleProp<TextStyle>,
     type?: LabelTypes,
     size?: LabelSizes,
     text: string | number
@@ -284,8 +284,8 @@ declare module '@yz1311/teaset' {
   interface IListRowProps extends ISwipeTouchableOpacityProps{
     title: Element | string | number,
     detail?: Element | string | number,
-    titleStyle?: TextStyle,
-    detailStyle?: TextStyle,
+    titleStyle?: StyleProp<TextStyle>,
+    detailStyle?: StyleProp<TextStyle>,
     detailMultiLine?: boolean, //是否支持多行内容
     icon?: Element | {uri: string} | number,
     accessory?: Element | {uri: string} | number | 'none' | 'auto' | 'empty' | 'check' | 'indicator',
@@ -342,7 +342,7 @@ declare module '@yz1311/teaset' {
     text: string | number
   }
 
-  export class NavigationTitle extends Component<INavigationTitleProps>{
+  class NavigationTitle extends Component<INavigationTitleProps>{
     static contextTypes: {
       tintColor: string
     };
@@ -352,7 +352,7 @@ declare module '@yz1311/teaset' {
 
   }
 
-  export class NavigationButton extends Component<INavigationButtonProps>{
+  class NavigationButton extends Component<INavigationButtonProps>{
 
   }
 
@@ -361,7 +361,7 @@ declare module '@yz1311/teaset' {
     icon: any,
   }
 
-  export class NavigationBackButton extends Component<INavigationBackButtonProps>{
+  class NavigationBackButton extends Component<INavigationBackButtonProps>{
 
   }
 
@@ -369,7 +369,7 @@ declare module '@yz1311/teaset' {
     icon: any,
   }
 
-  export class NavigationIconButton extends Component<INavigationIconButtonProps>{
+  class NavigationIconButton extends Component<INavigationIconButtonProps>{
 
   }
 
@@ -377,15 +377,15 @@ declare module '@yz1311/teaset' {
     title: string | Element,
   }
 
-  export class NavigationLinkButton extends Component<INavigationLinkButtonProps>{
+  class NavigationLinkButton extends Component<INavigationLinkButtonProps>{
 
   }
 
   export interface INavigationBarProps extends Partial<ViewStyle> {
-    style?: ViewStyle,
+    style?: StyleProp<ViewStyle>,
     type?: 'auto' | 'ios' | 'android',
     title: string | Element,
-    titleStyle?: TextStyle,
+    titleStyle?: StyleProp<TextStyle>,
     leftView?: Element,
     rightView?: Element,
     tintColor?: string, //bar tint color, default tint color leftView and rightView, set to null for no tint color
@@ -459,7 +459,7 @@ declare module '@yz1311/teaset' {
 
   export class Projector extends Component<{
     index: number,
-    slideStyle?: ViewStyle
+    slideStyle?: StyleProp<ViewStyle>
   }> {}
 
   export class PullPickerView extends Component<IOverlayPullViewProps & {
@@ -479,7 +479,7 @@ declare module '@yz1311/teaset' {
 
 
   interface  ISearchInputProps extends IInputProps{
-    style?: ViewStyle,
+    style?: StyleProp<TextStyle>,
     inputStyle?: TextInputProps,
     iconSize?: number,
     disabled?: boolean,
@@ -491,8 +491,8 @@ declare module '@yz1311/teaset' {
 
   interface ISegmentedItemProps extends ViewStyle{
     title: Element | string | number,
-    titleStyle?: TextStyle,
-    activeTitleStyle?: TextStyle,
+    titleStyle?: StyleProp<TextStyle>,
+    activeTitleStyle?: StyleProp<TextStyle>,
     active?: boolean,
     badge?: Element | string | number,
     onAddWidth?: (width) => any
@@ -520,8 +520,8 @@ declare module '@yz1311/teaset' {
 
   export interface ISegmentedSheetProps extends ViewStyle{
     title: Element | string | Number,
-    titleStyle?: TextStyle,
-    activeTitleStyle?: TextStyle,
+    titleStyle?: StyleProp<TextStyle>,
+    activeTitleStyle?: StyleProp<TextStyle>,
     badge?: Element | string | Number,
   }
 
@@ -531,7 +531,7 @@ declare module '@yz1311/teaset' {
     type?: 'projector' | 'carousel',
     barPosition?: 'top' | 'bottom',
     //SegmentedBar
-    barStyle?: ViewStyle,
+    barStyle?: StyleProp<ViewStyle>,
     justifyItem?: 'fixed' | 'scrollable',
     indicatorType?: 'none' | 'boxWidth' | 'itemWidth',
     indicatorPosition?: 'top' | 'bottom',
@@ -551,7 +551,7 @@ declare module '@yz1311/teaset' {
   interface ISelectProps extends ViewStyle {
     size?: 'lg' | 'md' | 'sm',
     value?: any,
-    valueStyle?: TextStyle,
+    valueStyle?: StyleProp<TextStyle>,
     items?: Array<any>,
     getItemValue?: (item, index) => any, //(item, index) 选择项值，item=items[index]，为空时直接使用item
     getItemText?: (item, index) => any, //(item, index) return display text of item, item=items[index], use item when it's null
@@ -573,7 +573,7 @@ declare module '@yz1311/teaset' {
     step?: number,
     max?: number,
     min?: number,
-    valueStyle?:TextStyle,
+    valueStyle?:StyleProp<TextStyle>,
     valueFormat?: (value) => any, //(value)
     subButton?: Element | string,
     addButton?: Element | string,
@@ -590,12 +590,12 @@ declare module '@yz1311/teaset' {
 
   interface ITabButtonProps extends ViewStyle {
     title: Element | string | number,
-    titleStyle?: TextStyle,
-    activeTitleStyle?: TextStyle,
+    titleStyle?: StyleProp<TextStyle>,
+    activeTitleStyle?: StyleProp<TextStyle>,
     icon?: Element | {uri: string} | number,
     activeIcon?: Element | {uri: string} | number,
     active?: boolean,
-    iconContainerStyle?: ViewStyle,
+    iconContainerStyle?: StyleProp<ViewStyle>,
     badge?: Element | number,
   }
 
@@ -606,7 +606,7 @@ declare module '@yz1311/teaset' {
     title: Element | string | number,
     icon?:  Element | {uri: string} | number,
     activeIcon?:  Element | {uri: string} | number,
-    iconContainerStyle?: ViewStyle
+    iconContainerStyle?: StyleProp<ViewStyle>,
     badge?:  Element | number,
     onPress?: any,
   }
@@ -615,7 +615,7 @@ declare module '@yz1311/teaset' {
 
   export class TabView extends Component<ViewStyle & {
     type?: 'projector' | 'carousel',
-    barStyle?: ViewStyle,
+    barStyle?: StyleProp<ViewStyle>,
     activeIndex?: number,
     onChange?: (index) => any, //(index)
   }> {
@@ -624,7 +624,7 @@ declare module '@yz1311/teaset' {
   }
 
   interface ITransformViewProps extends ViewStyle {
-    containerStyle?: ViewStyle,
+    containerStyle?: StyleProp<ViewStyle>,
     maxScale?: number,
     minScale?: number,
     inertial?: boolean,
@@ -654,9 +654,9 @@ declare module '@yz1311/teaset' {
 
   interface IWheelProps extends ViewStyle {
     items: Element | string | number,
-    itemStyle?: TextStyle,
-    holeStyle?: ViewStyle, //height is required
-    maskStyle?: ViewStyle,
+    itemStyle?: StyleProp<TextStyle>,
+    holeStyle?: StyleProp<ViewStyle>, //height is required
+    maskStyle?: StyleProp<ViewStyle>,
     holeLine?: Element | number,
     index?: number,
     defaultIndex?: number,
@@ -1095,23 +1095,51 @@ declare module '@yz1311/teaset' {
     black: ThemeConfigPartial,
     violet: ThemeConfigPartial,
   };
-  export class Theme {
-    static set: (theme:ThemeConfigPartial) => void;
-    static isPad: boolean;
-    static isIPhoneX: boolean;
-    static fitIPhoneX: boolean;
-    static isLandscape: () => boolean;
-    static statusBarHeight: () => number;
-    static screenInset: () => {
+  export const Theme: {
+    themes: {
+      default: ThemeConfig,
+      black: ThemeConfig,
+      violet: ThemeConfig,
+    };
+    set: (theme:ThemeConfigPartial) => void;
+    isPad: boolean;
+    isIPhoneX: boolean;
+    fitIPhoneX: boolean;
+    isLandscape: () => boolean;
+    statusBarHeight: () => number;
+    screenInset: () => {
       top: number,
       left: number,
       right: number,
       bottom: number
     };
-  }
+  } & ThemeConfigPartial;
   //#endregion
 
   export const CodePushHandler:any;
 
   export const BackHandler:any;
+
+  interface NavigationHelperProps {
+    //初始化，传递后，可以使用global.NavigationHelper方式直接调用，如不需全局调用，则不需要
+    init: (helper,name?:string) => void,
+    //更新navigation对象
+    updateNavigation: (navigation) => void,
+    //更新路由栈对象
+    updateRouters: (routers) => void,
+    navigation: any,
+    navRouters: any,
+    isTopScreen: (key:string) => boolean,
+    goBack: () => void,
+    push: (routeName: string, params?) => void,
+    navigate: (routeName:string, params?) => void,
+    resetTo: (routeName:string,params?:any) => void,
+    replace: (routeName:string, params?) => void,
+    popN: (num:number) => void,
+    popToTop: () => void,
+    popToIndex: (indexOfRoute:number) => void,
+    popToRoute: (routeName:string) => void,
+  }
+
+  export const NavigationHelper: NavigationHelperProps;
 }
