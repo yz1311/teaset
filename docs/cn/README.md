@@ -1,5 +1,7 @@
 # Teaset
 [🇬🇧English version](/README.md)
+[![npm version](http://img.shields.io/npm/v/@yz1311/teaset.svg?style=flat-square)](https://npmjs.org/package/@yz1311/teaset "View this project on npm")
+[![npm version](http://img.shields.io/npm/dm/@yz1311/teaset.svg?style=flat-square)](https://npmjs.org/package/@yz1311/teaset "View this project on npm")
 
 React Native UI 组件库, 超过 20 个纯 JS(ES6) 组件, 专注于内容展示和操作控制。
 
@@ -26,7 +28,7 @@ npm install --save @yz1311/react-native-wheel-picker
 react-native link @yz1311/react-native-wheel-picker
 ```
 
-如果需要使用热更新code-push相关组件,具体安装[查看](https://github.com/microsoft/react-native-code-push/tree/master/docs)
+如果需要使用热更新code-push相关组件,具体安装[查看](https://github.com/microsoft/react-native-code-push/tree/master/docs),并且需要安装[react-native-netinfo](https://github.com/react-native-community/react-native-netinfo)
 
 ## Hello world
 从 teaset 包中 import 组件即可使用

@@ -199,24 +199,34 @@ declare module '@yz1311/teaset' {
   }
 
   interface IDatePickerViewProps extends ViewStyle {
-    labelUnit?: {
+    labelUnit: {
       year?: string,
       month?: string,
       date?: string,
     },
-    date?: Date,
-    maxDate?: Date,
-    minDate?: Date,
-    mode?: 'date' | 'time' | 'datetime',
+    date: Date,
+    maxDate: Date,
+    minDate: Date,
+    mode: 'date' | 'time' | 'datetime',
     onDateChange?: Function,
     style?: StyleProp<ViewStyle>,
     pickerStyle?: StyleProp<ViewStyle>,
-    textColor?: string,
-    textSize?: number,
-    itemSpace?: number,
+    textColor: string,
+    textSize: number,
+    itemSpace: number,
   }
 
-  export class DatePickerView extends Component<IDatePickerViewProps,any>{}
+  export class DatePickerView extends Component<IDatePickerViewProps,any>{
+    static defaultProps: 
+    Pick<IDatePickerViewProps,'labelUnit'>
+    &Pick<IDatePickerViewProps,'mode'>
+    &Pick<IDatePickerViewProps,'maxDate'>
+    &Pick<IDatePickerViewProps,'minDate'>
+    &Pick<IDatePickerViewProps,'date'>
+    &Pick<IDatePickerViewProps,'textColor'>
+    &Pick<IDatePickerViewProps,'textSize'>
+    &Pick<IDatePickerViewProps,'itemSpace'>
+  }
 
   interface ICarouselProps extends ScrollViewProps {
     //是否开启轮播

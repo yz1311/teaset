@@ -16,7 +16,7 @@ npm install --save @yz1311/react-native-wheel-picker
 react-native link @yz1311/react-native-wheel-picker
 ```
 
-if you will use code-push,please refer to this: [view](https://github.com/microsoft/react-native-code-push/tree/master/docs)
+if you will use code-push,please refer to this: [view](https://github.com/microsoft/react-native-code-push/tree/master/docs) and install [react-native-netinfo](https://github.com/react-native-community/react-native-netinfo)
 
 # Example
 In the Teaset package directory:
