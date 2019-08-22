@@ -114,7 +114,7 @@ export default class NavigationBar extends Component {
       } else {
         barTop.setValue(barTopValue);
         barOpacity.setValue(barOpacityValue);
-      }      
+      }
     }
   }
 
@@ -216,13 +216,13 @@ export default class NavigationBar extends Component {
   renderLeftView() {
     let {leftView} = this.props;
     let {barOpacity: opacity} = this.state;
-    return <Animated.View style={{opacity}} onLayout={e => this.onLeftViewLayout(e)}>{leftView}</Animated.View>;
+    return <Animated.View style={{alignSelf:'stretch',justifyContent:'center',opacity}} onLayout={e => this.onLeftViewLayout(e)}>{leftView}</Animated.View>;
   }
 
   renderRightView() {
     let {rightView} = this.props;
     let {barOpacity: opacity} = this.state;
-    return <Animated.View style={{opacity}} onLayout={e => this.onRightViewLayout(e)}>{rightView}</Animated.View>;
+    return <Animated.View style={{alignSelf:'stretch',justifyContent:'center',opacity}} onLayout={e => this.onRightViewLayout(e)}>{rightView}</Animated.View>;
   }
 
   render() {
