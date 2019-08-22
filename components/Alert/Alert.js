@@ -27,10 +27,10 @@ Alert.alert = (title, message, buttons, options) => {
             options.onDismiss();
         }
     }} style={{ alignItems: 'center', justifyContent: 'center' }}>
-        <View style={{ backgroundColor: '#fff', minWidth: realWidth * 0.7, paddingTop: 20, borderRadius: 10, alignItems: 'center' }}>
+        <View style={{ backgroundColor: '#fff', minWidth: realWidth * 0.7, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center' }}>
           {title ?
         <Label type='title' style={{ fontSize: 17 * Theme.labelTitleScale, fontWeight: '500', marginHorizontal: 15 }} text={title}/> : null}
-          <Label type='title' style={{ marginTop: 6, marginHorizontal: 15, marginBottom: 20 }} size='md' text={message}/>
+          <Label numberOfLines={8} type='title' style={{ marginTop: 6, marginHorizontal: 15, marginBottom: 20 }} size='md' text={message}/>
           <View style={{ flexDirection: 'row', borderTopColor: '#eeeef0', borderTopWidth: SEPARATOR_LENGTH }}>
             {buttonViews}
           </View>
