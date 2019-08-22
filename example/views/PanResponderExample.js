@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, PanResponder, Image, TouchableOpacity, Animated} from 'react-native';
 
-import {NavigationPage, Input} from 'teaset';
+import {NavigationPage, Input} from '@yz1311/teaset';
 
 export default class PanResponderExample extends NavigationPage {
 

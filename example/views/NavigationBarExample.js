@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {Platform, View, ScrollView, Switch, Image} from 'react-native';
 
-import {Theme, NavigationPage, ListRow, NavigationBar, Label} from 'teaset';
+import {Theme, NavigationPage, ListRow, NavigationBar, Label} from '@yz1311/teaset';
 import SelectRow from './SelectRow';
 
 export default class NavigationBarExample extends NavigationPage {

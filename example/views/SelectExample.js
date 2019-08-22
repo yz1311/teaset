@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {View, Text, Image, ScrollView} from 'react-native';
 
-import {NavigationPage, ListRow, Select, Label} from 'teaset';
+import {NavigationPage, ListRow, Select, Label} from '@yz1311/teaset';
 
 export default class SelectExample extends NavigationPage {
 

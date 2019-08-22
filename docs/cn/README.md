@@ -36,7 +36,7 @@ react-native link @yz1311/react-native-wheel-picker
 import React, {Component} from 'react';
 import {View, AppRegistry} from 'react-native';
 
-import {Label} from 'teaset';
+import {Label} from '@yz1311/teaset';
 
 class HelloWorldApp extends Component {
   render() {
@@ -83,7 +83,7 @@ react-native run-android
 如果你使用了 Redux ，需要使用 ```<TopView>``` 包裹 container ，用于给 Overlay 类型的组件提供容器(感谢 [@Alexorz](https://github.com/Alexorz) 的贡献)。
 
 ```
-import { TopView } from 'teaset';
+import { TopView } from '@yz1311/teaset';
 
 container => () => <Provider store={store}><TopView>{container}</TopView></Provider>
 ```

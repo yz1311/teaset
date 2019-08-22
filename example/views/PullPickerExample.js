@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {View, ScrollView} from 'react-native';
 
-import {NavigationPage, ListRow, PullPicker} from 'teaset';
+import {NavigationPage, ListRow, PullPicker} from '@yz1311/teaset';
 
 export default class PullPickerExample extends NavigationPage {
 
