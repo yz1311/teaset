@@ -184,14 +184,19 @@ declare module '@yz1311/teaset' {
 
   interface IDashLineProps extends ViewStyle {
     style?: StyleProp<ViewStyle>,
-    dashGap?: number,
-    dashLength?: number,
-    dashThickness?: number,
-    dashColor?: string,
+    dashGap: number,
+    dashLength: number,
+    dashThickness: number,
+    dashColor: string,
     dashStyle?: StyleProp<ViewStyle>,
   }
 
-  export class DashLine extends Component<IDashLineProps,any>{}
+  export class DashLine extends Component<IDashLineProps,any>{
+    static defaultProps: Pick<IDashLineProps,'dashGap'>
+    &Pick<IDashLineProps,'dashLength'>
+    &Pick<IDashLineProps,'dashThickness'>
+    &Pick<IDashLineProps,'dashColor'>
+  }
 
   interface IDatePickerViewProps extends ViewStyle {
     labelUnit?: {
