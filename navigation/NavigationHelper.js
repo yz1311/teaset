@@ -91,10 +91,4 @@ navigationHelper.init = function (helper, name = NAVIGATION_HELPER_BLOBAL_NAME) 
     NAVIGATION_HELPER_BLOBAL_NAME = name;
     global[NAVIGATION_HELPER_BLOBAL_NAME] = helper;
 };
-navigationHelper.updateNavigation = function (navigation) {
-    navigationHelper.navigation = navigation;
-};
-navigationHelper.updateRouters = function (routers) {
-    navigationHelper.navRouters = routers;
-};
 //# sourceMappingURL=NavigationHelper.js.map

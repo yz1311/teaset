@@ -1123,10 +1123,6 @@ declare module '@yz1311/teaset' {
   interface NavigationHelperProps {
     //初始化，传递后，可以使用global.NavigationHelper方式直接调用，如不需全局调用，则不需要
     init: (helper,name?:string) => void,
-    //更新navigation对象
-    updateNavigation: (navigation) => void,
-    //更新路由栈对象
-    updateRouters: (routers) => void,
     navigation: any,
     navRouters: any,
     isTopScreen: (key:string) => boolean,

@@ -13,13 +13,7 @@ var NAVIGATION_HELPER_BLOBAL_NAME = `NavigationHelper`;
       NAVIGATION_HELPER_BLOBAL_NAME = name;
       global[NAVIGATION_HELPER_BLOBAL_NAME] = helper;
     }
-    static updateNavigation =  function (navigation) {
-      navigationHelper.navigation = navigation;
-    }
-    static updateRouters = function (routers) {
-      navigationHelper.navRouters = routers;
-    }
-
+ 
     static navigation: NavigationScreenProp<
       NavigationRoute<NavigationParams>,
       NavigationParams

@@ -68,7 +68,7 @@ declare var NavigationHelper: {
 在`createStackNavigator`的`defaultNavigationOptions`方法([具体参考](https://reactnavigation.org/docs/en/stack-navigator.html#stacknavigatorconfig))中更新navigation对象
 ```javascript
 defaultNavigationOptions:({navigation})=>{
-    NavigationHelper.updateNavigation(navigation);
+    NavigationHelper.navigation = navigation;
 }
 ```
 
@@ -77,7 +77,7 @@ defaultNavigationOptions:({navigation})=>{
 在appContainer的`onNavigationStateChange`方法([具体参考](https://reactnavigation.org/docs/en/app-containers.html#onnavigationstatechangeprevstate-newstate-action))中更新routers对象
 ```javascript
 onNavigationStateChange={(prevState, currentState, action) => {
-                      NavigationHelper.updateRouters(currentState.routes);
+                      NavigationHelper.navRouters = currentState.routes;
                     }}
 ```
 
