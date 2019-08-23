@@ -47,7 +47,7 @@ export default class SegmentedView extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.activeIndex != this.props.activeIndex && this.refs.carousel) {
       this.refs.carousel.scrollToPage(nextProps.activeIndex);
     }

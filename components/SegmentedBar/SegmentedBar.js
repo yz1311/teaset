@@ -49,7 +49,7 @@ export default class SegmentedBar extends Component {
     this._scrollViewWidth = 0;
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     let nextItemsLayout = this.makeArray(this._itemsLayout, nextProps.children);
     if (nextItemsLayout.length != this._itemsLayout.length) {
       this._buttonsLayout = this.makeArray(this._buttonsLayout, nextProps.children);

@@ -40,7 +40,7 @@ export default class Checkbox extends TouchableOpacity {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.checked === true || nextProps.checked === false) {
       if (nextProps.checked != this.state.checked) {
         this.setState({checked: nextProps.checked});

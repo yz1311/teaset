@@ -26,7 +26,7 @@ export default class Projector extends Component {
     this.slideShowns = this.initSlideShowns(props.children);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     let nextSlideShowns = this.initSlideShowns(nextProps.children);
     if (nextSlideShowns.length != this.slideShowns.length) {
       this.slideShowns = nextSlideShowns;

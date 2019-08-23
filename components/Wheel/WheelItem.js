@@ -32,7 +32,7 @@ export default class WheelItem extends Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     if (!this.positionListenerId) {
       this.positionListenerId = this.props.currentPosition.addListener(e => {
         this.handlePositionChange(e.value);
@@ -48,7 +48,7 @@ export default class WheelItem extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     let {itemHeight, wheelHeight, index} = this.props;
     if (nextProps.index != index
       || nextProps.itemHeight != itemHeight

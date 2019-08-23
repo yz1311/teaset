@@ -61,7 +61,7 @@ export default class NavigationBar extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.hidden != this.props.hidden) {
       this.checkBarHidden(nextProps.hidden, nextProps.animated);
     }

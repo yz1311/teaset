@@ -138,7 +138,7 @@ export default class DatePickerView extends PureComponent {
         };
         this.initData();
     }
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (this.props.minDate !== nextProps.minDate) {
             this.initData();
         }

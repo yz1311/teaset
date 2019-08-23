@@ -45,7 +45,7 @@ export default class Wheel extends Component {
     this.targetPositionValue = null;
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     if (!this.positionListenerId) {
       this.positionListenerId = this.currentPosition.addListener(e => this.handlePositionChange(e.value));
     }
@@ -58,7 +58,7 @@ export default class Wheel extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.index || nextProps.index === 0) {
       this.index = nextProps.index;
       this.currentPosition.setValue(nextProps.index * this.holeHeight);
