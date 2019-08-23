@@ -1,3 +1,5 @@
 rootProject.name = 'example'
+include ':@yz1311_react-native-wheel-picker'
+project(':@yz1311_react-native-wheel-picker').projectDir = new File(rootProject.projectDir, '../node_modules/@yz1311/react-native-wheel-picker/android')
 
 include ':app'

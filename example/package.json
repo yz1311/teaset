@@ -7,9 +7,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "@yz1311/react-native-wheel-picker": "latest",
+    "@yz1311/teaset": "latest",
+    "hoist-non-react-statics": "^3.3.0",
+    "moment": "latest",
     "react": "16.8.3",
-    "react-native": "0.59.8",
-    "@yz1311/teaset": "latest"
+    "react-native": "0.59.8"
   },
   "devDependencies": {
     "babel-core": "^7.0.0-bridge.0",

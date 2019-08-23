@@ -7,16 +7,12 @@ A UI library for react native, provides 20+ pure JS(ES6) components, focusing on
 
 # Installation
 ```
-npm install --save teaset 
-```
+npm install --save teaset @yz1311/react-native-wheel-picker
 
-if you will use DatePickerView components,please do:
-```
-npm install --save @yz1311/react-native-wheel-picker
 react-native link @yz1311/react-native-wheel-picker
 ```
 
-if you will use code-push,please refer to this: [view](https://github.com/microsoft/react-native-code-push/tree/master/docs) and install [react-native-netinfo](https://github.com/react-native-community/react-native-netinfo)
+if you want to use code-push handler,please refer to this: [teaset-code-push](https://github.com/yz1311/teaset-code-push)
 
 # Example
 In the Teaset package directory:

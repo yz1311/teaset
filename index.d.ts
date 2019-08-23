@@ -1131,8 +1131,6 @@ declare module '@yz1311/teaset' {
   } & ThemeConfigPartial;
   //#endregion
 
-  export const CodePushHandler:any;
-
   export const BackHandler:any;
 
   interface NavigationHelperProps {

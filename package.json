@@ -1,6 +1,6 @@
 {
   "name": "@yz1311/teaset",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "description": "A UI library for react native.",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,8 @@
   },
   "homepage": "https://github.com/yz1311/teaset#readme",
   "dependencies": {
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "hoist-non-react-statics":"latest"
   },
   "devDependencies": {
     "typescript": "^3.5.2"
