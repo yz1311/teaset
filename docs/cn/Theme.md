@@ -11,7 +11,7 @@ Teaset 提供 default 、 black 、 violet 三种配色方案, 默认值见[Them
 ## Example
 修改配色方案
 ```
-import {Theme} from 'teaset';
+import {Theme} from '@yz1311/teaset';
 
 Theme.set(Theme.themes.black);
 
@@ -19,7 +19,7 @@ Theme.set(Theme.themes.black);
 
 修改部分默认值
 ```
-import {Theme} from 'teaset';
+import {Theme} from '@yz1311/teaset';
 
 Theme.set({
   primaryColor: '#f55e5d',

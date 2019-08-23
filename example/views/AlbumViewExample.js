@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {View, Image, TouchableOpacity, StatusBar} from 'react-native';
 
-import {Theme, NavigationPage, AlbumView, Overlay, Button} from 'teaset';
+import {Theme, NavigationPage, AlbumView, Overlay, Button} from '@yz1311/teaset';
 
 export default class AlbumViewExample extends NavigationPage {
 

@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {View, ScrollView} from 'react-native';
 
-import {NavigationPage, ListRow, SearchInput} from 'teaset';
+import {NavigationPage, ListRow, SearchInput} from '@yz1311/teaset';
 
 export default class SearchInputExample extends NavigationPage {
 

@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {View, ScrollView, Image} from 'react-native';
 
-import {NavigationPage, ListRow, Checkbox, Label} from 'teaset';
+import {NavigationPage, ListRow, Checkbox, Label} from '@yz1311/teaset';
 
 export default class CheckboxExample extends NavigationPage {
 

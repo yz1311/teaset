@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {View, ScrollView} from 'react-native';
 
-import {NavigationPage, ListRow, ActionSheet, Label} from 'teaset';
+import {NavigationPage, ListRow, ActionSheet, Label} from '@yz1311/teaset';
 
 export default class ActionSheetExample extends NavigationPage {
 

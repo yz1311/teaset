@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
 
-import {NavigationPage, ActionPopover, Button} from 'teaset';
+import {NavigationPage, ActionPopover, Button} from '@yz1311/teaset';
 
 export default class ActionPopoverExample extends NavigationPage {
 

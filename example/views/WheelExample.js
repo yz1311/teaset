@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
 
-import {NavigationPage, Theme, Wheel} from 'teaset';
+import {NavigationPage, Theme, Wheel} from '@yz1311/teaset';
 
 export default class WheelExample extends NavigationPage {
 

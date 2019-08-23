@@ -7,16 +7,12 @@ A UI library for react native, provides 20+ pure JS(ES6) components, focusing on
 
 # Installation
 ```
-npm install --save teaset 
-```
+npm install --save teaset @yz1311/react-native-wheel-picker
 
-if you will use DatePickerView components,please do:
-```
-npm install --save @yz1311/react-native-wheel-picker
 react-native link @yz1311/react-native-wheel-picker
 ```
 
-if you will use code-push,please refer to this: [view](https://github.com/microsoft/react-native-code-push/tree/master/docs)
+if you want to use code-push handler,please refer to this: [teaset-code-push](https://github.com/yz1311/teaset-code-push)
 
 # Example
 In the Teaset package directory:
@@ -43,7 +39,7 @@ If SafeAreaView is used, please use ```Theme.set({fitIPhoneX: false})``` to manu
 If you use Redux, you need to use the ```<TopView>``` package container (thanks [@Alexorz](https://github.com/Alexorz) ).
 
 ```
-import { TopView } from 'teaset';
+import { TopView } from '@yz1311/teaset';
 
 container => () => <Provider store={store}><TopView>{container}</TopView></Provider>
 ```

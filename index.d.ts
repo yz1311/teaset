@@ -184,34 +184,49 @@ declare module '@yz1311/teaset' {
 
   interface IDashLineProps extends ViewStyle {
     style?: StyleProp<ViewStyle>,
-    dashGap?: number,
-    dashLength?: number,
-    dashThickness?: number,
-    dashColor?: string,
+    dashGap: number,
+    dashLength: number,
+    dashThickness: number,
+    dashColor: string,
     dashStyle?: StyleProp<ViewStyle>,
   }
 
-  export class DashLine extends Component<IDashLineProps,any>{}
+  export class DashLine extends Component<IDashLineProps,any>{
+    static defaultProps: Pick<IDashLineProps,'dashGap'>
+    &Pick<IDashLineProps,'dashLength'>
+    &Pick<IDashLineProps,'dashThickness'>
+    &Pick<IDashLineProps,'dashColor'>
+  }
 
   interface IDatePickerViewProps extends ViewStyle {
-    labelUnit?: {
+    labelUnit: {
       year?: string,
       month?: string,
       date?: string,
     },
-    date?: Date,
-    maxDate?: Date,
-    minDate?: Date,
-    mode?: 'date' | 'time' | 'datetime',
+    date: Date,
+    maxDate: Date,
+    minDate: Date,
+    mode: 'date' | 'time' | 'datetime',
     onDateChange?: Function,
     style?: StyleProp<ViewStyle>,
     pickerStyle?: StyleProp<ViewStyle>,
-    textColor?: string,
-    textSize?: number,
-    itemSpace?: number,
+    textColor: string,
+    textSize: number,
+    itemSpace: number,
   }
 
-  export class DatePickerView extends Component<IDatePickerViewProps,any>{}
+  export class DatePickerView extends Component<IDatePickerViewProps,any>{
+    static defaultProps: 
+    Pick<IDatePickerViewProps,'labelUnit'>
+    &Pick<IDatePickerViewProps,'mode'>
+    &Pick<IDatePickerViewProps,'maxDate'>
+    &Pick<IDatePickerViewProps,'minDate'>
+    &Pick<IDatePickerViewProps,'date'>
+    &Pick<IDatePickerViewProps,'textColor'>
+    &Pick<IDatePickerViewProps,'textSize'>
+    &Pick<IDatePickerViewProps,'itemSpace'>
+  }
 
   interface ICarouselProps extends ScrollViewProps {
     //是否开启轮播
@@ -1115,8 +1130,6 @@ declare module '@yz1311/teaset' {
     };
   } & ThemeConfigPartial;
   //#endregion
-
-  export const CodePushHandler:any;
 
   export const BackHandler:any;
 
