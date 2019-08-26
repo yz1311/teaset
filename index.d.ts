@@ -351,6 +351,7 @@ declare module '@yz1311/teaset' {
   export class ModalIndicator extends BaseOverlay {
     static IndicatorView: typeof ModalIndicatorView;
     static show: (text: string) => typeof ModalIndicatorView;
+    static hide: () => void;
   }
 
   export interface INavigationTitleProps extends TextStyle{
