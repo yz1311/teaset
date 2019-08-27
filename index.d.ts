@@ -1121,9 +1121,9 @@ declare module '@yz1311/teaset' {
     isPad: boolean;
     isIPhoneX: boolean;
     fitIPhoneX: boolean;
-    isLandscape: () => boolean;
-    statusBarHeight: () => number;
-    screenInset: () => {
+    isLandscape: boolean;
+    statusBarHeight: number;
+    screenInset: {
       top: number,
       left: number,
       right: number,
