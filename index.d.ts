@@ -9,11 +9,12 @@ declare module '@yz1311/teaset' {
     TextStyle,
     TouchableOpacityProps,
     ViewStyle,
+    ViewProps,
     ImageProps, View
   } from "react-native";
   import { Component, RefForwardingComponent } from 'react';
 
-  interface BaseOverlay extends ViewStyle{
+  interface BaseOverlay extends ViewProps{
     show?: (overlayView: Element) => number;
     hide?: (key: number) => void;
     transformRoot?: (transform, animated: boolean, animatesOnly?:boolean) => void;
@@ -149,7 +150,7 @@ declare module '@yz1311/teaset' {
 
   type BadgeTypes = 'capsule' | 'square' | 'dot';
 
-  interface IBadgeProps extends ViewStyle{
+  interface IBadgeProps extends ViewProps{
     type: BadgeTypes,
     count: string|number,
     countStyle: StyleProp<TextStyle>,
@@ -158,7 +159,7 @@ declare module '@yz1311/teaset' {
 
   export class Badge extends Component<IBadgeProps,any> {}
 
-  interface IBasePageProps extends ViewStyle {
+  interface IBasePageProps extends ViewProps {
     //转场效果
     scene: any,
     //自动插入键盘占用空间
@@ -182,7 +183,7 @@ declare module '@yz1311/teaset' {
 
   export class Button extends Component<IButtonProps,any>{}
 
-  interface IDashLineProps extends ViewStyle {
+  interface IDashLineProps extends ViewProps {
     style?: StyleProp<ViewStyle>,
     dashGap: number,
     dashLength: number,
@@ -198,7 +199,7 @@ declare module '@yz1311/teaset' {
     &Pick<IDashLineProps,'dashColor'>
   }
 
-  interface IDatePickerViewProps extends ViewStyle {
+  interface IDatePickerViewProps extends ViewProps {
     labelUnit: {
       year?: string,
       month?: string,
@@ -505,7 +506,7 @@ declare module '@yz1311/teaset' {
 
   }
 
-  interface ISegmentedItemProps extends ViewStyle{
+  interface ISegmentedItemProps extends ViewProps{
     title: Element | string | number,
     titleStyle?: StyleProp<TextStyle>,
     activeTitleStyle?: StyleProp<TextStyle>,
@@ -516,7 +517,7 @@ declare module '@yz1311/teaset' {
 
   export class SegmentedItem extends Component<ISegmentedItemProps> {}
 
-  interface ISegmentedBarProps extends ViewStyle {
+  interface ISegmentedBarProps extends ViewProps {
     justifyItem?: 'fixed' | 'scrollable',
     indicatorType?: 'none' | 'boxWidth' | 'itemWidth' | 'customWidth',
     indicatorPosition?: 'top' | 'bottom',
@@ -534,7 +535,7 @@ declare module '@yz1311/teaset' {
     static Item: typeof SegmentedItem;
   }
 
-  export interface ISegmentedSheetProps extends ViewStyle{
+  export interface ISegmentedSheetProps extends ViewProps{
     title: Element | string | Number,
     titleStyle?: StyleProp<TextStyle>,
     activeTitleStyle?: StyleProp<TextStyle>,
@@ -543,7 +544,7 @@ declare module '@yz1311/teaset' {
 
   export class SegmentedSheet extends Component<ISegmentedSheetProps> {}
 
-  interface ISegmentedViewProps extends ViewStyle{
+  interface ISegmentedViewProps extends ViewProps{
     type?: 'projector' | 'carousel',
     barPosition?: 'top' | 'bottom',
     //SegmentedBar
@@ -564,7 +565,7 @@ declare module '@yz1311/teaset' {
     static Sheet: typeof SegmentedSheet;
   }
 
-  interface ISelectProps extends ViewStyle {
+  interface ISelectProps extends ViewProps {
     size?: 'lg' | 'md' | 'sm',
     value?: any,
     valueStyle?: StyleProp<TextStyle>,
@@ -583,7 +584,7 @@ declare module '@yz1311/teaset' {
 
   export class Select extends Component<ISelectProps> {}
 
-  interface IStepperProps extends ViewStyle {
+  interface IStepperProps extends ViewProps {
     defaultValue?: number,
     value?: number,
     step?: number,
@@ -604,7 +605,7 @@ declare module '@yz1311/teaset' {
 
   }
 
-  interface ITabButtonProps extends ViewStyle {
+  interface ITabButtonProps extends ViewProps {
     title: Element | string | number,
     titleStyle?: StyleProp<TextStyle>,
     activeTitleStyle?: StyleProp<TextStyle>,
@@ -617,7 +618,7 @@ declare module '@yz1311/teaset' {
 
   export class TabButton extends Component<ITabButtonProps> {}
 
-  interface ITabSheetProps extends ViewStyle {
+  interface ITabSheetProps extends ViewProps {
     type?: 'sheet' | 'button',
     title: Element | string | number,
     icon?:  Element | {uri: string} | number,
@@ -639,7 +640,7 @@ declare module '@yz1311/teaset' {
     static Button: typeof TabButton;
   }
 
-  interface ITransformViewProps extends ViewStyle {
+  interface ITransformViewProps extends ViewProps {
     containerStyle?: StyleProp<ViewStyle>,
     maxScale?: number,
     minScale?: number,
@@ -659,7 +660,7 @@ declare module '@yz1311/teaset' {
 
   export class TransformView extends Component<ITransformViewProps> {}
 
-  export interface IWheelItemProps extends ViewStyle {
+  export interface IWheelItemProps extends ViewProps {
     index: number,
     itemHeight: number
     wheelHeight: number,
@@ -668,7 +669,7 @@ declare module '@yz1311/teaset' {
 
   export class WheelItem extends Component<IWheelItemProps> {}
 
-  interface IWheelProps extends ViewStyle {
+  interface IWheelProps extends ViewProps {
     items: Element | string | number,
     itemStyle?: StyleProp<TextStyle>,
     holeStyle?: StyleProp<ViewStyle>, //height is required
