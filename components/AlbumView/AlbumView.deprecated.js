@@ -59,7 +59,7 @@ export default class AlbumView extends Component {
     this.preloadImage(this.state.index);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     let {imageInfos, index} = this.state;
     if ((nextProps.index || nextProps.index === 0) && nextProps.index != this.props.index) {
       index = nextProps.index;

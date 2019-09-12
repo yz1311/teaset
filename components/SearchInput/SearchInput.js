@@ -35,7 +35,7 @@ export default class SearchInput extends Component {
     };
   }
 
-  componentWillUpdate(props, state) {
+  UNSAFE_componentWillUpdate(props, state) {
     if (state.editing !== this.state.editing) {
       LayoutAnimation.configureNext({
         duration: 500,

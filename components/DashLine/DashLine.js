@@ -73,7 +73,7 @@ const getDashStyle = props => {
     const isRow = isStyleRow(props.style);
     const id = getDashStyleId(props, isRow);
     if (!stylesStore[id]) {
-        stylesStore = Object.assign({}, stylesStore, { [id]: createDashStyleSheet(props, isRow) });
+        stylesStore = Object.assign(Object.assign({}, stylesStore), { [id]: createDashStyleSheet(props, isRow) });
     }
     return stylesStore[id];
 };

@@ -52,7 +52,7 @@ export default class AlbumSheet extends TransformView {
     this.loadImage(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.image != this.props.image || nextProps.load != this.props.load) {
       this.loadImage(nextProps);
     }

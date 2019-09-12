@@ -67,7 +67,7 @@ export default class Carousel extends Component {
     this.removeTimer();
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.initByProps(nextProps);
     this.setupTimer();
   }
