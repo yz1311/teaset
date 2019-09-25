@@ -139,6 +139,8 @@ declare module '@yz1311/teaset' {
     cancelable?: boolean;
     /** @platform android/ios */
     onDismiss?: () => void;
+    /** 点击按钮后自动关闭 */
+    autoClose?: boolean;
   }
 
   export interface AlertStatic {

@@ -13,7 +13,7 @@ export default class Alert {
 
   static overlayKey;
 
-  static alert = (title: string, message?: string, buttons?: AlertButton[], options?: AlertOptions): void => {
+  static alert = (title: string, message?: string, buttons?: AlertButton[], options?: AlertOptions&{autoClose?:boolean}): void => {
     const {width: deviceWidth,height: deviceHeight} = Dimensions.get('window');
     let realWidth = deviceHeight>deviceWidth?deviceWidth:deviceHeight;
     let buttonViews = [];
@@ -27,6 +27,7 @@ export default class Alert {
           hideAlert ={()=>{
             Alert.hide();
           }}
+          autoClose={options.autoClose}
           text={button.text}
           style={button.style}
           onPress={button.onPress}
@@ -77,7 +78,7 @@ export default class Alert {
 }
 
 
-const Button:FC<any> = ({hideAlert, text, onPress, style})=>{
+const Button:FC<any> = ({hideAlert, text, onPress, style, autoClose=true})=>{
   let textColor = '#2087fa';
   switch (style) {
     case 'cancel':
@@ -91,7 +92,9 @@ const Button:FC<any> = ({hideAlert, text, onPress, style})=>{
     <TouchableOpacity
       activeOpacity={0.7}
       onPress={()=>{
-        hideAlert&&hideAlert();
+        if(autoClose) {
+          hideAlert&&hideAlert();
+        }
         onPress&&onPress();
       }}
       style={{flex:1,justifyContent:'center',alignItems:'center',height:45}}

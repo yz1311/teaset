@@ -16,7 +16,7 @@ Alert.alert = (title, message, buttons, options) => {
         index++;
         buttonViews.push(<Button key={index} hideAlert={() => {
             Alert.hide();
-        }} text={button.text} style={button.style} onPress={button.onPress}/>);
+        }} autoClose={options.autoClose} text={button.text} style={button.style} onPress={button.onPress}/>);
         //分隔符
         if (index < buttons.length) {
             //这里只是计算索引
@@ -47,7 +47,7 @@ Alert.alert = (title, message, buttons, options) => {
 Alert.hide = () => {
     Overlay.hide(Alert.overlayKey);
 };
-const Button = ({ hideAlert, text, onPress, style }) => {
+const Button = ({ hideAlert, text, onPress, style, autoClose = true }) => {
     let textColor = '#2087fa';
     switch (style) {
         case 'cancel':
@@ -57,7 +57,9 @@ const Button = ({ hideAlert, text, onPress, style }) => {
             break;
     }
     return (<TouchableOpacity activeOpacity={0.7} onPress={() => {
-        hideAlert && hideAlert();
+        if (autoClose) {
+            hideAlert && hideAlert();
+        }
         onPress && onPress();
     }} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: 45 }}>
       <Text style={{ color: textColor, fontSize: 16 * Theme.labelTitleScale }}>{text}</Text>

@@ -172,7 +172,7 @@ export default class Stepper extends Component {
     valueWrapperStyle = [{
       alignSelf:'stretch',
       justifyContent:'center',
-    }].concat(valueWrapperStyle);
+    }].concat(valueWrapperStyle||{});
     return (
       <TouchableOpacity style={valueWrapperStyle} onPress={onTextPress}>
         <Text style={valueStyle} numberOfLines={1}>
