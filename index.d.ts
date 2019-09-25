@@ -145,6 +145,7 @@ declare module '@yz1311/teaset' {
 
   export interface AlertStatic {
     alert: (title: string, message?: string | Element | Number, buttons?: AlertButton[], options?: AlertOptions) => void;
+    hide: () => void;
   }
 
   export const Alert: AlertStatic;
