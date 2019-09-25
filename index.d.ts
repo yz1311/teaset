@@ -142,7 +142,7 @@ declare module '@yz1311/teaset' {
   }
 
   export interface AlertStatic {
-    alert: (title: string, message?: string, buttons?: AlertButton[], options?: AlertOptions) => void;
+    alert: (title: string, message?: string | Element | Number, buttons?: AlertButton[], options?: AlertOptions) => void;
   }
 
   export const Alert: AlertStatic;
@@ -590,6 +590,7 @@ declare module '@yz1311/teaset' {
     step?: number,
     max?: number,
     min?: number,
+    valueWrapperStyle?:StyleProp<ViewStyle>,
     valueStyle?:StyleProp<TextStyle>,
     valueFormat?: (value) => any, //(value)
     subButton?: Element | string,
@@ -598,6 +599,7 @@ declare module '@yz1311/teaset' {
     disabled?: boolean,
     editable?: boolean,
     onChange?: (value:number) => any, //(value)
+    onTextPress?: () => any,
   }
 
 

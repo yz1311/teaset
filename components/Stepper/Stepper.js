@@ -17,6 +17,7 @@ export default class Stepper extends Component {
     step: PropTypes.number,
     max: PropTypes.number,
     min: PropTypes.number,
+    valueWrapperStyle: View.prototype.style,
     valueStyle: Text.propTypes.style,
     valueFormat: PropTypes.func, //(value)
     subButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
@@ -25,6 +26,7 @@ export default class Stepper extends Component {
     disabled: PropTypes.bool,
     editable: PropTypes.bool,
     onChange: PropTypes.func, //(value)
+    onTextPress: PropTypes.func
   };
 
   static defaultProps = {
@@ -158,7 +160,7 @@ export default class Stepper extends Component {
   }
 
   renderValue() {
-    let {valueStyle, valueFormat} = this.props;
+    let {valueStyle, valueWrapperStyle, valueFormat, onTextPress} = this.props;
 
     valueStyle = [{
       color: Theme.stepperTextColor,
@@ -167,11 +169,16 @@ export default class Stepper extends Component {
       minWidth: Theme.stepperValueMinWidth,
       paddingHorizontal: Theme.stepperValuePaddingHorizontal,
     }].concat(valueStyle);
-
+    valueWrapperStyle = [{
+      alignSelf:'stretch',
+      justifyContent:'center',
+    }].concat(valueWrapperStyle);
     return (
-      <Text style={valueStyle} numberOfLines={1}>
-        {valueFormat ? valueFormat(this.value) : this.value}
-      </Text>
+      <TouchableOpacity style={valueWrapperStyle} onPress={onTextPress}>
+        <Text style={valueStyle} numberOfLines={1}>
+          {valueFormat ? valueFormat(this.value) : this.value}
+        </Text>
+      </TouchableOpacity>
     );
   }
 

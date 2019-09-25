@@ -11,7 +11,7 @@ Alert.alert = (title, message, buttons, options) => {
     const { width: deviceWidth, height: deviceHeight } = Dimensions.get('window');
     let realWidth = deviceHeight > deviceWidth ? deviceWidth : deviceHeight;
     let buttonViews = [];
-    let index = 0;
+    let index = 0, separatorIndex = 0;
     for (const button of buttons) {
         index++;
         buttonViews.push(<Button key={index} hideAlert={() => {
@@ -19,10 +19,16 @@ Alert.alert = (title, message, buttons, options) => {
         }} text={button.text} style={button.style} onPress={button.onPress}/>);
         //分隔符
         if (index < buttons.length) {
-            buttonViews.push(<View style={{ width: SEPARATOR_LENGTH, backgroundColor: '#eeeef0' }}/>);
+            //这里只是计算索引
+            separatorIndex++;
+            buttonViews.push(<View key={buttons.length + separatorIndex} style={{ width: SEPARATOR_LENGTH, backgroundColor: '#eeeef0' }}/>);
         }
     }
-    let overlayView = (<Overlay.PopView modal={options && options.cancelable ? false : true} onDisappearCompleted={() => {
+    let content = message;
+    if (typeof message === 'string' || typeof message === 'number') {
+        content = (<Label numberOfLines={8} type='title' style={{ marginTop: 6, marginHorizontal: 15, marginBottom: 20 }} size='md' text={message}/>);
+    }
+    let overlayView = (<Overlay.PopView modal={options && options.cancelable ? false : true} autoKeyboardInsets onDisappearCompleted={() => {
         if (options && options.onDismiss) {
             options.onDismiss();
         }
@@ -30,7 +36,7 @@ Alert.alert = (title, message, buttons, options) => {
         <View style={{ backgroundColor: '#fff', minWidth: realWidth * 0.7, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center' }}>
           {title ?
         <Label type='title' style={{ fontSize: 17 * Theme.labelTitleScale, fontWeight: '500', marginHorizontal: 15 }} text={title}/> : null}
-          <Label numberOfLines={8} type='title' style={{ marginTop: 6, marginHorizontal: 15, marginBottom: 20 }} size='md' text={message}/>
+          {content}
           <View style={{ flexDirection: 'row', borderTopColor: '#eeeef0', borderTopWidth: SEPARATOR_LENGTH }}>
             {buttonViews}
           </View>
