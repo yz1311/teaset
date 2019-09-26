@@ -49,7 +49,7 @@ declare module '@yz1311/teaset' {
   }
 
   interface IOverlayPopoverViewProps extends IOverlayViewProps{
-    popoverStyle?: BaseOverlay,
+    popoverStyle?: StyleProp<ViewStyle>,
     fromBounds?: Bounds,
     direction?: 'down' | 'up' | 'right' | 'left',
     autoDirection?: boolean, //down -> up, or right -> left
@@ -450,7 +450,7 @@ declare module '@yz1311/teaset' {
     'leftTop'
   }
 
-  interface IPopoverProps {
+  interface IPopoverProps extends ViewStyle {
     arrow: PopoverArrows
     paddingCorner: number,
   }
