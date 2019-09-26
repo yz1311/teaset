@@ -4,7 +4,7 @@
 
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, View, Text, TouchableOpacity, ViewPropTypes, ViewStyle} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, ViewPropTypes} from 'react-native';
 
 import Theme from '../../themes/Theme';
 
@@ -17,7 +17,7 @@ export default class Stepper extends Component {
     step: PropTypes.number,
     max: PropTypes.number,
     min: PropTypes.number,
-    valueWrapperStyle: ViewStyle,
+    valueWrapperStyle: ViewPropTypes.style,
     valueStyle: Text.propTypes.style,
     valueFormat: PropTypes.func, //(value)
     subButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),

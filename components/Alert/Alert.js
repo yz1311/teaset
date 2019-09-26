@@ -16,7 +16,7 @@ Alert.alert = (title, message, buttons, options) => {
         index++;
         buttonViews.push(<Button key={index} hideAlert={() => {
             Alert.hide();
-        }} autoClose={options.autoClose} text={button.text} style={button.style} onPress={button.onPress}/>);
+        }} autoClose={options ? options.autoClose : true} text={button.text} style={button.style} onPress={button.onPress}/>);
         //分隔符
         if (index < buttons.length) {
             //这里只是计算索引

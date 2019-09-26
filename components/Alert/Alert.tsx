@@ -27,7 +27,7 @@ export default class Alert {
           hideAlert ={()=>{
             Alert.hide();
           }}
-          autoClose={options.autoClose}
+          autoClose={options?options.autoClose:true}
           text={button.text}
           style={button.style}
           onPress={button.onPress}
