@@ -151,6 +151,16 @@ declare module '@yz1311/teaset' {
   export const Alert: AlertStatic;
   export type Alert = AlertStatic;
 
+  interface IAlertViewProps extends ViewProps {
+    style?: StyleProp<ViewStyle>,
+    title: string,
+    message?: string | Element | Number,
+    buttons?: AlertButton[],
+    onButtonPress?: ()=>void
+  }
+
+  export class AlertView extends Component<IAlertViewProps,any> {}
+
   type BadgeTypes = 'capsule' | 'square' | 'dot';
 
   interface IBadgeProps extends ViewProps{

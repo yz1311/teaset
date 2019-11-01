@@ -1,5 +1,5 @@
 import {
-    AlertButton, AlertOptions, Text, TouchableOpacity, View, Dimensions, PixelRatio
+    AlertButton, AlertOptions, Text, TouchableOpacity, View, Dimensions, PixelRatio, ViewStyle, StyleProp
   } from 'react-native';
   import React, { FC } from 'react';
   import Overlay from '../Overlay/Overlay';
@@ -10,13 +10,14 @@ import {
 const SEPARATOR_LENGTH = 1;
 
 export interface IProps {
+    style?:StyleProp<ViewStyle>,
     title: string, 
     message?: string, 
     buttons?: AlertButton[],
-    onButtonPress: any
+    onButtonPress?: any
 }
 
-const AlertView:FC<IProps> = ({title, message, buttons,onButtonPress})=>{
+const AlertView:FC<IProps> = ({title, message, buttons,onButtonPress,style})=>{
     const {width: deviceWidth,height: deviceHeight} = Dimensions.get('window');
     let realWidth = deviceHeight>deviceWidth?deviceWidth:deviceHeight;
     let buttonViews = [];
@@ -54,7 +55,7 @@ const AlertView:FC<IProps> = ({title, message, buttons,onButtonPress})=>{
       );
     }
     return (
-        <View style={{backgroundColor: '#fff', minWidth: realWidth*0.7, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center'}}>
+        <View style={[{backgroundColor: '#fff', minWidth: realWidth*0.7, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center'},style]}>
           {title?
           <Label type='title' style={{fontSize: 17*Theme.labelTitleScale,fontWeight:'500',marginHorizontal:15}} text={title} />:null}
           {content}

@@ -4,7 +4,7 @@ import Label from '../Label/Label';
 import Theme from '../../themes/Theme';
 //分隔符的长(高)度
 const SEPARATOR_LENGTH = 1;
-const AlertView = ({ title, message, buttons, onButtonPress }) => {
+const AlertView = ({ title, message, buttons, onButtonPress, style }) => {
     const { width: deviceWidth, height: deviceHeight } = Dimensions.get('window');
     let realWidth = deviceHeight > deviceWidth ? deviceWidth : deviceHeight;
     let buttonViews = [];
@@ -28,7 +28,7 @@ const AlertView = ({ title, message, buttons, onButtonPress }) => {
     if (typeof message === 'string' || typeof message === 'number') {
         content = (<Label numberOfLines={8} type='title' style={{ marginTop: 6, marginHorizontal: 15, marginBottom: 20 }} size='md' text={message}/>);
     }
-    return (<View style={{ backgroundColor: '#fff', minWidth: realWidth * 0.7, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center' }}>
+    return (<View style={[{ backgroundColor: '#fff', minWidth: realWidth * 0.7, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center' }, style]}>
           {title ?
         <Label type='title' style={{ fontSize: 17 * Theme.labelTitleScale, fontWeight: '500', marginHorizontal: 15 }} text={title}/> : null}
           {content}
