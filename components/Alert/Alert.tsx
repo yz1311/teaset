@@ -15,7 +15,7 @@ export default class Alert {
   static overlayKey;
 
   static alert = (title: string, message?: string, buttons?: AlertButton[], options?: AlertOptions&{autoClose?:boolean}): void => {
-    
+
   
     let overlayView = (
       <Overlay.PopView
@@ -34,7 +34,7 @@ export default class Alert {
           buttons={buttons}
           onButtonPress={
             ()=>{
-              if(!options || options.autoClose) {
+              if(!options || options.autoClose!=true) {
                 Alert.hide();
               }
             }
