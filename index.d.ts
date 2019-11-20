@@ -62,9 +62,9 @@ declare module '@yz1311/teaset' {
   }
 
   interface IOverlayPullViewProps extends IOverlayViewProps{
-    side: 'top' | 'bottom' | 'left' | 'right',
-    containerStyle: StyleProp<ViewStyle>,
-    rootTransform: 'none' | 'translate' | 'scale' | Array<Bounds>
+    side?: 'top' | 'bottom' | 'left' | 'right',
+    containerStyle?: StyleProp<ViewStyle>,
+    rootTransform?: 'none' | 'translate' | 'scale' | Array<Bounds>
   }
 
   export class OverlayView extends Component<IOverlayViewProps,any>{}
@@ -83,7 +83,7 @@ declare module '@yz1311/teaset' {
   }
 
   export class Overlay extends BaseOverlay{
-    static show: (overlayView: Element) => number;
+    static show: (overlayView: JSX.Element) => number;
   }
 
   // export const Overlay: Overlay;
@@ -231,7 +231,7 @@ declare module '@yz1311/teaset' {
   }
 
   export class DatePickerView extends Component<IDatePickerViewProps,any>{
-    static defaultProps: 
+    static defaultProps:
     Pick<IDatePickerViewProps,'labelUnit'>
     &Pick<IDatePickerViewProps,'mode'>
     &Pick<IDatePickerViewProps,'maxDate'>
