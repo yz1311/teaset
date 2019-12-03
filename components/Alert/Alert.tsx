@@ -34,7 +34,7 @@ export default class Alert {
           buttons={buttons}
           onButtonPress={
             ()=>{
-              if(!options || options.autoClose!=true) {
+              if(!options || options.autoClose==true) {
                 Alert.hide();
               }
             }

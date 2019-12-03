@@ -12,7 +12,7 @@ Alert.alert = (title, message, buttons, options) => {
         }
     }} style={{ alignItems: 'center', justifyContent: 'center' }}>
         <AlertView title={title} message={message} buttons={buttons} onButtonPress={() => {
-        if (!options || options.autoClose != true) {
+        if (!options || options.autoClose == true) {
             Alert.hide();
         }
     }}/>
