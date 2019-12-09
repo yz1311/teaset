@@ -1,6 +1,6 @@
 {
   "name": "@yz1311/teaset",
-  "version": "0.6.23",
+  "version": "0.6.24",
   "description": "A UI library for react native.",
   "main": "index.js",
   "scripts": {

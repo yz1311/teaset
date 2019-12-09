@@ -130,21 +130,27 @@ declare module '@yz1311/teaset' {
 
   export interface AlertButton {
     text?: string;
-    onPress?: () => void;
+    onPress?: (value:any) => void;
+    //default为蓝色,cancel为蓝色加粗,destructive为红色
     style?: "default" | "cancel" | "destructive";
+    //文字颜色，将会覆盖style的颜色样式
+    textColor?: string,
+    //文本样式，将会覆盖style的颜色样式
+    textStyle?: StyleProp<TextStyle>
   }
 
   interface AlertOptions {
-    /** @platform android/ios */
+    /** @platform android/ios,默认值:false,(注意,RN的Alert组件，android下该值为true) */
     cancelable?: boolean;
     /** @platform android/ios */
     onDismiss?: () => void;
-    /** 点击按钮后自动关闭 */
+    /** 点击按钮后自动关闭,默认值:false */
     autoClose?: boolean;
   }
 
   export interface AlertStatic {
     alert: (title: string, message?: string | Element | Number, buttons?: AlertButton[], options?: AlertOptions) => void;
+    edit: (title: string, args?: {message?: string | Element | Number,inputStyle?: TextInputProps}, buttons?: AlertButton[], options?: AlertOptions) => void;
     hide: () => void;
   }
 

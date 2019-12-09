@@ -1,6 +1,7 @@
 import React from 'react';
 import Overlay from '../Overlay/Overlay';
 import AlertView from './AlertView';
+import AlertEditView from './AlertEditView';
 //分隔符的长(高)度
 const SEPARATOR_LENGTH = 1;
 export default class Alert {
@@ -12,11 +13,30 @@ Alert.alert = (title, message, buttons, options) => {
         }
     }} style={{ alignItems: 'center', justifyContent: 'center' }}>
         <AlertView title={title} message={message} buttons={buttons} onButtonPress={() => {
-        if (!options || options.autoClose == true) {
+        if (!options || options.autoClose == undefined || options.autoClose == true) {
             Alert.hide();
         }
     }}/>
       </Overlay.PopView>);
+    Alert.overlayKey = Overlay.show(overlayView);
+};
+Alert.edit = (title, args, buttons, options) => {
+    if (!args) {
+        args = {};
+    }
+    let editViewRef;
+    let overlayView = (<Overlay.PopView modal={options && options.cancelable ? false : true} autoKeyboardInsets onDisappearCompleted={() => {
+        if (options && options.onDismiss) {
+            options.onDismiss();
+        }
+    }} style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <AlertView title={title} message={args && args.message} extra={(<AlertEditView ref={ref => editViewRef = ref} {...(args && args.inputStyle || { placeholder: '请输入' })}/>)} buttons={buttons} onButtonPress={() => {
+        if (!options || options.autoClose == undefined || options.autoClose == true) {
+            Alert.hide();
+        }
+        return editViewRef.getValue();
+    }}/>
+          </Overlay.PopView>);
     Alert.overlayKey = Overlay.show(overlayView);
 };
 Alert.hide = () => {
