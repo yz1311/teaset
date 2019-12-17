@@ -7,13 +7,13 @@ import {View, ScrollView} from 'react-native';
 
 import {NavigationPage, ListRow, ModalIndicator} from '@yz1311/teaset';
 
-export default class ModalIndicatorExample extends NavigationPage {
+export default class ModalIndicatorExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'ModalIndicator',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'ModalIndicator'
+    };
+  }
 
   show() {
     let secs = 5;
@@ -28,7 +28,7 @@ export default class ModalIndicatorExample extends NavigationPage {
     }, 1000);
   }
 
-  renderPage() {
+  render() {
     let img = require('../images/faircup.jpg');
     return (
       <ScrollView style={{flex: 1}}>

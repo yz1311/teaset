@@ -7,15 +7,15 @@ import {View, Image} from 'react-native';
 
 import {Theme, NavigationPage, TransformView} from '@yz1311/teaset';
 
-export default class TransformViewExample extends NavigationPage {
+export default class TransformViewExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: ' TransformView',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'TransformView'
+    };
+  }
 
-  renderPage() {
+  render() {
     return (
       <TransformView
         style={{backgroundColor: Theme.pageColor, flex: 1}}

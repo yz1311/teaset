@@ -7,21 +7,21 @@ import {StyleSheet, View, Text, Image, ScrollView, Dimensions} from 'react-nativ
 
 import {NavigationPage, ListRow, Carousel, PullPicker} from '@yz1311/teaset';
 
-export default class CarouselExample extends NavigationPage {
+export default class CarouselExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'Carousel',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'Carousel'
+    };
+  }
 
   constructor(props) {
     super(props);
     this.items = ['none', 'default', 'custom'];
-    Object.assign(this.state, {
+    this.state = {
       width: Dimensions.get('window').width,
       control: 'none',
-    });
+    };
   }
 
   selectControl() {
@@ -48,7 +48,7 @@ export default class CarouselExample extends NavigationPage {
     }
   }
 
-  renderPage() {
+  render() {
     let {width} = this.state;
     return (
       <ScrollView style={{flex: 1}}>

@@ -7,13 +7,13 @@ import {View} from 'react-native';
 
 import {NavigationPage, Menu, Button, Theme} from '@yz1311/teaset';
 
-export default class MenuExample extends NavigationPage {
+export default class MenuExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'Menu',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'Menu'
+    };
+  }
 
   show(view, align) {
     view.measure((x, y, width, height, pageX, pageY) => {
@@ -26,7 +26,7 @@ export default class MenuExample extends NavigationPage {
     });
   }
 
-  renderPage() {
+  render() {
     return (
       <View style={{flex: 1, justifyContent: 'space-between'}}>
         <View style={{height: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>

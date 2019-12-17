@@ -154,7 +154,6 @@ container => () => <Provider store={store}><TopView>{container}</TopView></Provi
 [`ModalIndicator{}` 模态指示器](./ModalIndicator.md)
 
 ## 页面
-[`<TeaNavigator />` 导航器](./TeaNavigator.md)
 
 [`<BasePage />` 基础页面](./BasePage.md)
 

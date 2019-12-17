@@ -70,7 +70,7 @@ const Button = ({ hideAlert, text, onPress, style, textColor, textStyle }) => {
     return (<TouchableOpacity activeOpacity={0.7} onPress={() => {
         onPress && onPress();
     }} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: 45 }}>
-          <Text style={[{ color: textColor == undefined ? defaultTextColor : textColor, fontSize: 16 * Theme.labelTitleScale }, textStyle]}>{text}</Text>
+          <Text style={[{ fontWeight: fontWeight, color: textColor == undefined ? defaultTextColor : textColor, fontSize: 16 * Theme.labelTitleScale }, textStyle]}>{text}</Text>
       </TouchableOpacity>);
 };
 export default AlertView;

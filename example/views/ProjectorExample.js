@@ -7,19 +7,19 @@ import {StyleSheet, View, ScrollView} from 'react-native';
 
 import {NavigationPage, ListRow, Projector, Button, Label, Input} from '@yz1311/teaset';
 
-export default class ProjectorExample extends NavigationPage {
+export default class ProjectorExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'Projector',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'Projector'
+    };
+  }
 
   constructor(props) {
     super(props);
-    Object.assign(this.state, {
+    this.state = {
       index: 0,
-    });
+    };
   }
 
   renderSlide(color) {
@@ -42,7 +42,7 @@ export default class ProjectorExample extends NavigationPage {
     );
   }
 
-  renderPage() {
+  render() {
     return (
       <ScrollView style={{flex: 1}}>
         <Projector style={{height: 238}} index={this.state.index}>

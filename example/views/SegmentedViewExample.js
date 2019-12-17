@@ -9,22 +9,22 @@ import {Theme, NavigationPage, ListRow, SegmentedView, Label, PullPicker} from '
 
 import SelectRow from './SelectRow';
 
-export default class SegmentedViewExample extends NavigationPage {
+export default class SegmentedViewExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'SegmentedView',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'SegmentedView'
+    };
+  }
 
   constructor(props) {
     super(props);
     this.items = ['projector', 'carousel'];
-    Object.assign(this.state, {
+    this.state = {
       type: 'projector',
       custom: false,
       activeIndex: 0,
-    });
+    };
   }
 
   renderTitle(index) {
@@ -56,7 +56,7 @@ export default class SegmentedViewExample extends NavigationPage {
     );
   }
 
-  renderPage() {
+  render() {
     let {custom} = this.state;
     return (
       <View style={{flex: 1}}>

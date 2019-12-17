@@ -15,9 +15,9 @@ const AlertEditView = (props, ref) => {
     }}/>
         </View>);
 };
-AlertEditView.defaultProps = {
+const ForwardAlertEditView = forwardRef(AlertEditView);
+ForwardAlertEditView.defaultProps = {
     placeholder: '请输入'
 };
-const ForwardAlertEditView = forwardRef(AlertEditView);
 export default ForwardAlertEditView;
 //# sourceMappingURL=AlertEditView.js.map

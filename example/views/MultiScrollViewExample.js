@@ -9,21 +9,21 @@ import {StyleSheet, View, Image, ScrollView} from 'react-native';
 
 import {NavigationPage, ListRow, SegmentedView, Carousel} from '@yz1311/teaset';
 
-export default class MultiScrollViewExample extends NavigationPage {
+export default class MultiScrollViewExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'MultiScrollView',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'MultiScrollView'
+    };
+  }
 
   constructor(props) {
     super(props);
-    Object.assign(this.state, {
+    this.state = {
       width: 0,
       height: 0,
       outScroll: true,
-    });
+    };
   }
 
   onOutScrollViewScroll(e) {
@@ -47,7 +47,7 @@ export default class MultiScrollViewExample extends NavigationPage {
     }
   }
 
-  renderPage() {
+  render() {
     let {width, height, outScroll} = this.state;
     let headerHeight = 30;
     let items = [

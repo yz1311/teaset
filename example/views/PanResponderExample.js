@@ -7,24 +7,24 @@ import {StyleSheet, View, PanResponder, Image, TouchableOpacity, Animated} from 
 
 import {NavigationPage, Input} from '@yz1311/teaset';
 
-export default class PanResponderExample extends NavigationPage {
+export default class PanResponderExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'PanResponder',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'PanResponder'
+    };
+  }
 
   constructor(props) {
     super(props);
     this.createPanResponder();
     this.prevTouches = [];
     this.layout = null;
-    Object.assign(this.state, {
+    this.state = {
       translateX: 0,
       translateY: 0,
       scale: 1,
-    });
+    };
   }
 
   createPanResponder() {
@@ -159,7 +159,7 @@ export default class PanResponderExample extends NavigationPage {
     );
   }
 
-  renderPage() {
+  render() {
     return (
       <View style={{flex: 1}}>
         <MyTouchableOpacity style={styles.full} {...this.panResponder.panHandlers} />

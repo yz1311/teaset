@@ -7,21 +7,21 @@ import {View, Image, ScrollView, TouchableWithoutFeedback, Dimensions} from 'rea
 
 import {Theme, NavigationPage, ListRow, Overlay, Label, Button, Checkbox} from '@yz1311/teaset';
 
-export default class OverlayExample extends NavigationPage {
+export default class OverlayExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'Overlay',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'Overlay'
+    };
+  }
 
   constructor(props) {
     super(props);
-    Object.assign(this.state, {
+    this.state = {
       black: true,
       shadow: false,
       showArrow: true,
-    });
+    };
   }
 
   showDefault(transparent, modal, text) {
@@ -137,7 +137,7 @@ export default class OverlayExample extends NavigationPage {
     Overlay.show(overlayView);
   }
 
-  renderPage() {
+  render() {
     let img = require('../images/faircup.jpg');
     return (
       <ScrollView style={{flex: 1}}>

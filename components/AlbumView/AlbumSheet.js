@@ -35,7 +35,7 @@ export default class AlbumSheet extends TransformView {
 
   constructor(props) {
     super(props);
-    Object.assign(this.state, {
+    this.state = {
       position: props.defaultPosition,
       imageLoaded: false,
       thumbLoaded: false,
@@ -45,7 +45,7 @@ export default class AlbumSheet extends TransformView {
       fitHeight: 0,
       viewWidth: 0,
       viewHeight: 0,
-    });
+    };
   }
 
   componentDidMount() {

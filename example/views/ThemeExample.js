@@ -5,15 +5,16 @@
 import React, {Component} from 'react';
 import {View, ScrollView, ActivityIndicator} from 'react-native';
 
-import {Theme, NavigationPage, ListRow, PullPicker} from '@yz1311/teaset';
+import {Theme, NavigationPage, ListRow, PullPicker, NavigationHelper} from '@yz1311/teaset';
 
-export default class ThemeExample extends NavigationPage {
+export default class ThemeExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'Theme',
-    showBackButton: true,
-  };
+
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'Theme'
+    };
+  }
 
   changeTheme() {
     PullPicker.show(
@@ -22,12 +23,12 @@ export default class ThemeExample extends NavigationPage {
       -1,
       (item, index) => {
         Theme.set(Theme.themes[item]);
-        this.navigator.popToTop();
+        NavigationHelper.popToTop();
       }
     );
   }
 
-  renderPage() {
+  render() {
     return (
       <ScrollView style={{flex: 1}}>
         <View style={{height: 20}} />

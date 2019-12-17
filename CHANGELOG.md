@@ -1,5 +1,16 @@
 
 
+# [0.6.25]() (2019-12-17)
+
+## Bug Fixed
+* 修复Alert组件取消按钮加粗问题
+* 修复AlertEditView组件警告问题
+
+## Features
+* Example项目可以跑了，将导航替换为react-navigation
+  
+
+
 # [0.6.24]() (2019-12-09)
 
 ## Bug Fixed

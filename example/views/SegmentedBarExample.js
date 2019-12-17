@@ -8,13 +8,13 @@ import {StyleSheet, View, Image, ScrollView, Switch} from 'react-native';
 import {Theme, NavigationPage, ListRow, Label, SegmentedBar, PullPicker, Carousel} from '@yz1311/teaset';
 import SelectRow from './SelectRow';
 
-export default class SegmentedBarExample extends NavigationPage {
+export default class SegmentedBarExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'SegmentedBar',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'SegmentedBar'
+    };
+  }
 
   constructor(props) {
     super(props);
@@ -42,7 +42,7 @@ export default class SegmentedBarExample extends NavigationPage {
     this.indicatorTypeItems = ['none', 'boxWidth', 'itemWidth', 'customWidth'];
     this.indicatorPositionItems = ['top', 'bottom'];
 
-    Object.assign(this.state, {
+    this.state = {
       justifyItem: 'fixed',
       indicatorType: 'itemWidth',
       indicatorPosition: 'bottom',
@@ -50,7 +50,7 @@ export default class SegmentedBarExample extends NavigationPage {
       autoScroll: true,
       activeIndex: 0,
       custom: false,
-    });
+    };
   }
 
   onSegmentedBarChange(index) {
@@ -93,7 +93,7 @@ export default class SegmentedBarExample extends NavigationPage {
     });
   }
 
-  renderPage() {
+  render() {
     let {justifyItem, indicatorType, indicatorPosition, animated, autoScroll, custom, activeIndex} = this.state;
     let barItems = custom ? this.barCustomItems : (justifyItem == 'scrollable' ? this.barScrollItems : this.barItems);
     return (
