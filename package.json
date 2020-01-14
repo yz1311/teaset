@@ -1,8 +1,9 @@
 {
   "name": "@yz1311/teaset",
-  "version": "0.6.25",
+  "version": "0.6.28",
   "description": "A UI library for react native.",
   "main": "index.js",
+  "types": "index.d.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "tsc -w"

@@ -10,12 +10,14 @@ declare module '@yz1311/teaset' {
     TouchableOpacityProps,
     ViewStyle,
     ViewProps,
-    ImageProps, View
+    ImageProps, 
+    View,
+    JSX
   } from "react-native";
   import { Component, RefForwardingComponent } from 'react';
 
   interface BaseOverlay extends ViewProps{
-    show?: (overlayView: Element) => number;
+    show?: (overlayView: JSX.Element) => number;
     hide?: (key: number) => void;
     transformRoot?: (transform, animated: boolean, animatesOnly?:boolean) => void;
     restoreRoot?: (animated: boolean, animatesOnly?:boolean) => void;
@@ -101,8 +103,8 @@ declare module '@yz1311/teaset' {
   export const ActionSheet: ActionSheetProps;
 
   type IToastViewProps = IOverlayViewProps & {
-    text: Element | string | number,
-    icon: Element | {uri: string} | number | 'none' | 'success' | 'fail' | 'smile' | 'sad' | 'info' | 'stop',
+    text: JSX.Element | string | number,
+    icon: JSX.Element | {uri: string} | number | 'none' | 'success' | 'fail' | 'smile' | 'sad' | 'info' | 'stop',
     position: 'top' | 'bottom' | 'center'
   };
 
@@ -149,8 +151,8 @@ declare module '@yz1311/teaset' {
   }
 
   export interface AlertStatic {
-    alert: (title: string, message?: string | Element | Number, buttons?: AlertButton[], options?: AlertOptions) => void;
-    edit: (title: string, args?: {message?: string | Element | Number,inputStyle?: TextInputProps}, buttons?: AlertButton[], options?: AlertOptions) => void;
+    alert: (title: string, message?: string | JSX.Element | Number, buttons?: AlertButton[], options?: AlertOptions) => void;
+    edit: (title: string, args?: {message?: string | JSX.Element | Number,inputStyle?: TextInputProps}, buttons?: AlertButton[], options?: AlertOptions) => void;
     hide: () => void;
   }
 
@@ -160,7 +162,7 @@ declare module '@yz1311/teaset' {
   interface IAlertViewProps extends ViewProps {
     style?: StyleProp<ViewStyle>,
     title: string,
-    message?: string | Element | Number,
+    message?: string | JSX.Element | Number,
     buttons?: AlertButton[],
     onButtonPress?: ()=>void
   }
@@ -196,7 +198,7 @@ declare module '@yz1311/teaset' {
   interface IButtonProps extends TouchableOpacityProps {
     type?: ButtonTypes,
     size?: ButtonSizes,
-    title: Element | string | number,
+    title: JSX.Element | string | number,
     titleStyle?: TextStyle
   }
 
@@ -259,7 +261,7 @@ declare module '@yz1311/teaset' {
     startIndex: number,
     //是否循环
     cycle: boolean,
-    control: boolean | Element,
+    control: boolean | JSX.Element,
     //(index, total) 页面改变时调用
     onChange: (index: number,total: number) => any,
   }
@@ -270,11 +272,11 @@ declare module '@yz1311/teaset' {
     checked: boolean,
     defaultChecked?: boolean,
     size?: 'lg' | 'md' | 'sm',
-    title?: Element | string | number,
+    title?: JSX.Element | string | number,
     titleStyle?: StyleProp<TextStyle>,
-    checkedIcon?: Element | {uri: string} | number,
+    checkedIcon?: JSX.Element | {uri: string} | number,
     checkedIconStyle?: StyleProp<ImageStyle>,
-    uncheckedIcon?: Element | {uri: string} | number,
+    uncheckedIcon?: JSX.Element | {uri: string} | number,
     uncheckedIconStyle?: StyleProp<ImageStyle>,
     onChange?: any,
   }
@@ -317,17 +319,17 @@ declare module '@yz1311/teaset' {
   export class Label extends Component<ILabelProps,any>{}
 
   interface IListRowProps extends ISwipeTouchableOpacityProps{
-    title: Element | string | number,
-    detail?: Element | string | number,
+    title: JSX.Element | string | number,
+    detail?: JSX.Element | string | number,
     titleStyle?: StyleProp<TextStyle>,
     detailStyle?: StyleProp<TextStyle>,
     detailMultiLine?: boolean, //是否支持多行内容
-    icon?: Element | {uri: string} | number,
-    accessory?: Element | {uri: string} | number | 'none' | 'auto' | 'empty' | 'check' | 'indicator',
-    topSeparator?: Element | 'none' | 'full' | 'indent',
-    bottomSeparator?: Element | 'none' | 'full' | 'indent',
+    icon?: JSX.Element | {uri: string} | number,
+    accessory?: JSX.Element | {uri: string} | number | 'none' | 'auto' | 'empty' | 'check' | 'indicator',
+    topSeparator?: JSX.Element | 'none' | 'full' | 'indent',
+    bottomSeparator?: JSX.Element | 'none' | 'full' | 'indent',
     titlePlace?: 'none' | 'left' | 'top',
-    swipeActions?: Array<Element>,
+    swipeActions?: Array<JSX.Element>,
   }
 
   export class ListRow extends Component<IListRowProps,any>{
@@ -336,8 +338,8 @@ declare module '@yz1311/teaset' {
 
   export interface IMenuViewProps extends IOverlayPopoverViewProps {
     items: Array<{
-      title: Element | string | number,
-      icon: Element | {uri: string} | string | number | 'none' | 'empty',
+      title: JSX.Element | string | number,
+      icon: JSX.Element | {uri: string} | string | number | 'none' | 'empty',
       onPress: ()=>void
     }>
     shadow: boolean,
@@ -346,8 +348,8 @@ declare module '@yz1311/teaset' {
   export class MenuView extends Component<IMenuViewProps,any>{}
 
   export interface IMenuItemProps {
-    title: Element | string | number,
-    icon: Element | {uri: string} | string | number | 'none' | 'empty',
+    title: JSX.Element | string | number,
+    icon: JSX.Element | {uri: string} | string | number | 'none' | 'empty',
   }
 
   export class MenuItem extends Component<IMenuItemProps>{}
@@ -358,7 +360,7 @@ declare module '@yz1311/teaset' {
   }
 
   export interface IModalIndicatorViewProps extends IOverlayViewProps{
-    text?: Element | string | number,
+    text?: JSX.Element | string | number,
     position?: 'top' | 'bottom' | 'center',
     size?: 'small' | 'large' | number,
     color?: string,
@@ -393,7 +395,7 @@ declare module '@yz1311/teaset' {
   }
 
   export interface INavigationBackButtonProps extends INavigationButtonProps{
-    title: string | Element,
+    title: string | JSX.Element,
     icon: any,
   }
 
@@ -410,7 +412,7 @@ declare module '@yz1311/teaset' {
   }
 
   export interface INavigationLinkButtonProps extends INavigationButtonProps{
-    title: string | Element,
+    title: string | JSX.Element,
   }
 
   class NavigationLinkButton extends Component<INavigationLinkButtonProps>{
@@ -420,12 +422,12 @@ declare module '@yz1311/teaset' {
   export interface INavigationBarProps extends Partial<ViewStyle> {
     style?: StyleProp<ViewStyle>,
     type?: 'auto' | 'ios' | 'android',
-    title: string | Element,
+    title: string | JSX.Element,
     titleStyle?: StyleProp<TextStyle>,
-    leftView?: Element,
-    rightView?: Element,
+    leftView?: JSX.Element,
+    rightView?: JSX.Element,
     tintColor?: string, //bar tint color, default tint color leftView and rightView, set to null for no tint color
-    background?: Element,
+    background?: JSX.Element,
     hidden?: boolean, //bar hidden
     animated?: boolean, //hide or show bar with animation
     statusBarStyle?: 'default' | 'light-content' | 'dark-content', //status bar style (iOS only)
@@ -474,7 +476,7 @@ declare module '@yz1311/teaset' {
   export class Popover extends Component<IPopoverProps> {}
 
   export class PopoverPickerItem extends Component<TouchableOpacityProps & {
-    title: Element | string | number,
+    title: JSX.Element | string | number,
     selected: boolean
   }>{}
 
@@ -526,11 +528,11 @@ declare module '@yz1311/teaset' {
   }
 
   interface ISegmentedItemProps extends ViewProps{
-    title: Element | string | number,
+    title: JSX.Element | string | number,
     titleStyle?: StyleProp<TextStyle>,
     activeTitleStyle?: StyleProp<TextStyle>,
     active?: boolean,
-    badge?: Element | string | number,
+    badge?: JSX.Element | string | number,
     onAddWidth?: (width) => any
   }
 
@@ -555,10 +557,10 @@ declare module '@yz1311/teaset' {
   }
 
   export interface ISegmentedSheetProps extends ViewProps{
-    title: Element | string | Number,
+    title: JSX.Element | string | Number,
     titleStyle?: StyleProp<TextStyle>,
     activeTitleStyle?: StyleProp<TextStyle>,
-    badge?: Element | string | Number,
+    badge?: JSX.Element | string | Number,
   }
 
   export class SegmentedSheet extends Component<ISegmentedSheetProps> {}
@@ -594,7 +596,7 @@ declare module '@yz1311/teaset' {
     pickerType?: 'auto' | 'pull' | 'popover',
     pickerTitle?: string, //PullPicker only
     editable?: boolean,
-    icon?: Element | {uri: string} | number | 'none' | 'default',
+    icon?: JSX.Element | {uri: string} | number | 'none' | 'default',
     iconTintColor?: string, //set to null for no tint color
     placeholder?: string,
     placeholderTextColor?: string,
@@ -612,8 +614,8 @@ declare module '@yz1311/teaset' {
     valueWrapperStyle?:StyleProp<ViewStyle>,
     valueStyle?:StyleProp<TextStyle>,
     valueFormat?: (value) => any, //(value)
-    subButton?: Element | string,
-    addButton?: Element | string,
+    subButton?: JSX.Element | string,
+    addButton?: JSX.Element | string,
     showSeparator?: boolean,
     disabled?: boolean,
     editable?: boolean,
@@ -627,25 +629,25 @@ declare module '@yz1311/teaset' {
   }
 
   interface ITabButtonProps extends ViewProps {
-    title: Element | string | number,
+    title: JSX.Element | string | number,
     titleStyle?: StyleProp<TextStyle>,
     activeTitleStyle?: StyleProp<TextStyle>,
-    icon?: Element | {uri: string} | number,
-    activeIcon?: Element | {uri: string} | number,
+    icon?: JSX.Element | {uri: string} | number,
+    activeIcon?: JSX.Element | {uri: string} | number,
     active?: boolean,
     iconContainerStyle?: StyleProp<ViewStyle>,
-    badge?: Element | number,
+    badge?: JSX.Element | number,
   }
 
   export class TabButton extends Component<ITabButtonProps> {}
 
   interface ITabSheetProps extends ViewProps {
     type?: 'sheet' | 'button',
-    title: Element | string | number,
-    icon?:  Element | {uri: string} | number,
-    activeIcon?:  Element | {uri: string} | number,
+    title: JSX.Element | string | number,
+    icon?:  JSX.Element | {uri: string} | number,
+    activeIcon?:  JSX.Element | {uri: string} | number,
     iconContainerStyle?: StyleProp<ViewStyle>,
-    badge?:  Element | number,
+    badge?:  JSX.Element | number,
     onPress?: any,
   }
 
@@ -691,11 +693,11 @@ declare module '@yz1311/teaset' {
   export class WheelItem extends Component<IWheelItemProps> {}
 
   interface IWheelProps extends ViewProps {
-    items: Element | string | number,
+    items: JSX.Element | string | number,
     itemStyle?: StyleProp<TextStyle>,
     holeStyle?: StyleProp<ViewStyle>, //height is required
     maskStyle?: StyleProp<ViewStyle>,
-    holeLine?: Element | number,
+    holeLine?: JSX.Element | number,
     index?: number,
     defaultIndex?: number,
     onChange?: (index) => any, //(index)
@@ -1151,6 +1153,14 @@ declare module '@yz1311/teaset' {
       right: number,
       bottom: number
     };
+    //设计宽度,默认为iphone6的375
+    designWidth: number;
+    //设计高度,默认为iphone6的1334
+    designHeight: number;
+    deviceWidth: number;
+    deviceHeight: number;
+    px2dp: ()=>void;
+    onePix: number;
   } & ThemeConfigPartial;
   //#endregion
 
