@@ -1,3 +1,14 @@
+# [0.7.0]() (2020-03-22)
+## Breaking Change:
+* 移除NavigationHelper，单独拆分到[teaset-navigation](https://github.com/yz1311/teaset-navigation)
+
+## Feature
+* ActionSheet支持设置item的样式textStyle
+* 优化ActionSheet的ts定义
+* 将Alert的默认宽度设置为屏幕宽度的0.75
+
+
+
 # [0.6.28]() (2020-01-14)
 * Theme组件添加几个方法和属性
 * 完善ts定义

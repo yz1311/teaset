@@ -10,7 +10,7 @@ declare module '@yz1311/teaset' {
     TouchableOpacityProps,
     ViewStyle,
     ViewProps,
-    ImageProps, 
+    ImageProps,
     View,
     JSX
   } from "react-native";
@@ -90,6 +90,13 @@ declare module '@yz1311/teaset' {
 
   // export const Overlay: Overlay;
 
+  export type IActionSheetItemProps = {
+    title: string | JSX.Element | number,
+    onPress?: () => void,
+    disabled?: boolean,
+    titleStyle?: StyleProp<TextStyle>
+  }
+
   type ActionPopoverProps  = BaseOverlay & {
     show: (fromBounds, items:Array<any>, options?: any) => number;
   };
@@ -97,7 +104,7 @@ declare module '@yz1311/teaset' {
   export const ActionPopover: ActionPopoverProps;
 
   type ActionSheetProps  = BaseOverlay & {
-    show: (items:Array<any>, cancelItem, options?: any) => number;
+    show: (items:Array<IActionSheetItemProps>, cancelItem, options?: any) => number;
   };
 
   export const ActionSheet: ActionSheetProps;
@@ -1159,29 +1166,11 @@ declare module '@yz1311/teaset' {
     designHeight: number;
     deviceWidth: number;
     deviceHeight: number;
-    px2dp: ()=>void;
+    px2dp: (w:number)=>number;
     onePix: number;
   } & ThemeConfigPartial;
   //#endregion
 
   export const BackHandler:any;
 
-  interface NavigationHelperProps {
-    //初始化，传递后，可以使用global.NavigationHelper方式直接调用，如不需全局调用，则不需要
-    init: (helper,name?:string) => void,
-    navigation: any,
-    navRouters: any,
-    isTopScreen: (key:string) => boolean,
-    goBack: () => void,
-    push: (routeName: string, params?) => void,
-    navigate: (routeName:string, params?) => void,
-    resetTo: (routeName:string,params?:any) => void,
-    replace: (routeName:string, params?) => void,
-    popN: (num:number) => void,
-    popToTop: () => void,
-    popToIndex: (indexOfRoute:number) => void,
-    popToRoute: (routeName:string) => void,
-  }
-
-  export const NavigationHelper: NavigationHelperProps;
 }

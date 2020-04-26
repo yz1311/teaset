@@ -1,45 +1,62 @@
+import { Text, TouchableOpacity, View, Dimensions } from 'react-native';
 import React from 'react';
 import Overlay from '../Overlay/Overlay';
-import AlertView from './AlertView';
-import AlertEditView from './AlertEditView';
+import Label from '../Label/Label';
+import Theme from '../../themes/Theme';
 //分隔符的长(高)度
 const SEPARATOR_LENGTH = 1;
 export default class Alert {
 }
 Alert.alert = (title, message, buttons, options) => {
-    let overlayView = (<Overlay.PopView modal={options && options.cancelable ? false : true} autoKeyboardInsets onDisappearCompleted={() => {
-        if (options && options.onDismiss) {
-            options.onDismiss();
-        }
-    }} style={{ alignItems: 'center', justifyContent: 'center' }}>
-        <AlertView title={title} message={message} buttons={buttons} onButtonPress={() => {
-        if (!options || options.autoClose == undefined || options.autoClose == true) {
+    const { width: deviceWidth, height: deviceHeight } = Dimensions.get('window');
+    let realWidth = deviceHeight > deviceWidth ? deviceWidth : deviceHeight;
+    let buttonViews = [];
+    let index = 0;
+    for (const button of buttons) {
+        index++;
+        buttonViews.push(<Button key={index} hideAlert={() => {
             Alert.hide();
+        }} text={button.text} style={button.style} onPress={button.onPress}/>);
+        //分隔符
+        if (index < buttons.length) {
+            buttonViews.push(<View style={{ width: SEPARATOR_LENGTH, backgroundColor: '#eeeef0' }}/>);
         }
-    }}/>
-      </Overlay.PopView>);
-    Alert.overlayKey = Overlay.show(overlayView);
-};
-Alert.edit = (title, args, buttons, options) => {
-    if (!args) {
-        args = {};
     }
-    let editViewRef;
-    let overlayView = (<Overlay.PopView modal={options && options.cancelable ? false : true} autoKeyboardInsets onDisappearCompleted={() => {
+    let overlayView = (<Overlay.PopView modal={options && options.cancelable ? false : true} onDisappearCompleted={() => {
         if (options && options.onDismiss) {
             options.onDismiss();
         }
     }} style={{ alignItems: 'center', justifyContent: 'center' }}>
-              <AlertView title={title} message={args && args.message} extra={(<AlertEditView ref={ref => editViewRef = ref} {...(args && args.inputStyle || { placeholder: '请输入' })}/>)} buttons={buttons} onButtonPress={() => {
-        if (!options || options.autoClose == undefined || options.autoClose == true) {
-            Alert.hide();
-        }
-        return editViewRef.getValue();
-    }}/>
-          </Overlay.PopView>);
+        <View style={{ backgroundColor: '#fff', minWidth: realWidth * 0.75, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center' }}>
+          {title ?
+        <Label type='title' style={{ fontSize: 17 * Theme.labelTitleScale, fontWeight: '500', marginHorizontal: 15 }} text={title}/>
+        :
+            <View style={{ height: 10 }}/>}
+          <Label numberOfLines={8} type='title' style={{ marginTop: 6, marginHorizontal: 15, marginBottom: 20 }} size='md' text={message}/>
+          <View style={{ flexDirection: 'row', borderTopColor: '#eeeef0', borderTopWidth: SEPARATOR_LENGTH }}>
+            {buttonViews}
+          </View>
+        </View>
+      </Overlay.PopView>);
     Alert.overlayKey = Overlay.show(overlayView);
 };
 Alert.hide = () => {
     Overlay.hide(Alert.overlayKey);
+};
+const Button = ({ hideAlert, text, onPress, style }) => {
+    let textColor = '#2087fa';
+    switch (style) {
+        case 'cancel':
+            break;
+        case 'destructive':
+            textColor = '#f34638';
+            break;
+    }
+    return (<TouchableOpacity activeOpacity={0.7} onPress={() => {
+        hideAlert && hideAlert();
+        onPress && onPress();
+    }} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: 45 }}>
+      <Text style={{ color: textColor, fontSize: 16 * Theme.labelTitleScale }}>{text}</Text>
+    </TouchableOpacity>);
 };
 //# sourceMappingURL=Alert.js.map
