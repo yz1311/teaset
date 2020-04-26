@@ -1,3 +1,7 @@
+# [0.7.4]() (2020-04-27)
+
+* 同步原项目代码，支持RN 0.62.x
+
 # [0.7.0]() (2020-03-22)
 ## Breaking Change:
 * 移除NavigationHelper，单独拆分到[teaset-navigation](https://github.com/yz1311/teaset-navigation)
