@@ -34,8 +34,9 @@ export default class Alert {
       );
       //分隔符
       if(index < buttons.length){
+        index++;
         buttonViews.push(
-          <View style={{width: SEPARATOR_LENGTH,backgroundColor: '#eeeef0'}}/>
+          <View key={index} style={{width: SEPARATOR_LENGTH,backgroundColor: '#eeeef0'}}/>
         );
       }
     }

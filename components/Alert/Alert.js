@@ -19,7 +19,8 @@ Alert.alert = (title, message, buttons, options) => {
         }} text={button.text} style={button.style} onPress={button.onPress}/>);
         //分隔符
         if (index < buttons.length) {
-            buttonViews.push(<View style={{ width: SEPARATOR_LENGTH, backgroundColor: '#eeeef0' }}/>);
+            index++;
+            buttonViews.push(<View key={index} style={{ width: SEPARATOR_LENGTH, backgroundColor: '#eeeef0' }}/>);
         }
     }
     let overlayView = (<Overlay.PopView modal={options && options.cancelable ? false : true} onDisappearCompleted={() => {
