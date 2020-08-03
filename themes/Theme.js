@@ -117,7 +117,14 @@ const Theme = {
 
   get onePix() {
     return 1 / PixelRatio.get();
-  }
+  },
+
+  fontSizeAndColor(size, color) {
+    return {
+      fontSize: Theme.px2dp(size),
+      color: color
+    };
+  },
 
 };
 

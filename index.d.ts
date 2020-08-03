@@ -1170,6 +1170,7 @@ declare module '@yz1311/teaset' {
     deviceHeight: number;
     px2dp: (w:number)=>number;
     onePix: number;
+    fontSizeAndColor: (size: number, color: string)=>{fontSize: number, color: string};
   } & ThemeConfigPartial;
   //#endregion
 
