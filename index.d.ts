@@ -155,11 +155,13 @@ declare module '@yz1311/teaset' {
     onDismiss?: () => void;
     /** 点击按钮后自动关闭,默认值:false */
     autoClose?: boolean;
+    /** Overlay.PopView的相关属性 */
+    overlay?: IOverlayPopViewProps;
   }
 
   export interface AlertStatic {
     alert: (title: string, message?: string | JSX.Element | Number, buttons?: AlertButton[], options?: AlertOptions) => void;
-    edit: (title: string, args?: {message?: string | JSX.Element | Number,inputStyle?: TextInputProps}, buttons?: AlertButton[], options?: AlertOptions) => void;
+    edit: (title: string, inuptProps: TextInputProps, buttons?: AlertButton[], options?: AlertOptions) => void;
     hide: () => void;
   }
 

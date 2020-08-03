@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { PixelRatio, TextInput, View } from "react-native";
-const AlertEditView = (props, ref) => {
+function AlertEditView(props, ref) {
     const [value, setValue] = useState(props && props.defaultValue ? props.defaultValue : '');
     useImperativeHandle(ref, () => ({
         getValue: () => {
@@ -12,9 +12,10 @@ const AlertEditView = (props, ref) => {
         borderWidth: 1 / PixelRatio.get(), borderColor: '#d9d9d9', borderRadius: 0 }}>
             <TextInput style={{ alignSelf: 'stretch', height: 38 }} {...(props || {})} value={value} onChangeText={(value) => {
         setValue(value);
+        props.onChangeText && props.onChangeText(value);
     }}/>
         </View>);
-};
+}
 const ForwardAlertEditView = forwardRef(AlertEditView);
 ForwardAlertEditView.defaultProps = {
     placeholder: '请输入'

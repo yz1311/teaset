@@ -28,7 +28,7 @@ None.
 ```JavaScript
 alert(title: string, message?: string | Element | Number, buttons?: AlertButton[], options?: AlertOptions);
 
-edit: (title: string, args?: {message?: string | Element | Number,inputStyle?: TextInputProps}, buttons?: AlertButton[], options?: AlertOptions) => void;
+edit: (title: string, inputProps: TextInputProps, buttons?: AlertButton[], options?: AlertOptions) => void;
 
 hide: () => void;
 ```
@@ -54,7 +54,8 @@ Alert.alert('退出确认','退出当前账号?',[
 
 输入框模式
 ```javascript
-Alert.edit('退出确认',{inputStyle: {defaultValue: '123'}},[
+//第二个参数为TextInput的所有props属性属性,只要是添加的按钮，均会返回对话框里面的值
+Alert.edit('手机号码',{defaultValue: '123'},[
                                     {
                                         text: '取消'
                                     },{
@@ -70,7 +71,7 @@ Alert.edit('退出确认',{inputStyle: {defaultValue: '123'}},[
 
 自定义
 ```javascript
-Alert.edit('退出确认',<TextInput />,[
+Alert.alert('退出确认',<TextInput style={{color: '#8a6d3b', fontSize: 16, paddingLeft: 8}} />,[
                                     {
                                         text: '取消'
                                     },{
@@ -79,7 +80,7 @@ Alert.edit('退出确认',<TextInput />,[
                                             
                                         }
                                     }
-                                ],{cancelable: false});le={{color: '#8a6d3b', fontSize: 16, paddingLeft: 8}} text='Search' />
+                                ],{cancelable: false});
 ```
 
 

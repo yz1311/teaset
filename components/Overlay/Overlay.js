@@ -38,7 +38,9 @@ export default class Overlay {
   }
 
   static hide(key) {
-    TopView.remove(key);
+    setTimeout(()=>{
+      TopView.remove(key);
+    }, 1);
   }
 
   static transformRoot(transform, animated, animatesOnly = null) {

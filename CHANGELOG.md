@@ -1,3 +1,16 @@
+# [0.7.6]() (2020-08-03)
+
+* 修复Alert组件的Input模式
+* 修复Alert组件的autoClose属性
+
+### 重要:
+* 可能修复了Overlay组件hide操作的时候，在react16(基本RN0.5.x和0.6.x的版本都有问题)中引起的整个路由重置的问题
+  
+  相关问题: [#336](https://github.com/rilyu/teaset/issues/336) [#248](https://github.com/rilyu/teaset/issues/248)
+  [#269](https://github.com/rilyu/teaset/issues/269)
+  [#345](https://github.com/rilyu/teaset/issues/345)
+  [#304](https://github.com/rilyu/teaset/issues/304)
+
 # [0.7.5]() (2020-07-08)
 
 * 修复Alert警告

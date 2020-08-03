@@ -3,10 +3,10 @@ import {Dimensions, PixelRatio, TextInput, TextInputProps, View} from "react-nat
 
 
 export interface IProps extends TextInputProps{
-    
+
 }
 
-const AlertEditView:FC<IProps> = (props,ref)=>{
+function AlertEditView (props:IProps,ref){
     const [value,setValue] = useState( props&&props.defaultValue?props.defaultValue:'');
     useImperativeHandle(ref, () => ({
         getValue: () => {
@@ -22,6 +22,7 @@ const AlertEditView:FC<IProps> = (props,ref)=>{
                        value={value}
                        onChangeText={(value) => {
                 setValue(value);
+                props.onChangeText&&props.onChangeText(value);
             }} />
         </View>
     );
