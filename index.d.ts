@@ -328,6 +328,8 @@ declare module '@yz1311/teaset' {
   export class Label extends Component<ILabelProps,any>{}
 
   interface IListRowProps extends ISwipeTouchableOpacityProps{
+    required?: boolean,
+    requiredStyle?: StyleProp<TextStyle>,
     title: JSX.Element | string | number,
     detail?: JSX.Element | string | number,
     titleStyle?: StyleProp<TextStyle>,

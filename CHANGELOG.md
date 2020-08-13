@@ -1,3 +1,7 @@
+# [0.7.8]() (2020-08-13)
+
+* `ListRow`组件添加`required`、`requiredStyle`两个属性，来显示表单是否必填
+
 # [0.7.7]() (2020-08-03)
 
 * `Theme`组件添加`fontSizeAndColor`方法，简化Text/TextInput等组件对文字大小和颜色的写法

@@ -15,6 +15,8 @@ export default class ListRow extends Component {
 
   static propTypes = {
     ...SwipeTouchableOpacity.propTypes,
+    required: PropTypes.bool,
+    requiredStyle: Text.propTypes.style,
     title: PropTypes.oneOfType([PropTypes.element, PropTypes.string, PropTypes.number]),
     detail: PropTypes.oneOfType([PropTypes.element, PropTypes.string, PropTypes.number]),
     titleStyle: Text.propTypes.style,
@@ -30,6 +32,7 @@ export default class ListRow extends Component {
 
   static defaultProps = {
     ...SwipeTouchableOpacity.defaultProps,
+    required: false,
     activeOpacity: null,
     accessory: 'auto',
     topSeparator: 'none',
@@ -216,7 +219,7 @@ export default class ListRow extends Component {
   }
 
   render() {
-    let {style, children, title, detail, titleStyle, detailStyle, detailMultiLine, icon, accessory, topSeparator, bottomSeparator, titlePlace, swipeActions, activeOpacity, onLayout, onPress, ...others} = this.props;
+    let {style, children, required, requiredStyle, title, detail, titleStyle, detailStyle, detailMultiLine, icon, accessory, topSeparator, bottomSeparator, titlePlace, swipeActions, activeOpacity, onLayout, onPress, ...others} = this.props;
     return (
       <View onLayout={onLayout}>
         {this.renderSeparator(topSeparator)}
@@ -231,6 +234,7 @@ export default class ListRow extends Component {
           onSwipeStsChange={swipeSts => this.setState({swipeSts})}
           ref='containerView'
         >
+          <Text style={[{color:'red', fontSize: 18, alignSelf:'center', marginTop: 5, marginRight: 3}, requiredStyle, !required&& {opacity: 0}]}>*</Text>
           {this.renderIcon()}
           {this.renderContent()}
           {this.renderAccessory()}

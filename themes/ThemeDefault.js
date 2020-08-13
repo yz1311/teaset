@@ -271,7 +271,7 @@ export default {
   //ListRow
   rowColor: defaultColor,
   rowMinHeight: 44,
-  rowPaddingLeft: 12,
+  rowPaddingLeft: 8,
   rowPaddingRight: 12,
   rowPaddingTop: 8,
   rowPaddingBottom: 8,
