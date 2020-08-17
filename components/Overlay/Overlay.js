@@ -29,7 +29,9 @@ export default class Overlay {
     let onDisappearCompletedSave = overlayView.props.onDisappearCompleted;
     let element = React.cloneElement(overlayView, {
       onDisappearCompleted: () => {
-        TopView.remove(key);
+        setTimeout(()=>{
+          TopView.remove(key);
+        }, 1);
         onDisappearCompletedSave && onDisappearCompletedSave();
       }
     });
