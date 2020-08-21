@@ -7,13 +7,13 @@ import {View, ScrollView, ActivityIndicator} from 'react-native';
 
 import {NavigationPage, ListRow, Toast, Theme} from '@yz1311/teaset';
 
-export default class ToastExample extends NavigationPage {
+export default class ToastExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'Toast',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'Toast'
+    };
+  }
 
   showModal() {
     Toast.show({
@@ -44,7 +44,7 @@ export default class ToastExample extends NavigationPage {
     ToastExample.customKey = null;
   }
 
-  renderPage() {
+  render() {
     let img = require('../images/faircup.jpg');
     return (
       <ScrollView style={{flex: 1}}>

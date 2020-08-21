@@ -7,15 +7,15 @@ import {View, ScrollView} from 'react-native';
 
 import {NavigationPage, ListRow, Label} from '@yz1311/teaset';
 
-export default class LabelExample extends NavigationPage {
+export default class LabelExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'Label',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'Label'
+    };
+  }
 
-  renderPage() {
+  render() {
     return (
       <ScrollView style={{flex: 1}}>
         <View style={{height: 20}} />

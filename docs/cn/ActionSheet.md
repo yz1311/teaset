@@ -16,8 +16,8 @@ ActionSheet 为操作选单静态类, 一般用于触发一个多项子操作供
 | Prop | Type | Default | Note |
 |---|---|---|---|
 | [Overlay.PullView props...](./Overlay.md#overlaypullview--props) |  |  | ActionSheet.ActionSheetView 组件继承 Overlay.PullView 组件的全部属性。
-| items | array |  | 操作选单项列表, 数组元素类型为:<br/>type ActionSheetItem {<br/>&ensp;&ensp;title: string,<br/>&ensp;&ensp;onPress: func,<br/>&ensp;&ensp;disabled: bool,<br/>}
-| cancelItem | ActionSheetItem |  | 取消操作项。<br/>type ActionSheetItem {<br/>&ensp;&ensp;title: string,<br/>&ensp;&ensp;onPress: func,<br/>&ensp;&ensp;disabled: bool,<br/>}
+| items | array |  | 操作选单项列表, 数组元素类型为:<br/>type ActionSheetItem {<br/>&ensp;&ensp;title: string,<br/>&ensp;&ensp;onPress: func,<br/>&ensp;&ensp;disabled: bool,<br/>&ensp;&ensp;textStyle: object<br/>}
+| cancelItem | ActionSheetItem |  | 取消操作项。<br/>type ActionSheetItem {<br/>&ensp;&ensp;title: string,<br/>&ensp;&ensp;onPress: func,<br/>&ensp;&ensp;disabled: bool,<br/>&ensp;&ensp;textStyle: object<br/>}
 
 ## `<ActionSheet.ActionSheetView />` Static Props
 | Prop | Type | Default | Note |
@@ -30,6 +30,7 @@ ActionSheet 为操作选单静态类, 一般用于触发一个多项子操作供
 | [TouchableOpacity props...](https://facebook.github.io/react-native/docs/touchableopacity.html) |  |  | ActionSheet.ActionSheetView.Item 组件继承 TouchableOpacity 组件的全部属性。
 | type | string | 'default' | 类型。<br/>- default: 默认<br/>- cancel: 取消
 | title | string<br/>number<br/>element |  | 标题, 可以是字符串、数字或 React Native 组件。
+| titleStyle | TextStyle |  | 标题样式
 | topSeparator | string<br/>element | 'none' | 上分隔线, 可以是字符串或 React Native 组件。<br/>- none: 无<br/>- full: 满行分隔线<br/>- indent: 缩进分隔线
 | bottomSeparator | string<br/>element | 'indent' | 下分隔线, 可以是字符串或 React Native 组件。<br/>- none: 无<br/>- full: 满行分隔线<br/>- indent: 缩进分隔线
 | disabled | bool | false | 继承自 TouchableOpacity, 为 true 时组件显示为半透明且不可触摸。

@@ -7,13 +7,13 @@ import {View, ScrollView} from 'react-native';
 
 import {NavigationPage, ListRow, ActionSheet, Label} from '@yz1311/teaset';
 
-export default class ActionSheetExample extends NavigationPage {
+export default class ActionSheetExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'ActionSheet',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'ActionSheet'
+    };
+  }
 
   show(modal) {
     let items = [
@@ -25,7 +25,7 @@ export default class ActionSheetExample extends NavigationPage {
     ActionSheet.show(items, cancelItem, {modal});
   }
 
-  renderPage() {
+  render() {
     return (
       <ScrollView style={{flex: 1}}>
         <View style={{height: 20}} />

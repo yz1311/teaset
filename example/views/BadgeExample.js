@@ -7,15 +7,15 @@ import {View, ScrollView, Text} from 'react-native';
 
 import {NavigationPage, ListRow, Badge} from '@yz1311/teaset';
 
-export default class BadgeExample extends NavigationPage {
+export default class BadgeExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'Badge',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'Badge'
+    };
+  }
 
-  renderPage() {
+  render() {
     return (
       <ScrollView style={{flex: 1}}>
         <View style={{height: 20}} />

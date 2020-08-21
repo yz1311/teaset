@@ -18,11 +18,13 @@ export default class ActionSheetView extends Overlay.PullView {
       title: PropTypes.oneOfType([PropTypes.element, PropTypes.string, PropTypes.number]).isRequired,
       onPress: PropTypes.func,
       disabled: PropTypes.bool,
+      titleStyle: PropTypes.any
     })),
     cancelItem: PropTypes.shape({
       title: PropTypes.oneOfType([PropTypes.element, PropTypes.string, PropTypes.number]).isRequired,
       onPress: PropTypes.func,
       disabled: PropTypes.bool,
+      titleStyle: PropTypes.any
     }),
   };
 
@@ -56,6 +58,7 @@ export default class ActionSheetView extends Overlay.PullView {
         <this.constructor.Item
           key={'item' + i}
           title={item.title}
+          titleStyle={item.titleStyle}
           topSeparator={i === 0 ? 'none' : 'full'}
           disabled={item.disabled}
           onPress={() => this.onItemPress(item)}
@@ -68,6 +71,7 @@ export default class ActionSheetView extends Overlay.PullView {
           key={'cancelItem'}
           type='cancel'
           title={cancelItem.title}
+          titleStyle={cancelItem.titleStyle}
           topSeparator='full'
           disabled={cancelItem.disabled}
           onPress={() => this.onCancelItemPress()}

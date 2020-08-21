@@ -79,7 +79,7 @@ export default class TopView extends Component {
     return this.handlers.length > 0 ? this.handlers[this.handlers.length - 1] : this;
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     let {registerTopViewHandler} = this.context;
     if (registerTopViewHandler) {
       registerTopViewHandler(this);
@@ -110,7 +110,11 @@ export default class TopView extends Component {
   add(e) {
     let {elements} = this.state;
     elements.push(e);
-    this.setState({elements});
+    setTimeout(()=>{
+      this.setState({elements});
+    }, 0);
+    //会引起路由重启
+    // this.setState({elements});
   }
 
   remove(e) {
@@ -121,12 +125,20 @@ export default class TopView extends Component {
         break;
       }
     }
-    this.setState({elements});
+    setTimeout(()=>{
+      this.setState({elements});
+    }, 0);
+    //会引起路由重启
+    // this.setState({elements});
   }
 
   removeAll(e) {
     let {elements} = this.state;
-    this.setState({elements: []});
+    setTimeout(()=>{
+      this.setState({elements: []});
+    }, 0);
+    //会引起路由重启
+    // this.setState({elements: []});
   }
 
   transform(e) {
@@ -148,19 +160,19 @@ export default class TopView extends Component {
     });
     if (animated) {
       let animates = [
-        Animated.spring(translateX, {toValue: tx, friction: 9}),
-        Animated.spring(translateY, {toValue: ty, friction: 9}),
-        Animated.spring(scaleX, {toValue: sx, friction: 9}),
-        Animated.spring(scaleY, {toValue: sy, friction: 9}),
+        Animated.spring(translateX, {toValue: tx, friction: 9, useNativeDriver: false}),
+        Animated.spring(translateY, {toValue: ty, friction: 9, useNativeDriver: false}),
+        Animated.spring(scaleX, {toValue: sx, friction: 9, useNativeDriver: false}),
+        Animated.spring(scaleY, {toValue: sy, friction: 9, useNativeDriver: false}),
       ];
       animatesOnly ? animatesOnly(animates) : Animated.parallel(animates).start();
     } else {
       if (animatesOnly) {
         let animates = [
-          Animated.timing(translateX, {toValue: tx, duration: 1}),
-          Animated.timing(translateY, {toValue: ty, duration: 1}),
-          Animated.timing(scaleX, {toValue: sx, duration: 1}),
-          Animated.timing(scaleY, {toValue: sy, duration: 1}),
+          Animated.timing(translateX, {toValue: tx, duration: 1, useNativeDriver: false}),
+          Animated.timing(translateY, {toValue: ty, duration: 1, useNativeDriver: false}),
+          Animated.timing(scaleX, {toValue: sx, duration: 1, useNativeDriver: false}),
+          Animated.timing(scaleY, {toValue: sy, duration: 1, useNativeDriver: false}),
         ];
         animatesOnly(animates);
       } else {
@@ -178,19 +190,19 @@ export default class TopView extends Component {
     let {animated, animatesOnly} = e;
     if (animated) {
       let animates = [
-        Animated.spring(translateX, {toValue: 0, friction: 9}),
-        Animated.spring(translateY, {toValue: 0, friction: 9}),
-        Animated.spring(scaleX, {toValue: 1, friction: 9}),
-        Animated.spring(scaleY, {toValue: 1, friction: 9}),
+        Animated.spring(translateX, {toValue: 0, friction: 9, useNativeDriver: false}),
+        Animated.spring(translateY, {toValue: 0, friction: 9, useNativeDriver: false}),
+        Animated.spring(scaleX, {toValue: 1, friction: 9, useNativeDriver: false}),
+        Animated.spring(scaleY, {toValue: 1, friction: 9, useNativeDriver: false}),
       ];
       animatesOnly ? animatesOnly(animates) : Animated.parallel(animates).start();
     } else {
       if (animatesOnly) {
         let animates = [
-          Animated.timing(translateX, {toValue: 0, duration: 1}),
-          Animated.timing(translateY, {toValue: 0, duration: 1}),
-          Animated.timing(scaleX, {toValue: 1, duration: 1}),
-          Animated.timing(scaleY, {toValue: 1, duration: 1}),
+          Animated.timing(translateX, {toValue: 0, duration: 1, useNativeDriver: false}),
+          Animated.timing(translateY, {toValue: 0, duration: 1, useNativeDriver: false}),
+          Animated.timing(scaleX, {toValue: 1, duration: 1, useNativeDriver: false}),
+          Animated.timing(scaleY, {toValue: 1, duration: 1, useNativeDriver: false}),
         ];
         animatesOnly(animates);
       } else {

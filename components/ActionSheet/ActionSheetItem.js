@@ -17,6 +17,7 @@ export default class ActionSheetItem extends Component {
     topSeparator: PropTypes.oneOfType([PropTypes.element, PropTypes.oneOf(['none', 'full', 'indent'])]),
     bottomSeparator: PropTypes.oneOfType([PropTypes.element, PropTypes.oneOf(['none', 'full', 'indent'])]),
     disabled: PropTypes.bool,
+    titleStyle: PropTypes.any
   };
 
   static defaultProps = {
@@ -69,7 +70,7 @@ export default class ActionSheetItem extends Component {
   }
 
   renderTitle() {
-    let {type, title, disabled} = this.props;
+    let {type, title, disabled, titleStyle} = this.props;
     if (title === null || title === undefined || React.isValidElement(title)) return title;
 
     let textStyle;
@@ -92,7 +93,7 @@ export default class ActionSheetItem extends Component {
         overflow: 'hidden',
       };
     }
-    return <Text style={textStyle} numberOfLines={1}>{title}</Text>;
+    return <Text style={[textStyle, titleStyle]} numberOfLines={1}>{title}</Text>;
   }
 
   render() {

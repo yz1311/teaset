@@ -7,22 +7,22 @@ import {View, ScrollView, Text} from 'react-native';
 
 import {NavigationPage, ListRow, Stepper} from '@yz1311/teaset';
 
-export default class StepperExample extends NavigationPage {
+export default class StepperExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'Stepper',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'Stepper'
+    };
+  }
 
   constructor(props) {
     super(props);
-    Object.assign(this.state, {
+    this.state = {
       valueCustom: 1,
-    });
+    };
   }
 
-  renderPage() {
+  render() {
     return (
       <ScrollView style={{flex: 1}}>
         <View style={{height: 20}} />

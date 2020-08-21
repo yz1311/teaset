@@ -5,23 +5,18 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, ScrollView, Image, Switch, Platform} from 'react-native';
 
-import {Theme, TeaNavigator, NavigationPage, BasePage, ListRow, TabView, Label, PullPicker} from '@yz1311/teaset';
+import {Theme, NavigationPage, BasePage, ListRow, TabView, Label, PullPicker} from '@yz1311/teaset';
 
 import SelectRow from './SelectRow';
 
 export default class TabViewExample extends BasePage {
 
-  static defaultProps = {
-    ...BasePage.defaultProps,
-    scene: TeaNavigator.SceneConfigs.PushFromRight,
-  };
-
   constructor(props) {
     super(props);
-    Object.assign(this.state, {
+    this.state = {
       type: 'projector',
       custom: false,
-    });
+    };
   }
 
   renderCustomButton() {
@@ -54,7 +49,7 @@ export default class TabViewExample extends BasePage {
     );
   }
 
-  renderPage() {
+  render() {
     let {type, custom} = this.state;
     let customBarStyle = Platform.OS == 'android'  ? null : {
       borderTopWidth: 0,
@@ -92,7 +87,7 @@ export default class TabViewExample extends BasePage {
 
 }
 
-class HomePage extends NavigationPage {
+class HomePage extends Component {
 
   static defaultProps = {
     ...NavigationPage.defaultProps,
@@ -100,7 +95,7 @@ class HomePage extends NavigationPage {
     showBackButton: true,
   };
 
-  renderPage() {
+  render() {
     let {type, custom, onChangeCustom, onChangeType} = this.props;
     return (
       <ScrollView style={{flex: 1}}>
@@ -114,7 +109,7 @@ class HomePage extends NavigationPage {
 
 }
 
-class MePage extends NavigationPage {
+class MePage extends Component {
 
   static defaultProps = {
     ...NavigationPage.defaultProps,
@@ -122,7 +117,7 @@ class MePage extends NavigationPage {
     showBackButton: false,
   };
 
-  renderPage() {
+  render() {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <Label type='detail' size='xl' text={this.props.title} />

@@ -44,7 +44,8 @@ export default class OverlayView extends Component {
     }
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
+    this.appearAfterMount && this.appear();
     if (Platform.OS === 'android') {
       let BackHandler = ReactNative.BackHandler ? ReactNative.BackHandler : ReactNative.BackAndroid;
       this.backListener = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -56,10 +57,6 @@ export default class OverlayView extends Component {
         }
       });
     }
-  }
-
-  componentDidMount() {
-    this.appearAfterMount && this.appear();
   }
 
   componentWillUnmount() {
@@ -84,6 +81,7 @@ export default class OverlayView extends Component {
       Animated.timing(this.state.overlayOpacity, {
         toValue: this.overlayOpacity,
         duration,
+        useNativeDriver: false,
       })
     ];
     return animates;
@@ -95,6 +93,7 @@ export default class OverlayView extends Component {
       Animated.timing(this.state.overlayOpacity, {
         toValue: 0,
         duration,
+        useNativeDriver: false,
       })
     ];
     return animates;

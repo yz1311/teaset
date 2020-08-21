@@ -2,7 +2,7 @@
 
 'use strict';
 
-import {Platform, Dimensions, NativeModules, DeviceInfo, StatusBar} from 'react-native';
+import {Platform, Dimensions, NativeModules, DeviceInfo, StatusBar, PixelRatio} from 'react-native';
 
 import ThemeDefault from './ThemeDefault';
 import ThemeBlack from './ThemeBlack';
@@ -49,7 +49,6 @@ const isIPad = (() => {
   return true;
 })();
 
-
 const Theme = {
 
   themes: {
@@ -93,6 +92,38 @@ const Theme = {
       top: this.statusBarHeight,
       bottom: isIPhoneX && fitIPhoneX ? (isLandscape ? 24 : 34) : 0,
     });
+  },
+
+  //设计宽度 1X
+  get designWidth () {
+    return 750;
+  },
+  //设计高度 1X
+  get designHeight () {
+    return 1334;
+  },
+
+  get deviceWidth() {
+    return Dimensions.get('window').width;
+  },
+
+  get deviceHeight() {
+    return Dimensions.get('window').height;
+  },
+
+  px2dp(w) {
+    return Dimensions.get('window').width / Theme.designWidth * w;
+  },
+
+  get onePix() {
+    return 1 / PixelRatio.get();
+  },
+
+  fontSizeAndColor(size, color) {
+    return {
+      fontSize: Theme.px2dp(size),
+      color: color
+    };
   },
 
 };

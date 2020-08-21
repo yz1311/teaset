@@ -7,27 +7,27 @@ import {View, ScrollView, Image} from 'react-native';
 
 import {NavigationPage, ListRow, Checkbox, Label} from '@yz1311/teaset';
 
-export default class CheckboxExample extends NavigationPage {
+export default class CheckboxExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'Checkbox',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'Checkbox'
+    };
+  }
 
   constructor(props) {
     super(props);
-    Object.assign(this.state, {
+    this.state = {
       checkedSM: false,
       checkedMD: false,
       checkedLG: false,
       checkedEmpty: false,
       checkedDisable: true,
       checkedCustom: false,
-    });
+    };
   }
 
-  renderPage() {
+  render() {
     return (
       <ScrollView style={{flex: 1}}>
         <View style={{height: 20}} />

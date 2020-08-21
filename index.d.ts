@@ -10,12 +10,14 @@ declare module '@yz1311/teaset' {
     TouchableOpacityProps,
     ViewStyle,
     ViewProps,
-    ImageProps, View
+    ImageProps,
+    View,
+    JSX
   } from "react-native";
   import { Component, RefForwardingComponent } from 'react';
 
   interface BaseOverlay extends ViewProps{
-    show?: (overlayView: Element) => number;
+    show?: (overlayView: JSX.Element) => number;
     hide?: (key: number) => void;
     transformRoot?: (transform, animated: boolean, animatesOnly?:boolean) => void;
     restoreRoot?: (animated: boolean, animatesOnly?:boolean) => void;
@@ -49,7 +51,7 @@ declare module '@yz1311/teaset' {
   }
 
   interface IOverlayPopoverViewProps extends IOverlayViewProps{
-    popoverStyle?: BaseOverlay,
+    popoverStyle?: StyleProp<ViewStyle>,
     fromBounds?: Bounds,
     direction?: 'down' | 'up' | 'right' | 'left',
     autoDirection?: boolean, //down -> up, or right -> left
@@ -62,9 +64,9 @@ declare module '@yz1311/teaset' {
   }
 
   interface IOverlayPullViewProps extends IOverlayViewProps{
-    side: 'top' | 'bottom' | 'left' | 'right',
-    containerStyle: StyleProp<ViewStyle>,
-    rootTransform: 'none' | 'translate' | 'scale' | Array<Bounds>
+    side?: 'top' | 'bottom' | 'left' | 'right',
+    containerStyle?: StyleProp<ViewStyle>,
+    rootTransform?: 'none' | 'translate' | 'scale' | Array<Bounds>
   }
 
   export class OverlayView extends Component<IOverlayViewProps,any>{}
@@ -83,10 +85,17 @@ declare module '@yz1311/teaset' {
   }
 
   export class Overlay extends BaseOverlay{
-    static show: (overlayView: Element) => number;
+    static show: (overlayView: JSX.Element) => number;
   }
 
   // export const Overlay: Overlay;
+
+  export type IActionSheetItemProps = {
+    title: string | JSX.Element | number,
+    onPress?: () => void,
+    disabled?: boolean,
+    titleStyle?: StyleProp<TextStyle>
+  }
 
   type ActionPopoverProps  = BaseOverlay & {
     show: (fromBounds, items:Array<any>, options?: any) => number;
@@ -95,14 +104,14 @@ declare module '@yz1311/teaset' {
   export const ActionPopover: ActionPopoverProps;
 
   type ActionSheetProps  = BaseOverlay & {
-    show: (items:Array<any>, cancelItem, options?: any) => number;
+    show: (items:Array<IActionSheetItemProps>, cancelItem, options?: any) => number;
   };
 
   export const ActionSheet: ActionSheetProps;
 
   type IToastViewProps = IOverlayViewProps & {
-    text: Element | string | number,
-    icon: Element | {uri: string} | number | 'none' | 'success' | 'fail' | 'smile' | 'sad' | 'info' | 'stop',
+    text: JSX.Element | string | number,
+    icon: JSX.Element | {uri: string} | number | 'none' | 'success' | 'fail' | 'smile' | 'sad' | 'info' | 'stop',
     position: 'top' | 'bottom' | 'center'
   };
 
@@ -130,23 +139,44 @@ declare module '@yz1311/teaset' {
 
   export interface AlertButton {
     text?: string;
-    onPress?: () => void;
+    onPress?: (value:any) => void;
+    //default为蓝色,cancel为蓝色加粗,destructive为红色
     style?: "default" | "cancel" | "destructive";
+    //文字颜色，将会覆盖style的颜色样式
+    textColor?: string,
+    //文本样式，将会覆盖style的颜色样式
+    textStyle?: StyleProp<TextStyle>
   }
 
   interface AlertOptions {
-    /** @platform android/ios */
+    /** @platform android/ios,默认值:false,(注意,RN的Alert组件，android下该值为true) */
     cancelable?: boolean;
     /** @platform android/ios */
     onDismiss?: () => void;
+    /** 点击按钮后自动关闭,默认值:false */
+    autoClose?: boolean;
+    /** Overlay.PopView的相关属性 */
+    overlay?: IOverlayPopViewProps;
   }
 
   export interface AlertStatic {
-    alert: (title: string, message?: string, buttons?: AlertButton[], options?: AlertOptions) => void;
+    alert: (title: string, message?: string | JSX.Element | Number, buttons?: AlertButton[], options?: AlertOptions) => void;
+    edit: (title: string, inuptProps: TextInputProps, buttons?: AlertButton[], options?: AlertOptions) => void;
+    hide: () => void;
   }
 
   export const Alert: AlertStatic;
   export type Alert = AlertStatic;
+
+  interface IAlertViewProps extends ViewProps {
+    style?: StyleProp<ViewStyle>,
+    title: string,
+    message?: string | JSX.Element | Number,
+    buttons?: AlertButton[],
+    onButtonPress?: ()=>void
+  }
+
+  export class AlertView extends Component<IAlertViewProps,any> {}
 
   type BadgeTypes = 'capsule' | 'square' | 'dot';
 
@@ -177,7 +207,7 @@ declare module '@yz1311/teaset' {
   interface IButtonProps extends TouchableOpacityProps {
     type?: ButtonTypes,
     size?: ButtonSizes,
-    title: Element | string | number,
+    title: JSX.Element | string | number,
     titleStyle?: TextStyle
   }
 
@@ -218,7 +248,7 @@ declare module '@yz1311/teaset' {
   }
 
   export class DatePickerView extends Component<IDatePickerViewProps,any>{
-    static defaultProps: 
+    static defaultProps:
     Pick<IDatePickerViewProps,'labelUnit'>
     &Pick<IDatePickerViewProps,'mode'>
     &Pick<IDatePickerViewProps,'maxDate'>
@@ -240,7 +270,7 @@ declare module '@yz1311/teaset' {
     startIndex: number,
     //是否循环
     cycle: boolean,
-    control: boolean | Element,
+    control: boolean | JSX.Element,
     //(index, total) 页面改变时调用
     onChange: (index: number,total: number) => any,
   }
@@ -251,11 +281,11 @@ declare module '@yz1311/teaset' {
     checked: boolean,
     defaultChecked?: boolean,
     size?: 'lg' | 'md' | 'sm',
-    title?: Element | string | number,
+    title?: JSX.Element | string | number,
     titleStyle?: StyleProp<TextStyle>,
-    checkedIcon?: Element | {uri: string} | number,
+    checkedIcon?: JSX.Element | {uri: string} | number,
     checkedIconStyle?: StyleProp<ImageStyle>,
-    uncheckedIcon?: Element | {uri: string} | number,
+    uncheckedIcon?: JSX.Element | {uri: string} | number,
     uncheckedIconStyle?: StyleProp<ImageStyle>,
     onChange?: any,
   }
@@ -298,17 +328,19 @@ declare module '@yz1311/teaset' {
   export class Label extends Component<ILabelProps,any>{}
 
   interface IListRowProps extends ISwipeTouchableOpacityProps{
-    title: Element | string | number,
-    detail?: Element | string | number,
+    required?: boolean,
+    requiredStyle?: StyleProp<TextStyle>,
+    title: JSX.Element | string | number,
+    detail?: JSX.Element | string | number,
     titleStyle?: StyleProp<TextStyle>,
     detailStyle?: StyleProp<TextStyle>,
     detailMultiLine?: boolean, //是否支持多行内容
-    icon?: Element | {uri: string} | number,
-    accessory?: Element | {uri: string} | number | 'none' | 'auto' | 'empty' | 'check' | 'indicator',
-    topSeparator?: Element | 'none' | 'full' | 'indent',
-    bottomSeparator?: Element | 'none' | 'full' | 'indent',
+    icon?: JSX.Element | {uri: string} | number,
+    accessory?: JSX.Element | {uri: string} | number | 'none' | 'auto' | 'empty' | 'check' | 'indicator',
+    topSeparator?: JSX.Element | 'none' | 'full' | 'indent',
+    bottomSeparator?: JSX.Element | 'none' | 'full' | 'indent',
     titlePlace?: 'none' | 'left' | 'top',
-    swipeActions?: Array<Element>,
+    swipeActions?: Array<JSX.Element>,
   }
 
   export class ListRow extends Component<IListRowProps,any>{
@@ -317,8 +349,8 @@ declare module '@yz1311/teaset' {
 
   export interface IMenuViewProps extends IOverlayPopoverViewProps {
     items: Array<{
-      title: Element | string | number,
-      icon: Element | {uri: string} | string | number | 'none' | 'empty',
+      title: JSX.Element | string | number,
+      icon: JSX.Element | {uri: string} | string | number | 'none' | 'empty',
       onPress: ()=>void
     }>
     shadow: boolean,
@@ -327,8 +359,8 @@ declare module '@yz1311/teaset' {
   export class MenuView extends Component<IMenuViewProps,any>{}
 
   export interface IMenuItemProps {
-    title: Element | string | number,
-    icon: Element | {uri: string} | string | number | 'none' | 'empty',
+    title: JSX.Element | string | number,
+    icon: JSX.Element | {uri: string} | string | number | 'none' | 'empty',
   }
 
   export class MenuItem extends Component<IMenuItemProps>{}
@@ -339,7 +371,7 @@ declare module '@yz1311/teaset' {
   }
 
   export interface IModalIndicatorViewProps extends IOverlayViewProps{
-    text?: Element | string | number,
+    text?: JSX.Element | string | number,
     position?: 'top' | 'bottom' | 'center',
     size?: 'small' | 'large' | number,
     color?: string,
@@ -374,7 +406,7 @@ declare module '@yz1311/teaset' {
   }
 
   export interface INavigationBackButtonProps extends INavigationButtonProps{
-    title: string | Element,
+    title: string | JSX.Element,
     icon: any,
   }
 
@@ -391,7 +423,7 @@ declare module '@yz1311/teaset' {
   }
 
   export interface INavigationLinkButtonProps extends INavigationButtonProps{
-    title: string | Element,
+    title: string | JSX.Element,
   }
 
   class NavigationLinkButton extends Component<INavigationLinkButtonProps>{
@@ -401,12 +433,12 @@ declare module '@yz1311/teaset' {
   export interface INavigationBarProps extends Partial<ViewStyle> {
     style?: StyleProp<ViewStyle>,
     type?: 'auto' | 'ios' | 'android',
-    title: string | Element,
+    title: string | JSX.Element,
     titleStyle?: StyleProp<TextStyle>,
-    leftView?: Element,
-    rightView?: Element,
+    leftView?: JSX.Element,
+    rightView?: JSX.Element,
     tintColor?: string, //bar tint color, default tint color leftView and rightView, set to null for no tint color
-    background?: Element,
+    background?: JSX.Element,
     hidden?: boolean, //bar hidden
     animated?: boolean, //hide or show bar with animation
     statusBarStyle?: 'default' | 'light-content' | 'dark-content', //status bar style (iOS only)
@@ -447,7 +479,7 @@ declare module '@yz1311/teaset' {
     'leftTop'
   }
 
-  interface IPopoverProps {
+  interface IPopoverProps extends ViewStyle {
     arrow: PopoverArrows
     paddingCorner: number,
   }
@@ -455,7 +487,7 @@ declare module '@yz1311/teaset' {
   export class Popover extends Component<IPopoverProps> {}
 
   export class PopoverPickerItem extends Component<TouchableOpacityProps & {
-    title: Element | string | number,
+    title: JSX.Element | string | number,
     selected: boolean
   }>{}
 
@@ -507,11 +539,11 @@ declare module '@yz1311/teaset' {
   }
 
   interface ISegmentedItemProps extends ViewProps{
-    title: Element | string | number,
+    title: JSX.Element | string | number,
     titleStyle?: StyleProp<TextStyle>,
     activeTitleStyle?: StyleProp<TextStyle>,
     active?: boolean,
-    badge?: Element | string | number,
+    badge?: JSX.Element | string | number,
     onAddWidth?: (width) => any
   }
 
@@ -536,10 +568,10 @@ declare module '@yz1311/teaset' {
   }
 
   export interface ISegmentedSheetProps extends ViewProps{
-    title: Element | string | Number,
+    title: JSX.Element | string | Number,
     titleStyle?: StyleProp<TextStyle>,
     activeTitleStyle?: StyleProp<TextStyle>,
-    badge?: Element | string | Number,
+    badge?: JSX.Element | string | Number,
   }
 
   export class SegmentedSheet extends Component<ISegmentedSheetProps> {}
@@ -575,7 +607,7 @@ declare module '@yz1311/teaset' {
     pickerType?: 'auto' | 'pull' | 'popover',
     pickerTitle?: string, //PullPicker only
     editable?: boolean,
-    icon?: Element | {uri: string} | number | 'none' | 'default',
+    icon?: JSX.Element | {uri: string} | number | 'none' | 'default',
     iconTintColor?: string, //set to null for no tint color
     placeholder?: string,
     placeholderTextColor?: string,
@@ -590,14 +622,16 @@ declare module '@yz1311/teaset' {
     step?: number,
     max?: number,
     min?: number,
+    valueWrapperStyle?:StyleProp<ViewStyle>,
     valueStyle?:StyleProp<TextStyle>,
     valueFormat?: (value) => any, //(value)
-    subButton?: Element | string,
-    addButton?: Element | string,
+    subButton?: JSX.Element | string,
+    addButton?: JSX.Element | string,
     showSeparator?: boolean,
     disabled?: boolean,
     editable?: boolean,
     onChange?: (value:number) => any, //(value)
+    onTextPress?: () => any,
   }
 
 
@@ -606,25 +640,25 @@ declare module '@yz1311/teaset' {
   }
 
   interface ITabButtonProps extends ViewProps {
-    title: Element | string | number,
+    title: JSX.Element | string | number,
     titleStyle?: StyleProp<TextStyle>,
     activeTitleStyle?: StyleProp<TextStyle>,
-    icon?: Element | {uri: string} | number,
-    activeIcon?: Element | {uri: string} | number,
+    icon?: JSX.Element | {uri: string} | number,
+    activeIcon?: JSX.Element | {uri: string} | number,
     active?: boolean,
     iconContainerStyle?: StyleProp<ViewStyle>,
-    badge?: Element | number,
+    badge?: JSX.Element | number,
   }
 
   export class TabButton extends Component<ITabButtonProps> {}
 
   interface ITabSheetProps extends ViewProps {
     type?: 'sheet' | 'button',
-    title: Element | string | number,
-    icon?:  Element | {uri: string} | number,
-    activeIcon?:  Element | {uri: string} | number,
+    title: JSX.Element | string | number,
+    icon?:  JSX.Element | {uri: string} | number,
+    activeIcon?:  JSX.Element | {uri: string} | number,
     iconContainerStyle?: StyleProp<ViewStyle>,
-    badge?:  Element | number,
+    badge?:  JSX.Element | number,
     onPress?: any,
   }
 
@@ -670,11 +704,11 @@ declare module '@yz1311/teaset' {
   export class WheelItem extends Component<IWheelItemProps> {}
 
   interface IWheelProps extends ViewProps {
-    items: Element | string | number,
+    items: JSX.Element | string | number,
     itemStyle?: StyleProp<TextStyle>,
     holeStyle?: StyleProp<ViewStyle>, //height is required
     maskStyle?: StyleProp<ViewStyle>,
-    holeLine?: Element | number,
+    holeLine?: JSX.Element | number,
     index?: number,
     defaultIndex?: number,
     onChange?: (index) => any, //(index)
@@ -1130,27 +1164,18 @@ declare module '@yz1311/teaset' {
       right: number,
       bottom: number
     };
+    //设计宽度,默认为iphone6的375
+    designWidth: number;
+    //设计高度,默认为iphone6的1334
+    designHeight: number;
+    deviceWidth: number;
+    deviceHeight: number;
+    px2dp: (w:number)=>number;
+    onePix: number;
+    fontSizeAndColor: (size: number, color: string)=>{fontSize: number, color: string};
   } & ThemeConfigPartial;
   //#endregion
 
   export const BackHandler:any;
 
-  interface NavigationHelperProps {
-    //初始化，传递后，可以使用global.NavigationHelper方式直接调用，如不需全局调用，则不需要
-    init: (helper,name?:string) => void,
-    navigation: any,
-    navRouters: any,
-    isTopScreen: (key:string) => boolean,
-    goBack: () => void,
-    push: (routeName: string, params?) => void,
-    navigate: (routeName:string, params?) => void,
-    resetTo: (routeName:string,params?:any) => void,
-    replace: (routeName:string, params?) => void,
-    popN: (num:number) => void,
-    popToTop: () => void,
-    popToIndex: (indexOfRoute:number) => void,
-    popToRoute: (routeName:string) => void,
-  }
-
-  export const NavigationHelper: NavigationHelperProps;
 }

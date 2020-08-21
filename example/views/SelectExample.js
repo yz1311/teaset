@@ -7,13 +7,13 @@ import {View, Text, Image, ScrollView} from 'react-native';
 
 import {NavigationPage, ListRow, Select, Label} from '@yz1311/teaset';
 
-export default class SelectExample extends NavigationPage {
+export default class SelectExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'Select',
-    showBackButton: true,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'Select'
+    };
+  }
 
   constructor(props) {
     super(props);
@@ -40,7 +40,7 @@ export default class SelectExample extends NavigationPage {
         value: 3,
       },
     ];
-    Object.assign(this.state, {
+    this.state = {
       valueSM: null,
       valueMD: null,
       valueLG: null,
@@ -50,10 +50,10 @@ export default class SelectExample extends NavigationPage {
       valueReadonly: 'Readonly',
       valueDisable: null,
       valueCustom: null,
-    });
+    };
   }
 
-  renderPage() {
+  render() {
     let {valueSM, valueMD, valueLG, valueAuto, valuePull, valuePopover, valueReadonly, valueDisable, valueCustom} = this.state;
     return (
       <ScrollView style={{flex: 1}}>

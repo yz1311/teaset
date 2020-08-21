@@ -5,16 +5,16 @@
 import React, {Component} from 'react';
 import {Platform, View, ScrollView, Switch, Image} from 'react-native';
 
-import {Theme, NavigationPage, ListRow, NavigationBar, Label} from '@yz1311/teaset';
+import {Theme, NavigationPage, ListRow, NavigationBar, Label, NavigationHelper} from '@yz1311/teaset';
 import SelectRow from './SelectRow';
 
-export default class NavigationBarExample extends NavigationPage {
+export default class NavigationBarExample extends Component {
 
-  static defaultProps = {
-    ...NavigationPage.defaultProps,
-    title: 'NavigationBar',
-    navigationBarInsets: false,
-  };
+  static navigationOptions = ({navigation})=>{
+    return {
+      headerTitle: 'NavigationBar'
+    };
+  }
 
   constructor(props) {
     super(props);
@@ -27,7 +27,7 @@ export default class NavigationBarExample extends NavigationPage {
     this.tintColorItems = ['Default', 'Custom', 'None'];
     this.statusBarStyleItems = ['Default', 'Light Content', 'Dark Content'];
 
-    Object.assign(this.state, {
+    this.state = {
       type: 'iOS',
       title: 'String',
       leftView: 'Back button',
@@ -39,7 +39,7 @@ export default class NavigationBarExample extends NavigationPage {
       animated: true,
       statusBarStyle: 'Light Content',
       statusBarHidden: false,
-    });
+    };
   }
 
   get type() {
@@ -80,7 +80,7 @@ export default class NavigationBarExample extends NavigationPage {
         return (
           <NavigationBar.BackButton
             title={Theme.backButtonTitle}
-            onPress={() => this.navigator.pop()}
+            onPress={() => NavigationHelper.goBack()}
             />
         );
       case 'Link button':
@@ -151,7 +151,7 @@ export default class NavigationBarExample extends NavigationPage {
     );
   }
 
-  renderPage() {
+  render() {
     let {type, title, leftView, rightView, bgColor, tintColor, customBackground, hidden, animated, statusBarStyle, statusBarHidden} = this.state;
     return (
       <ScrollView style={{flex: 1, paddingTop: Theme.statusBarHeight}}>
