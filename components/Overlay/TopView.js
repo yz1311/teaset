@@ -110,7 +110,11 @@ export default class TopView extends Component {
   add(e) {
     let {elements} = this.state;
     elements.push(e);
-    this.setState({elements});
+    setTimeout(()=>{
+      this.setState({elements});
+    }, 0);
+    //会引起路由重启
+    // this.setState({elements});
   }
 
   remove(e) {
@@ -121,12 +125,20 @@ export default class TopView extends Component {
         break;
       }
     }
-    this.setState({elements});
+    setTimeout(()=>{
+      this.setState({elements});
+    }, 0);
+    //会引起路由重启
+    // this.setState({elements});
   }
 
   removeAll(e) {
     let {elements} = this.state;
-    this.setState({elements: []});
+    setTimeout(()=>{
+      this.setState({elements: []});
+    }, 0);
+    //会引起路由重启
+    // this.setState({elements: []});
   }
 
   transform(e) {
