@@ -6,7 +6,6 @@ import Theme from './themes/Theme';
 import Label from './components/Label/Label';
 import Button from './components/Button/Button';
 import DashLine from './components/DashLine/DashLine';
-import DatePickerView from './components/DatePickerView/DatePickerView';
 import Checkbox from './components/Checkbox/Checkbox';
 import Input from './components/Input/Input';
 import Select from './components/Select/Select';
@@ -52,7 +51,6 @@ var Teaset = {
   Label,
   Button,
   DashLine,
-  DatePickerView,
   Checkbox,
   Input,
   Select,
