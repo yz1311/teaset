@@ -33,7 +33,7 @@ const isIPhoneX = (() => {
     ((D_HEIGHT === XSMAX_HEIGHT && D_WIDTH === XSMAX_WIDTH) ||
       (D_HEIGHT === XSMAX_WIDTH && D_WIDTH === XSMAX_HEIGHT)) ||
       ((D_HEIGHT === IPHONE12_HEIGHT && D_WIDTH === IPHONE12_WIDTH) ||
-        (D_HEIGHT === IPHONE12_WIDTH && D_WIDTH === IPHONE12_HEIGHT))
+      (D_HEIGHT === IPHONE12_WIDTH && D_WIDTH === IPHONE12_HEIGHT))
   );
 })();
 
