@@ -1,3 +1,7 @@
+# [0.7.11]() (2020-11-11)
+* ios刘海屏适配iphone 12[#438](https://github.com/rilyu/teaset/commit/da0a9b7f4889e6dd3b6cfb29ff4ce2d560d30955)
+
+
 # [0.7.10]() (2020-08-21)
 * 彻底修复Overlay组件引起路由重启的问题
 
