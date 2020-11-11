@@ -7,8 +7,12 @@ A UI library for react native, provides 20+ pure JS(ES6) components, focusing on
 
 # Installation
 ```
-npm install --save teaset @yz1311/react-native-wheel-picker
+npm install --save @yz1311/teaset
+```
 
+If you want to use wheel-picker
+```
+npm install --save @yz1311/react-native-wheel-picker
 react-native link @yz1311/react-native-wheel-picker
 ```
 
