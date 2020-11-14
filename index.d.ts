@@ -533,7 +533,7 @@ declare module '@yz1311/teaset' {
     onChange?: (index) => any, //(index)
   }
 
-  export class SegmentedBar extends Component<SegmentedBar> {
+  export class SegmentedBar extends Component<ISegmentedItemProps> {
     static Item: typeof SegmentedItem;
   }
 
