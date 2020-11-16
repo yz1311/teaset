@@ -634,12 +634,14 @@ declare module '@yz1311/teaset' {
 
   export class TabSheet extends Component<ITabSheetProps> {}
 
-  export class TabView extends Component<ViewStyle & {
+  interface ITabViewProps extends ViewProps {
     type?: 'projector' | 'carousel',
     barStyle?: StyleProp<ViewStyle>,
     activeIndex?: number,
     onChange?: (index) => any, //(index)
-  }> {
+  }
+
+  export class TabView extends Component<ITabViewProps> {
     static Sheet: typeof TabSheet;
     static Button: typeof TabButton;
   }
