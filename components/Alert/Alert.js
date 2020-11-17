@@ -59,7 +59,7 @@ Alert.edit = (title, inuptProps, buttons, options) => {
         index++;
         buttonViews.push(<Button key={index} hideAlert={() => {
             Alert.hide();
-        }} autoClose={autoClose} text={button.text} style={button.style} onPress={() => button.onPress && button.onPress(tempMessage)}/>);
+        }} autoClose={autoClose} text={button.text} style={button.style} textColor={button.textColor} textStyle={button.textStyle} onPress={() => button.onPress && button.onPress(tempMessage)}/>);
         //分隔符
         if (index < buttons.length) {
             index++;
@@ -90,13 +90,15 @@ Alert.edit = (title, inuptProps, buttons, options) => {
 Alert.hide = () => {
     Overlay.hide(Alert.overlayKey);
 };
-const Button = ({ hideAlert, text, onPress, style, autoClose }) => {
-    let textColor = '#2087fa';
+const Button = ({ hideAlert, text, onPress, style, autoClose, textColor, textStyle }) => {
+    let defaultTextColor = '#2087fa';
+    let fontWeight = 'normal';
     switch (style) {
         case 'cancel':
+            fontWeight = 'bold';
             break;
         case 'destructive':
-            textColor = '#f34638';
+            defaultTextColor = '#f34638';
             break;
     }
     return (<TouchableOpacity activeOpacity={0.7} onPress={() => {
@@ -105,7 +107,7 @@ const Button = ({ hideAlert, text, onPress, style, autoClose }) => {
         }
         onPress && onPress();
     }} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: 45 }}>
-      <Text style={{ color: textColor, fontSize: 16 * Theme.labelTitleScale }}>{text}</Text>
+      <Text style={[{ fontWeight: fontWeight, color: textColor == undefined ? defaultTextColor : textColor, fontSize: 16 * Theme.labelTitleScale }, textStyle]}>{text}</Text>
     </TouchableOpacity>);
 };
 //# sourceMappingURL=Alert.js.map

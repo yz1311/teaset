@@ -105,6 +105,8 @@ static edit = (title: string, inuptProps: TextInputProps, buttons?: AlertButton[
             autoClose={autoClose}
             text={button.text}
             style={button.style}
+            textColor={button.textColor} 
+            textStyle={button.textStyle}
             onPress={()=>button.onPress&&button.onPress(tempMessage)}
         />
     );
@@ -155,14 +157,15 @@ static hide = () => {
 }
 
 
-const Button:FC<any> = ({hideAlert, text, onPress, style, autoClose})=>{
-let textColor = '#2087fa';
+const Button:FC<any> = ({hideAlert, text, onPress, style, autoClose, textColor, textStyle})=>{
+let defaultTextColor = '#2087fa';
+let fontWeight = 'normal';
 switch (style) {
   case 'cancel':
-
+    fontWeight = 'bold';
     break;
   case 'destructive':
-    textColor = '#f34638';
+    defaultTextColor = '#f34638';
     break;
 }
 return (
@@ -176,7 +179,7 @@ return (
         }}
         style={{flex:1,justifyContent:'center',alignItems:'center',height:45}}
     >
-      <Text style={{color: textColor,fontSize: 16*Theme.labelTitleScale}}>{text}</Text>
+      <Text style={[{fontWeight: fontWeight, color: textColor==undefined?defaultTextColor:textColor,fontSize: 16*Theme.labelTitleScale}, textStyle]}>{text}</Text>
     </TouchableOpacity>
 );
 }
