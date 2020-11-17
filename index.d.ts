@@ -1109,6 +1109,11 @@ declare module '@yz1311/teaset' {
 
     //NavigationPage
     backButtonTitle: string,
+
+
+    //additional
+    designWidth: number;
+    designHeight: number;
   }
 
   export type ThemeConfigPartial = Partial<ThemeConfig>;
