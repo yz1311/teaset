@@ -1133,6 +1133,8 @@ declare module '@yz1311/teaset' {
     isPad: boolean;
     isIPhoneX: boolean;
     fitIPhoneX: boolean;
+    isAndroid: boolean;
+    isIOS: boolean;
     isLandscape: boolean;
     statusBarHeight: number;
     screenInset: {

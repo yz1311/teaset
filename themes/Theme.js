@@ -53,6 +53,12 @@ const isIPad = (() => {
   return true;
 })();
 
+//不会改变，只需执行一次
+const isAndroid = Platform.OS === 'android';
+
+//不会改变，只需执行一次
+const isIOS = Platform.OS === 'ios';
+
 const Theme = {
 
   themes: {
@@ -70,6 +76,10 @@ const Theme = {
   isIPhoneX: isIPhoneX,
 
   fitIPhoneX: true,
+
+  isAndroid: isAndroid,
+
+  isIOS: isIOS,
 
   get isLandscape() {
     return Dimensions.get('window').width > Dimensions.get('window').height;
