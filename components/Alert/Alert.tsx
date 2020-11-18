@@ -24,6 +24,8 @@ export default class Alert {
 
 static overlayKey;
 
+static maxWidth = null;
+
 static alert = (title: string, message?: string, buttons?: AlertButton[], options?: AlertOptions): void => {
   const {width: deviceWidth,height: deviceHeight} = Dimensions.get('window');
   let realWidth = deviceHeight>deviceWidth?deviceWidth:deviceHeight;
@@ -43,6 +45,8 @@ static alert = (title: string, message?: string, buttons?: AlertButton[], option
             autoClose={autoClose}
             text={button.text}
             style={button.style}
+            textColor={button.textColor} 
+            textStyle={button.textStyle}
             onPress={button.onPress}
         />
     );
@@ -65,7 +69,7 @@ static alert = (title: string, message?: string, buttons?: AlertButton[], option
           style={{alignItems: 'center', justifyContent: 'center'}}
           {...(options&&options.overlay||{})}
       >
-        <View style={{backgroundColor: '#fff', minWidth: realWidth*0.75, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center'}}>
+        <View style={{backgroundColor: '#fff', minWidth: realWidth*0.75, maxWidth: Alert.maxWidth || realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center'}}>
           {title?
               <Label type='title' style={{fontSize: 17*Theme.labelTitleScale,fontWeight:'500',marginHorizontal:15}} text={title} />
               :
@@ -130,7 +134,7 @@ static edit = (title: string, inuptProps: TextInputProps, buttons?: AlertButton[
           style={{alignItems: 'center', justifyContent: 'center'}}
           {...(options&&options.overlay||{})}
       >
-        <View style={{backgroundColor: '#fff', minWidth: realWidth*0.75, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center'}}>
+        <View style={{backgroundColor: '#fff', minWidth: realWidth*0.75, maxWidth: Alert.maxWidth || realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center'}}>
           {title?
               <Label type='title' style={{fontSize: 17*Theme.labelTitleScale,fontWeight:'500',marginHorizontal:15}} text={title} />
               :

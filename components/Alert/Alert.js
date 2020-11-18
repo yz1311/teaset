@@ -8,6 +8,7 @@ import AlertEditView from './AlertEditView';
 const SEPARATOR_LENGTH = 1;
 export default class Alert {
 }
+Alert.maxWidth = null;
 Alert.alert = (title, message, buttons, options) => {
     const { width: deviceWidth, height: deviceHeight } = Dimensions.get('window');
     let realWidth = deviceHeight > deviceWidth ? deviceWidth : deviceHeight;
@@ -19,7 +20,7 @@ Alert.alert = (title, message, buttons, options) => {
         index++;
         buttonViews.push(<Button key={index} hideAlert={() => {
             Alert.hide();
-        }} autoClose={autoClose} text={button.text} style={button.style} onPress={button.onPress}/>);
+        }} autoClose={autoClose} text={button.text} style={button.style} textColor={button.textColor} textStyle={button.textStyle} onPress={button.onPress}/>);
         //分隔符
         if (index < buttons.length) {
             index++;
@@ -31,7 +32,7 @@ Alert.alert = (title, message, buttons, options) => {
             options.onDismiss();
         }
     }} style={{ alignItems: 'center', justifyContent: 'center' }} {...(options && options.overlay || {})}>
-        <View style={{ backgroundColor: '#fff', minWidth: realWidth * 0.75, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center' }}>
+        <View style={{ backgroundColor: '#fff', minWidth: realWidth * 0.75, maxWidth: Alert.maxWidth || realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center' }}>
           {title ?
         <Label type='title' style={{ fontSize: 17 * Theme.labelTitleScale, fontWeight: '500', marginHorizontal: 15 }} text={title}/>
         :
@@ -71,7 +72,7 @@ Alert.edit = (title, inuptProps, buttons, options) => {
             options.onDismiss();
         }
     }} autoKeyboardInsets={true} style={{ alignItems: 'center', justifyContent: 'center' }} {...(options && options.overlay || {})}>
-        <View style={{ backgroundColor: '#fff', minWidth: realWidth * 0.75, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center' }}>
+        <View style={{ backgroundColor: '#fff', minWidth: realWidth * 0.75, maxWidth: Alert.maxWidth || realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center' }}>
           {title ?
         <Label type='title' style={{ fontSize: 17 * Theme.labelTitleScale, fontWeight: '500', marginHorizontal: 15 }} text={title}/>
         :
