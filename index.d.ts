@@ -165,6 +165,7 @@ declare module '@yz1311/teaset' {
     hide: () => void;
     overlayKey: any;
     maxWidth: number;
+    messageStyle: StyleProp<TextStyle>;
   }
 
   export const Alert: AlertStatic;

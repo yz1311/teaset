@@ -26,6 +26,8 @@ static overlayKey;
 
 static maxWidth = null;
 
+static messageStyle;
+
 static alert = (title: string, message?: string, buttons?: AlertButton[], options?: AlertOptions): void => {
   const {width: deviceWidth,height: deviceHeight} = Dimensions.get('window');
   let realWidth = deviceHeight>deviceWidth?deviceWidth:deviceHeight;
@@ -77,7 +79,7 @@ static alert = (title: string, message?: string, buttons?: AlertButton[], option
           {React.isValidElement(message) ?
               message
               :
-              <Label numberOfLines={8} type='title' style={{marginTop: 6, marginHorizontal: 15, marginBottom: 20}}
+              <Label numberOfLines={8} type='title' style={[{marginTop: 6, marginHorizontal: 15, marginBottom: 20, lineHeight: Theme.px2dp(42)}, Alert.messageStyle]}
                      size='md' text={message}/>
           }
           <View style={{flexDirection:'row',borderTopColor: '#eeeef0',borderTopWidth: SEPARATOR_LENGTH}}>

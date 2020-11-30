@@ -40,7 +40,7 @@ Alert.alert = (title, message, buttons, options) => {
           {React.isValidElement(message) ?
         message
         :
-            <Label numberOfLines={8} type='title' style={{ marginTop: 6, marginHorizontal: 15, marginBottom: 20 }} size='md' text={message}/>}
+            <Label numberOfLines={8} type='title' style={[{ marginTop: 6, marginHorizontal: 15, marginBottom: 20, lineHeight: Theme.px2dp(42) }, Alert.messageStyle]} size='md' text={message}/>}
           <View style={{ flexDirection: 'row', borderTopColor: '#eeeef0', borderTopWidth: SEPARATOR_LENGTH }}>
             {buttonViews}
           </View>
