@@ -163,6 +163,9 @@ declare module '@yz1311/teaset' {
     alert: (title: string, message?: string | JSX.Element | Number, buttons?: AlertButton[], options?: AlertOptions) => void;
     edit: (title: string, inuptProps: TextInputProps, buttons?: AlertButton[], options?: AlertOptions) => void;
     hide: () => void;
+    overlayKey: any;
+    maxWidth: number;
+    messageStyle: StyleProp<TextStyle>;
   }
 
   export const Alert: AlertStatic;

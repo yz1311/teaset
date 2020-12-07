@@ -10,7 +10,7 @@ import Alert from './Alert';
 //分隔符的长(高)度
 const SEPARATOR_LENGTH = 1;
 
-interface AlertButton {
+export interface AlertButton {
     text?: string;
     onPress?: (value:any) => void;
     //default为蓝色,cancel为蓝色加粗,destructive为红色
