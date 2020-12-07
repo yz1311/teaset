@@ -1,11 +1,12 @@
 import {
-  AlertButton, Text, TouchableOpacity, View, Dimensions, PixelRatio, TextInputProps, TextInput, JSX,
+  Text, TouchableOpacity, View, Dimensions, PixelRatio, TextInputProps, TextInput,
 } from 'react-native';
 import React, { FC } from 'react';
 import Overlay from '../Overlay/Overlay';
 import Label from '../Label/Label';
 import Theme from '../../themes/Theme';
 import AlertEditView from './AlertEditView';
+import {AlertButton} from "./AlertView";
 
 interface AlertOptions {
 /** @platform android/ios,默认值:false,(注意,RN的Alert组件，android下该值为true) */
@@ -23,6 +24,10 @@ const SEPARATOR_LENGTH = 1;
 export default class Alert {
 
 static overlayKey;
+
+static maxWidth = null;
+
+static messageStyle;
 
 static alert = (title: string, message?: string, buttons?: AlertButton[], options?: AlertOptions): void => {
   const {width: deviceWidth,height: deviceHeight} = Dimensions.get('window');
@@ -43,6 +48,8 @@ static alert = (title: string, message?: string, buttons?: AlertButton[], option
             autoClose={autoClose}
             text={button.text}
             style={button.style}
+            textColor={button.textColor}
+            textStyle={button.textStyle}
             onPress={button.onPress}
         />
     );
@@ -65,7 +72,7 @@ static alert = (title: string, message?: string, buttons?: AlertButton[], option
           style={{alignItems: 'center', justifyContent: 'center'}}
           {...(options&&options.overlay||{})}
       >
-        <View style={{backgroundColor: '#fff', minWidth: realWidth*0.75, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center'}}>
+        <View style={{backgroundColor: '#fff', minWidth: realWidth*0.75, maxWidth: Alert.maxWidth || realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center'}}>
           {title?
               <Label type='title' style={{fontSize: 17*Theme.labelTitleScale,fontWeight:'500',marginHorizontal:15}} text={title} />
               :
@@ -73,7 +80,7 @@ static alert = (title: string, message?: string, buttons?: AlertButton[], option
           {React.isValidElement(message) ?
               message
               :
-              <Label numberOfLines={8} type='title' style={{marginTop: 6, marginHorizontal: 15, marginBottom: 20}}
+              <Label numberOfLines={8} type='title' style={[{marginTop: 6, marginHorizontal: 15, marginBottom: 20, lineHeight: Theme.px2dp(42)}, Alert.messageStyle]}
                      size='md' text={message}/>
           }
           <View style={{flexDirection:'row',borderTopColor: '#eeeef0',borderTopWidth: SEPARATOR_LENGTH}}>
@@ -105,6 +112,8 @@ static edit = (title: string, inuptProps: TextInputProps, buttons?: AlertButton[
             autoClose={autoClose}
             text={button.text}
             style={button.style}
+            textColor={button.textColor}
+            textStyle={button.textStyle}
             onPress={()=>button.onPress&&button.onPress(tempMessage)}
         />
     );
@@ -128,7 +137,7 @@ static edit = (title: string, inuptProps: TextInputProps, buttons?: AlertButton[
           style={{alignItems: 'center', justifyContent: 'center'}}
           {...(options&&options.overlay||{})}
       >
-        <View style={{backgroundColor: '#fff', minWidth: realWidth*0.75, maxWidth: realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center'}}>
+        <View style={{backgroundColor: '#fff', minWidth: realWidth*0.75, maxWidth: Alert.maxWidth || realWidth * 0.9, paddingTop: 20, borderRadius: 10, alignItems: 'center'}}>
           {title?
               <Label type='title' style={{fontSize: 17*Theme.labelTitleScale,fontWeight:'500',marginHorizontal:15}} text={title} />
               :
@@ -155,14 +164,15 @@ static hide = () => {
 }
 
 
-const Button:FC<any> = ({hideAlert, text, onPress, style, autoClose})=>{
-let textColor = '#2087fa';
+const Button:FC<any> = ({hideAlert, text, onPress, style, autoClose, textColor, textStyle})=>{
+let defaultTextColor = '#2087fa';
+let fontWeight = 'normal';
 switch (style) {
   case 'cancel':
-
+    fontWeight = 'bold';
     break;
   case 'destructive':
-    textColor = '#f34638';
+    defaultTextColor = '#f34638';
     break;
 }
 return (
@@ -176,7 +186,7 @@ return (
         }}
         style={{flex:1,justifyContent:'center',alignItems:'center',height:45}}
     >
-      <Text style={{color: textColor,fontSize: 16*Theme.labelTitleScale}}>{text}</Text>
+      <Text style={[{fontWeight: fontWeight, color: textColor==undefined?defaultTextColor:textColor,fontSize: 16*Theme.labelTitleScale}, textStyle]}>{text}</Text>
     </TouchableOpacity>
 );
 }

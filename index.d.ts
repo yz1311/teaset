@@ -163,6 +163,9 @@ declare module '@yz1311/teaset' {
     alert: (title: string, message?: string | JSX.Element | Number, buttons?: AlertButton[], options?: AlertOptions) => void;
     edit: (title: string, inuptProps: TextInputProps, buttons?: AlertButton[], options?: AlertOptions) => void;
     hide: () => void;
+    overlayKey: any;
+    maxWidth: number;
+    messageStyle: StyleProp<TextStyle>;
   }
 
   export const Alert: AlertStatic;
@@ -533,7 +536,7 @@ declare module '@yz1311/teaset' {
     onChange?: (index) => any, //(index)
   }
 
-  export class SegmentedBar extends Component<SegmentedBar> {
+  export class SegmentedBar extends Component<ISegmentedBarProps> {
     static Item: typeof SegmentedItem;
   }
 
@@ -634,12 +637,14 @@ declare module '@yz1311/teaset' {
 
   export class TabSheet extends Component<ITabSheetProps> {}
 
-  export class TabView extends Component<ViewStyle & {
+  interface ITabViewProps extends ViewProps {
     type?: 'projector' | 'carousel',
     barStyle?: StyleProp<ViewStyle>,
     activeIndex?: number,
     onChange?: (index) => any, //(index)
-  }> {
+  }
+
+  export class TabView extends Component<ITabViewProps> {
     static Sheet: typeof TabSheet;
     static Button: typeof TabButton;
   }
@@ -1107,6 +1112,11 @@ declare module '@yz1311/teaset' {
 
     //NavigationPage
     backButtonTitle: string,
+
+
+    //additional
+    designWidth: number;
+    designHeight: number;
   }
 
   export type ThemeConfigPartial = Partial<ThemeConfig>;
@@ -1126,6 +1136,8 @@ declare module '@yz1311/teaset' {
     isPad: boolean;
     isIPhoneX: boolean;
     fitIPhoneX: boolean;
+    isAndroid: boolean;
+    isIOS: boolean;
     isLandscape: boolean;
     statusBarHeight: number;
     screenInset: {

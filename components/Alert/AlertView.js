@@ -2,9 +2,10 @@ import { Text, TouchableOpacity, View, Dimensions } from 'react-native';
 import React from 'react';
 import Label from '../Label/Label';
 import Theme from '../../themes/Theme';
+import Alert from './Alert';
 //分隔符的长(高)度
 const SEPARATOR_LENGTH = 1;
-const AlertView = ({ title, message, extra, isEditAlert, buttons, onButtonPress, style }) => {
+const AlertView = ({ title, message, extra, buttons, onButtonPress, style }) => {
     const { width: deviceWidth, height: deviceHeight } = Dimensions.get('window');
     let realWidth = deviceHeight > deviceWidth ? deviceWidth : deviceHeight;
     let buttonViews = [];

@@ -1,3 +1,10 @@
+# [0.7.19]() (2020-11-30)
+* Alert添加`messageStyle`全局设置
+
+
+# [0.7.12]() (2020-11-15)
+* 修复`SegmentedBar`的ts定义
+
 # [0.7.11]() (2020-11-11)
 * ios刘海屏适配iphone 12[#438](https://github.com/rilyu/teaset/commit/da0a9b7f4889e6dd3b6cfb29ff4ce2d560d30955)
 
