@@ -1,6 +1,6 @@
 {
   "name": "@yz1311/teaset",
-  "version": "0.7.14",
+  "version": "0.7.18",
   "description": "A UI library for react native.",
   "main": "index.js",
   "types": "index.d.js",
@@ -34,6 +34,15 @@
     "hoist-non-react-statics":"latest"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-decorators": "^7.7.4",
+    "@babel/runtime": "^7.9.6",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "@types/react": "16.9.41",
+    "@types/react-native": "0.63.2",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "react": "16.13.1",
+    "react-native": "0.63.3",
     "typescript": "^3.5.2"
   },
   "peerDependencies": {

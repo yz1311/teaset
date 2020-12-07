@@ -1,13 +1,25 @@
 import {
-  AlertButton, AlertOptions, Text, TouchableOpacity, View, Dimensions, PixelRatio, ViewStyle, StyleProp
+  Text, TouchableOpacity, View, Dimensions, PixelRatio, ViewStyle, StyleProp, TextStyle
 } from 'react-native';
 import React, { FC } from 'react';
 import Overlay from '../Overlay/Overlay';
 import Label from '../Label/Label';
 import Theme from '../../themes/Theme';
+import Alert from './Alert';
 
 //分隔符的长(高)度
 const SEPARATOR_LENGTH = 1;
+
+interface AlertButton {
+    text?: string;
+    onPress?: (value:any) => void;
+    //default为蓝色,cancel为蓝色加粗,destructive为红色
+    style?: "default" | "cancel" | "destructive";
+    //文字颜色，将会覆盖style的颜色样式
+    textColor?: string,
+    //文本样式，将会覆盖style的颜色样式
+    textStyle?: StyleProp<TextStyle>
+  }
 
 export interface IProps {
   style?:StyleProp<ViewStyle>,
@@ -18,7 +30,7 @@ export interface IProps {
   onButtonPress?: any,
 }
 
-const AlertView:FC<IProps> = ({title, message,extra,isEditAlert, buttons,onButtonPress,style})=>{
+const AlertView:FC<IProps> = ({title, message,extra, buttons,onButtonPress,style})=>{
   const {width: deviceWidth,height: deviceHeight} = Dimensions.get('window');
   let realWidth = deviceHeight>deviceWidth?deviceWidth:deviceHeight;
   let buttonViews = [];

@@ -1,5 +1,5 @@
 import {
-  AlertButton, Text, TouchableOpacity, View, Dimensions, PixelRatio, TextInputProps, TextInput, JSX,
+  AlertButton, Text, TouchableOpacity, View, Dimensions, PixelRatio, TextInputProps, TextInput,
 } from 'react-native';
 import React, { FC } from 'react';
 import Overlay from '../Overlay/Overlay';
