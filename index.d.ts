@@ -184,10 +184,16 @@ declare module '@yz1311/teaset' {
   type BadgeTypes = 'capsule' | 'square' | 'dot';
 
   interface IBadgeProps extends ViewProps{
-    type: BadgeTypes,
-    count: string|number,
-    countStyle: StyleProp<TextStyle>,
-    maxCount: number
+    /**
+     * 默认为capsule
+     */
+    type?: BadgeTypes,
+    count?: string|number,
+    countStyle?: StyleProp<TextStyle>,
+    /**
+     * 默认为99
+     */
+    maxCount?: number
   }
 
   export class Badge extends Component<IBadgeProps,any> {}
