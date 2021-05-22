@@ -147,7 +147,25 @@ const Theme = {
       color: color
     };
   },
-
+  fontSizeColor(size, color) {
+    return {
+      fontSize: Theme.px2dp(size),
+      color: color
+    };
+  },
+  fontSizeColorWeight(size, color, weight) {
+    return {
+      fontSize: Theme.px2dp(size),
+      color: color,
+      fontWeight: weight
+    };
+  },
+  widthHeight(width, height) {
+    return {
+      width: Theme.px2dp(width),
+      height: Theme.px2dp(height)
+    }
+  }
 };
 
 Theme.set(ThemeDefault);

@@ -77,7 +77,7 @@ static alert = (title: string, message?: string, buttons?: AlertButton[], option
               <Label type='title' style={{fontSize: 17*Theme.labelTitleScale,fontWeight:'500',marginHorizontal:15}} text={title} />
               :
               <View style={{height: 10}}/>}
-          {React.isValidElement(message) ?
+          {React.isValidElement(message) && (!(message as React.ReactElement).type || ((message as React.ReactElement).type as any).displayName !== 'Text') ?
               message
               :
               <Label numberOfLines={8} type='title' style={[{marginTop: 6, marginHorizontal: 15, marginBottom: 20, lineHeight: Theme.px2dp(42)}, Alert.messageStyle]}

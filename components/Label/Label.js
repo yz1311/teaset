@@ -14,7 +14,7 @@ export default class Label extends Component {
     ...Text.propTypes,
     type: PropTypes.oneOf(['default', 'title', 'detail', 'danger']),
     size: PropTypes.oneOf(['xl', 'lg', 'md', 'sm', 'xs']),
-    text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    text: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.node]),
   };
 
   static defaultProps = {

@@ -12,7 +12,9 @@ declare module '@yz1311/teaset' {
     ViewProps,
     ImageProps,
     View,
-    JSX
+    JSX,
+    ColorValue,
+    Text
   } from "react-native";
   import { Component, RefForwardingComponent } from 'react';
 
@@ -301,7 +303,7 @@ declare module '@yz1311/teaset' {
     style?: StyleProp<TextStyle>,
     type?: LabelTypes,
     size?: LabelSizes,
-    text: string | number
+    text: string | number | typeof Text
   }
 
   export class Label extends Component<ILabelProps,any>{}
@@ -1160,7 +1162,10 @@ declare module '@yz1311/teaset' {
     deviceHeight: number;
     px2dp: (w:number)=>number;
     onePix: number;
-    fontSizeAndColor: (size: number, color: string)=>{fontSize: number, color: string};
+    fontSizeAndColor: (size: number, color: ColorValue)=>Pick<TextStyle, "fontSize"|"color">;
+    fontSizeColor: (size: number, color: ColorValue)=>Pick<TextStyle, "fontSize"|"color">;
+    fontSizeColorWeight: (size: number, color: ColorValue, weight: 'normal' | 'bold' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900')=>Pick<TextStyle, "fontSize"|"color"|"fontWeight">;
+    widthHeight: (width: number | string, height: number | string)=>Pick<ViewStyle, "width"|"height">
   } & ThemeConfigPartial;
   //#endregion
 

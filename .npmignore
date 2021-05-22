@@ -1,4 +1,6 @@
 __tests__
+.idea
+.github
 example/
 screenshots/
 components/**/*.js.map
