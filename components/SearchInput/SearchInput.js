@@ -4,7 +4,8 @@
 
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, View, Text, TextInput, Image, LayoutAnimation, ViewPropTypes} from 'react-native';
+import {StyleSheet, View, Text, TextInput, Image, LayoutAnimation} from 'react-native';
+import {ViewPropTypes, TextInputPropTypes} from 'deprecated-react-native-prop-types';
 
 import Theme from '../../themes/Theme';
 
@@ -13,7 +14,7 @@ export default class SearchInput extends Component {
   static propTypes = {
     ...TextInput.propTypes,
     style: ViewPropTypes.style,
-    inputStyle: TextInput.propTypes.style,
+    inputStyle: TextInputPropTypes.style,
     iconSize: PropTypes.number,
     disabled: PropTypes.bool,
   };

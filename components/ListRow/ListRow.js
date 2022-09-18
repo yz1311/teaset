@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Text, View, Image} from 'react-native';
+import {TextPropTypes} from 'deprecated-react-native-prop-types';
 
 import Theme from '../../themes/Theme';
 import Label from '../Label/Label';
@@ -16,11 +17,11 @@ export default class ListRow extends Component {
   static propTypes = {
     ...SwipeTouchableOpacity.propTypes,
     required: PropTypes.bool,
-    requiredStyle: Text.propTypes.style,
+    requiredStyle: TextPropTypes.style,
     title: PropTypes.oneOfType([PropTypes.element, PropTypes.string, PropTypes.number]),
     detail: PropTypes.oneOfType([PropTypes.element, PropTypes.string, PropTypes.number]),
-    titleStyle: Text.propTypes.style,
-    detailStyle: Text.propTypes.style,
+    titleStyle: TextPropTypes.style,
+    detailStyle: TextPropTypes.style,
     detailMultiLine: PropTypes.bool, //是否支持多行内容
     icon: PropTypes.oneOfType([PropTypes.element, PropTypes.shape({uri: PropTypes.string}), PropTypes.number]),
     accessory: PropTypes.oneOfType([PropTypes.element, PropTypes.shape({uri: PropTypes.string}), PropTypes.number, PropTypes.oneOf(['none', 'auto', 'empty', 'check', 'indicator'])]),

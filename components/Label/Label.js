@@ -5,13 +5,14 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import {Text} from 'react-native';
+import {TextPropTypes} from 'deprecated-react-native-prop-types';
 
 import Theme from '../../themes/Theme';
 
 export default class Label extends Component {
 
   static propTypes = {
-    ...Text.propTypes,
+    ...TextPropTypes,
     type: PropTypes.oneOf(['default', 'title', 'detail', 'danger']),
     size: PropTypes.oneOf(['xl', 'lg', 'md', 'sm', 'xs']),
     text: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.node]),

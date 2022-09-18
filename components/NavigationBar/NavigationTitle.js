@@ -5,13 +5,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Text} from 'react-native';
+import {TextPropTypes} from 'deprecated-react-native-prop-types';
 
 import Theme from '../../themes/Theme';
 
 export default class NavigationTitle extends Component {
 
   static propTypes = {
-    ...Text.propTypes,
+    ...TextPropTypes,
     text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
