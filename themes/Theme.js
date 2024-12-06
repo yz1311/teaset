@@ -84,7 +84,7 @@ const Theme = {
 
   isPad: isIPad,
 
-  isIPhoneX: (() => {
+  get isIPhoneX() {
     if (Platform.OS === 'web') return false;
     const { height, width } = Dimensions.get("window");
     return (
@@ -102,9 +102,13 @@ const Theme = {
             height === 926 ||
             width === 926 ||
             height === 932 ||
-            width === 932)
-    );
-  })(),
+            width === 932 ||
+            height === 874 ||
+            width === 874 ||
+            height === 956 ||
+            width === 956)
+    )
+  },
 
   fitIPhoneX: true,
 
