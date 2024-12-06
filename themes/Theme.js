@@ -2,7 +2,7 @@
 
 'use strict';
 
-import {Platform, Dimensions, NativeModules, DeviceInfo, StatusBar, PixelRatio} from 'react-native';
+import {Platform, Dimensions, DeviceInfo, StatusBar, PixelRatio} from 'react-native';
 
 import ThemeDefault from './ThemeDefault';
 import ThemeBlack from './ThemeBlack';
@@ -21,27 +21,30 @@ const IPHONE12MAX_WIDTH = 428;
 const IPHONE12MAX_HEIGHT = 926;
 const IPHONE12MINI_WIDTH = 360;
 const IPHONE12MINI_HEIGHT = 780;
+const IPHONE14PRO_HEIGHT = 780;
 
 const {width: D_WIDTH, height: D_HEIGHT} = Dimensions.get('window');
 
-const { PlatformConstants = {} } = NativeModules;
-const { minor = 0 } = PlatformConstants.reactNativeVersion || {};
 
 const isIPhoneX = (() => {
   if (Platform.OS === 'web') return false;
-
+  const { height, width } = Dimensions.get("window");
   return (
     Platform.OS === 'ios' &&
-    ((D_HEIGHT === X_HEIGHT && D_WIDTH === X_WIDTH) ||
-      (D_HEIGHT === X_WIDTH && D_WIDTH === X_HEIGHT)) ||
-    ((D_HEIGHT === XSMAX_HEIGHT && D_WIDTH === XSMAX_WIDTH) ||
-      (D_HEIGHT === XSMAX_WIDTH && D_WIDTH === XSMAX_HEIGHT)) ||
-      ((D_HEIGHT === IPHONE12_HEIGHT && D_WIDTH === IPHONE12_WIDTH) ||
-      (D_HEIGHT === IPHONE12_WIDTH && D_WIDTH === IPHONE12_HEIGHT)) ||
-      ((D_HEIGHT === IPHONE12MAX_HEIGHT && D_WIDTH === IPHONE12MAX_WIDTH) ||
-        (D_HEIGHT === IPHONE12MAX_WIDTH && D_WIDTH === IPHONE12MAX_HEIGHT)) ||
-      ((D_HEIGHT === IPHONE12MINI_HEIGHT && D_WIDTH === IPHONE12MINI_WIDTH) ||
-        (D_HEIGHT === IPHONE12MINI_WIDTH && D_WIDTH === IPHONE12MINI_HEIGHT))
+    (height === 780 ||
+        width === 780 ||
+        height === 812 ||
+        width === 812 ||
+        height === 844 ||
+        width === 844 ||
+        height === 852 ||
+        width === 852 ||
+        height === 896 ||
+        width === 896 ||
+        height === 926 ||
+        width === 926 ||
+        height === 932 ||
+        width === 932)
   );
 })();
 
@@ -81,7 +84,27 @@ const Theme = {
 
   isPad: isIPad,
 
-  isIPhoneX: isIPhoneX,
+  isIPhoneX: (() => {
+    if (Platform.OS === 'web') return false;
+    const { height, width } = Dimensions.get("window");
+    return (
+        Platform.OS === 'ios' &&
+        (height === 780 ||
+            width === 780 ||
+            height === 812 ||
+            width === 812 ||
+            height === 844 ||
+            width === 844 ||
+            height === 852 ||
+            width === 852 ||
+            height === 896 ||
+            width === 896 ||
+            height === 926 ||
+            width === 926 ||
+            height === 932 ||
+            width === 932)
+    );
+  })(),
 
   fitIPhoneX: true,
 

@@ -1,6 +1,6 @@
 {
   "name": "@yz1311/teaset",
-  "version": "0.7.26-beta8",
+  "version": "0.7.26-beta12",
   "description": "A UI library for react native.",
   "main": "index.js",
   "types": "index.d.js",
@@ -30,8 +30,9 @@
   },
   "homepage": "https://github.com/yz1311/teaset#readme",
   "dependencies": {
-    "prop-types": "^15.5.10",
-    "hoist-non-react-statics":"latest"
+    "deprecated-react-native-prop-types": "^5.0.0",
+    "hoist-non-react-statics": "latest",
+    "prop-types": "^15.5.10"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
