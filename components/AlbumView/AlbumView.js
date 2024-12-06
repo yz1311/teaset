@@ -45,6 +45,7 @@ export default class AlbumView extends Component {
 
   constructor(props) {
     super(props);
+    this.sheetRefs = {};
     this.animateActions = [];
     this.layout = {x: 0, y: 0, width: 0, height: 0};
     let index = props.index || props.index === 0 ? props.index : props.defaultIndex;
@@ -70,8 +71,8 @@ export default class AlbumView extends Component {
     this.props.onWillChange && this.props.onWillChange(index, newIndex);
     this.setState({index: newIndex});
 
-    let sheet = this.refs['sheet' + index];
-    let nextSheet = this.refs['sheet' + newIndex];
+    let sheet = this.sheetRefs[`sheet${index}`]?.current;
+    let nextSheet = this.sheetRefs[`sheet${newIndex}`]?.current;
     let toPosition = newIndex > index ? 'left' : 'right';
 
     this.animateActions = [];
@@ -164,6 +165,10 @@ export default class AlbumView extends Component {
     if (index < this.state.index) position = 'left';
     else if (index > this.state.index) position = 'right';
 
+    if(!this.sheetRefs[`sheet${index}`]) {
+      this.sheetRefs[`sheet${index}`] = React.createRef();
+    }
+
     return (
       <AlbumSheet
         style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0}}
@@ -186,8 +191,8 @@ export default class AlbumView extends Component {
         onWillLoadImage={() => onWillLoadImage && onWillLoadImage(index)}
         onLoadImageSuccess={(width, height) => onLoadImageSuccess && onLoadImageSuccess(index, width, height)}
         onLoadImageFailure={error => onLoadImageFailure && onLoadImageFailure(index, error)}
-        ref={'sheet' + index}
-        key={'sheet' + index}
+        ref={this.sheetRefs[`sheet${index}`]}
+        key={`sheet${index}`}
         />
     );
   }

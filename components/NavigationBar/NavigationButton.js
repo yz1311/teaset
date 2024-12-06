@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {TouchableOpacity} from 'react-native';
+import { NavigationContext } from '../../contexts/NavigationContext';
 
 export default class NavigationButton extends Component {
 
@@ -13,10 +14,6 @@ export default class NavigationButton extends Component {
 
   static defaultProps = {
     hitSlop: {top: 12, bottom: 12, left: 8, right: 8},
-  };
-
-  static contextTypes = {
-    tintColor: PropTypes.string,
   };
 
   buildStyle() {
@@ -37,12 +34,14 @@ export default class NavigationButton extends Component {
   }
 
   render() {
-    let {style, children, ...others} = this.props;
-    style = this.buildStyle();
     return (
-      <TouchableOpacity style={style} {...others}>
-        {this.renderTitle()}
-      </TouchableOpacity>
+      <NavigationContext.Consumer>
+        {({tintColor}) => (
+          <TouchableOpacity style={this.buildStyle()} {...this.props}>
+            {this.renderTitle()}
+          </TouchableOpacity>
+        )}
+      </NavigationContext.Consumer>
     );
   }
 

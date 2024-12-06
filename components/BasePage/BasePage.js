@@ -8,6 +8,7 @@ import ReactNative, {Platform, View} from 'react-native';
 import {ViewPropTypes} from 'deprecated-react-native-prop-types';
 import Theme from '../../themes/Theme';
 import KeyboardSpace from '../KeyboardSpace/KeyboardSpace';
+import { NavigatorContext } from '../../contexts/NavigatorContext';
 
 export default class BasePage extends Component {
 
@@ -23,10 +24,6 @@ export default class BasePage extends Component {
     scene: '',
     autoKeyboardInsets: Platform.OS === 'ios',
     keyboardTopInsets: 0,
-  };
-
-  static contextTypes = {
-    navigator: PropTypes.func,
   };
 
   constructor(props) {
@@ -57,11 +54,12 @@ export default class BasePage extends Component {
   }
 
   get navigator() {
-    if (!this.context.navigator) {
+    const context = this.context;
+    if (!context.navigator) {
       console.error('The root component is NOT TeaNavigator, then you can not use BasePage.navigator.');
       return null;
     }
-    return this.context.navigator();
+    return context.navigator();
   }
 
   //Call after the scene transition by Navigator.onDidFocus
@@ -108,3 +106,5 @@ export default class BasePage extends Component {
     );
   }
 }
+
+BasePage.contextType = NavigatorContext;

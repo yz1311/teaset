@@ -33,6 +33,7 @@ export default class TabView extends Component {
 
   constructor(props) {
     super(props);
+    this.carouselRef = React.createRef();
     this.state = {
       activeIndex: this.props.activeIndex ? this.props.activeIndex : 0,
     };
@@ -119,7 +120,7 @@ export default class TabView extends Component {
                 onPress={e => {
                   if (type === 'sheet') {
                     this.setState({activeIndex: sheetIndex}, () => {
-                      this.refs.carousel && this.refs.carousel.scrollToPage(sheetIndex);                  
+                      this.carouselRef.current?.scrollToPage(sheetIndex);                  
                       onChange && onChange(sheetIndex);
                     });
                   }
@@ -149,7 +150,7 @@ export default class TabView extends Component {
         carousel={false}
         startIndex={this.activeIndex}
         cycle={false}
-        ref='carousel'
+        ref={this.carouselRef}
         onChange={index => {
           if (typeof index !== 'number') return;
           this.setState({activeIndex: index}, () => onChange && onChange(index));

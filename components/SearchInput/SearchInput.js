@@ -27,6 +27,7 @@ export default class SearchInput extends Component {
 
   constructor(props) {
     super(props);
+    this.textInputRef = React.createRef();
     this.state = {
       value: props.value === undefined ? props.defaultValue : props.value,
       editing: false,
@@ -54,11 +55,11 @@ export default class SearchInput extends Component {
   }
 
   focus() {
-    return this.refs.textInput && this.refs.textInput.focus();
+    this.textInputRef.current?.focus();
   }
 
   blur() {
-    return this.refs.textInput && this.refs.textInput.blur();
+    this.textInputRef.current?.blur();
   }
 
   isFocused() {
@@ -66,7 +67,7 @@ export default class SearchInput extends Component {
   }
 
   clear() {
-    return this.refs.textInput && this.refs.textInput.clear();
+    this.textInputRef.current?.clear();
   }
 
   onContainerLayout(e) {
@@ -153,7 +154,7 @@ export default class SearchInput extends Component {
             onChangeText={text => this.onChangeText(text)}
             selectionColor={this.state.selectionColor ? this.state.selectionColor : selectionColor}
             {...others}
-            ref='textInput'
+            ref={this.textInputRef}
             />
         </View>
       </View>

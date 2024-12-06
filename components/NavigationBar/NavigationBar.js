@@ -13,6 +13,7 @@ import NavigationButton from './NavigationButton';
 import NavigationLinkButton from './NavigationLinkButton';
 import NavigationIconButton from './NavigationIconButton';
 import NavigationBackButton from './NavigationBackButton';
+import { NavigationContext } from '../../contexts/NavigationContext';
 
 export default class NavigationBar extends Component {
 
@@ -41,10 +42,6 @@ export default class NavigationBar extends Component {
     statusBarInsets: true,
   };
 
-  static childContextTypes = {
-    tintColor: PropTypes.string,
-  };
-
   static Title = NavigationTitle;
   static Button = NavigationButton;
   static LinkButton = NavigationLinkButton;
@@ -68,8 +65,24 @@ export default class NavigationBar extends Component {
     }
   }
 
-  getChildContext() {
-    return {tintColor: this.props.tintColor === undefined ? Theme.navTintColor : this.props.tintColor};
+  render() {
+    let {style, children, type, title, titleStyle, leftView, rightView, tintColor, background, hidden, animated, statusBarStyle, statusBarColor, statusBarHidden, statusBarInsets, onLayout, ...others} = this.props;
+    let fs = StyleSheet.flatten(this.buildStyle());
+    const contextValue = {
+      tintColor: this.props.tintColor === undefined ? Theme.navTintColor : this.props.tintColor
+    };
+
+    return (
+      <NavigationContext.Provider value={contextValue}>
+        <Animated.View style={fs} onLayout={e => this.onLayout(e)} {...others}>
+          {this.renderStatusBar(fs)}
+          {this.renderBackground()}
+          {this.renderTitle(fs)}
+          {this.renderLeftView()}
+          {this.renderRightView()}
+        </Animated.View>
+      </NavigationContext.Provider>
+    );
   }
 
   buildStyle() {
@@ -225,19 +238,5 @@ export default class NavigationBar extends Component {
     let {rightView} = this.props;
     let {barOpacity: opacity} = this.state;
     return <Animated.View style={{opacity}} onLayout={e => this.onRightViewLayout(e)}>{rightView}</Animated.View>;
-  }
-
-  render() {
-    let {style, children, type, title, titleStyle, leftView, rightView, tintColor, background, hidden, animated, statusBarStyle, statusBarColor, statusBarHidden, statusBarInsets, onLayout, ...others} = this.props;
-    let fs = StyleSheet.flatten(this.buildStyle());
-    return (
-      <Animated.View style={fs} onLayout={e => this.onLayout(e)} {...others}>
-        {this.renderStatusBar(fs)}
-        {this.renderBackground()}
-        {this.renderTitle(fs)}
-        {this.renderLeftView()}
-        {this.renderRightView()}
-      </Animated.View>
-    );
   }
 }

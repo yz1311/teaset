@@ -23,12 +23,17 @@ export default class Button extends Component {
     size: 'md',
   };
 
+  constructor(props) {
+    super(props);
+    this.touchableRef = React.createRef();
+  }
+
   measureInWindow(callback) {
-    this.refs.touchableOpacity && this.refs.touchableOpacity.measureInWindow(callback);
+    this.touchableRef.current?.measureInWindow(callback);
   }
 
   measure(callback) {
-    this.refs.touchableOpacity && this.refs.touchableOpacity.measure(callback);
+    this.touchableRef.current?.measure(callback);
   }
 
   buildStyle() {
@@ -139,7 +144,10 @@ export default class Button extends Component {
     style = this.buildStyle();
     if (disabled) activeOpacity = style.opacity;
     return (
-      <TouchableOpacity style={style} disabled={disabled} activeOpacity={activeOpacity} {...others} ref='touchableOpacity'>
+      <TouchableOpacity 
+        {...others}
+        ref={this.touchableRef}
+      >
         {this.renderTitle()}
       </TouchableOpacity>
     );
