@@ -43,14 +43,15 @@ export default class SegmentedView extends Component {
 
   constructor(props) {
     super(props);
+    this.carouselRef = React.createRef();
     this.state = {
       activeIndex: this.props.activeIndex ? this.props.activeIndex : 0,
     };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.activeIndex != this.props.activeIndex && this.refs.carousel) {
-      this.refs.carousel.scrollToPage(nextProps.activeIndex);
+    if (nextProps.activeIndex != this.props.activeIndex && this.carouselRef.current) {
+      this.carouselRef.current.scrollToPage(nextProps.activeIndex);
     }
   }
 
@@ -82,8 +83,8 @@ export default class SegmentedView extends Component {
   onSegmentedBarChange(index) {
     if (index == this.activeIndex) return;
     this.setState({activeIndex: index}, () => {
-      if (this.refs.carousel) {
-        this.refs.carousel.scrollToPage(index, false);
+      if (this.carouselRef.current) {
+        this.carouselRef.current.scrollToPage(index, false);
       }
       this.props.onChange && this.props.onChange(index);
     });
@@ -147,7 +148,7 @@ export default class SegmentedView extends Component {
         carousel={false}
         startIndex={this.activeIndex}
         cycle={false}
-        ref='carousel'
+        ref={this.carouselRef}
         onChange={index => this.onCarouselChange(index)}
       >
         {this.sheets}

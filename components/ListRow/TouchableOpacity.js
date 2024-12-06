@@ -25,6 +25,7 @@ export default class TouchableOpacity extends Component {
 
   constructor(props) {
     super(props);
+    this.animatedViewRef = React.createRef();
     this.state = {
       anim: new Animated.Value(this._getChildStyleOpacityWithDefault()),
       pressability: null,
@@ -94,11 +95,11 @@ export default class TouchableOpacity extends Component {
   }
 
   measureInWindow(callback) {
-    this.refs.animatedView && this.refs.animatedView.measureInWindow(callback);
+    this.animatedViewRef.current?.measureInWindow(callback);
   }
 
   measure(callback) {
-    this.refs.animatedView && this.refs.animatedView.measure(callback);
+    this.animatedViewRef.current?.measure(callback);
   }
 
   touchableHandleResponderMove(event) {
@@ -178,7 +179,7 @@ export default class TouchableOpacity extends Component {
         focusable={
           this.props.focusable !== false && this.props.onPress !== undefined
         }
-        ref='animatedView'
+        ref={this.animatedViewRef}
         {...eventHandlersWithoutBlurAndFocus}>
         {this.props.children}
       </Animated.View>

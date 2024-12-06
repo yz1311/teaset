@@ -45,6 +45,7 @@ export default class ListRow extends Component {
 
   constructor(props) {
     super(props);
+    this.containerViewRef = React.createRef();
     this.state = {
       swipeSts: 'none',
       swipeWidth: 0,
@@ -52,15 +53,15 @@ export default class ListRow extends Component {
   }
 
   measureInWindow(callback) {
-    this.refs.containerView && this.refs.containerView.measureInWindow(callback);
+    this.containerViewRef.current?.measureInWindow(callback);
   }
 
   measure(callback) {
-    this.refs.containerView && this.refs.containerView.measure(callback);
+    this.containerViewRef.current?.measure(callback);
   }
 
   closeSwipeActions() {
-    this.refs.containerView && this.refs.containerView.timingClose();
+    this.containerViewRef.current?.timingClose();
   }
 
   buildStyle() {
@@ -120,7 +121,7 @@ export default class ListRow extends Component {
         {swipeActions.map((item, index) => React.cloneElement(item, {
           key: item.key ? item.key : 'action' + index,
           onPress: () => {
-            this.refs.containerView && this.refs.containerView.timingClose();
+            this.containerViewRef.current?.timingClose();
             item.props.onPress && item.props.onPress();
           }
         }))}
@@ -233,7 +234,7 @@ export default class ListRow extends Component {
           swipeWidth={this.state.swipeWidth}
           onPress={onPress}
           onSwipeStsChange={swipeSts => this.setState({swipeSts})}
-          ref='containerView'
+          ref={this.containerViewRef}
         >
           <Text style={[{color:'red', fontSize: 18, alignSelf:'center', marginTop: 5, marginRight: 3}, requiredStyle, !required&& {opacity: 0}]}>*</Text>
           {this.renderIcon()}

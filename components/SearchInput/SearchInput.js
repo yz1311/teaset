@@ -63,7 +63,7 @@ export default class SearchInput extends Component {
   }
 
   isFocused() {
-    return this.refs.textInput && this.refs.textInput.isFocused();
+    return this.textInputRef.current?.isFocused();
   }
 
   clear() {
